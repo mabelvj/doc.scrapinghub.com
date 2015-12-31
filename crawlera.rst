@@ -415,7 +415,7 @@ SpookyJS allows you to spawn multiple instances of CasperJS suites, so ``proxy``
 
     var spooky = new Spooky({
         child: {
-            proxy: 'paygo.crawlera.com:8010',
+            proxy: 'proxy.crawlera.com:8010',
             proxy-auth: '<API key>:'
             /* ... */
         },
