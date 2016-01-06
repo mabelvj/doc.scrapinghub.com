@@ -209,3 +209,9 @@ latex_documents = [
 
 # If false, no module index is generated.
 #latex_use_modindex = True
+
+
+# -- Build hooks ---------------------------------------------------------------
+
+if os.environ.get('READTHEDOCS') == 'True':
+    os.system("make syncshub")
