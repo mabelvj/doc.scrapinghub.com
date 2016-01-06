@@ -43,10 +43,11 @@ dash.scrapinghub.com
 ---------------------
 
 .. toctree::
+   :maxdepth: 2
 
-	comments
-	eggs
-	jobs
+   comments
+   eggs
+   jobs
 
 You can use the `python-scrapinghub <https://github.com/scrapinghub/python-scrapinghub>`_ library to interface with these endpoints. To install with pip::
 
@@ -58,14 +59,15 @@ storage.scrapinghub.com
 -----------------------
 
 .. toctree::
+   :maxdepth: 2
 
-	activity
-	collections
-	frontier
-	items
-	jobq
-	logs
-	requests
+   activity
+   collections
+   frontier
+   items
+   jobq
+   logs
+   requests
 
 You can use the `python-hubstorage <https://github.com/scrapinghub/python-hubstorage>`_ library to interface with these endpoints. To install with pip::
 
