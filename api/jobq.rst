@@ -48,8 +48,6 @@ HTTP::
 
 Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
 
-    >>> from hubstorage import HubstorageClient
-    >>> hc = HubstorageClient(auth=APIKEY)
     >>> jobs = hc.get_project('53').jobq.list()
 
 
