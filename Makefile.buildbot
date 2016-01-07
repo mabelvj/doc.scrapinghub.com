@@ -1,5 +1,0 @@
-build:
-	make html
-
-publish:
-	true

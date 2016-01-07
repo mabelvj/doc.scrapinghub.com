@@ -8,7 +8,7 @@ Scrapinghub's *Collections* provide a way to store an arbitrary number of record
 
 The *Collections API* allows storing arbitrary objects in named sets. For example::
 
-    $ curl -X POST -d '{"_key": "foo", "value": "bar"}' \
+    $ curl -u APIKEY: -X POST -d '{"_key": "foo", "value": "bar"}' \
         https://storage.scrapinghub.com/collections/78/s/my_collection
 
 Will post an object to the ``my_collection`` collection. You can submit multiple objects by separating them with newlines. The ``_key`` field is required and used to identify the item and should be unique.
@@ -36,8 +36,8 @@ When working with collections with :ref:`python-hubstorage<api-overview-ep-stora
 
 Using the wrong storage type will result in a ``KeyError`` when trying to retrieve an item.
 
-collections/:id/:type/:collection
----------------------------------
+collections/:project_id/:type/:collection
+-----------------------------------------
 
 Read or write items from or to a collection.
 
@@ -65,9 +65,9 @@ GET examples::
     $ curl -u APIKEY: "https://storage.scrapinghub.com/collections/78/s/my_collection?key=foo1&key=foo2"
     {"value":"bar1"}
     {"value":"bar2"}
-    $ curl https://storage.scrapinghub.com/collections/78/s/my_collection?prefix=f
+    $ curl -u APIKEY: https://storage.scrapinghub.com/collections/78/s/my_collection?prefix=f
     {"value":"bar"}
-    $ curl "https://storage.scrapinghub.com/collections/78/s/my_collection?startts=1402699941000&endts=1403039369570"
+    $ curl -u APIKEY: "https://storage.scrapinghub.com/collections/78/s/my_collection?startts=1402699941000&endts=1403039369570"
     {"value":"bar"}
 
 .. note:: When using :ref:`python-hubstorage <api-overview-ep-storage>`, you should use the method ``iter_json`` to iterate through items in order to filter them.
@@ -84,8 +84,8 @@ The current timestamp can be retrieved like so::
 .. note:: Timestamp filters may perform poorly when selecting a small number of records from a large collection.
 
 
-collections/:id/:type/:collection/:item
----------------------------------------
+collections/:project_id/:type/:collection/:item
+-----------------------------------------------
 
 Read an individual item.
 
@@ -100,8 +100,8 @@ Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
     >>> store.get('foo')
     {u'value': u'bar'}
 
-collections/:id/:type/:collection/:item/value
----------------------------------------------
+collections/:project_id/:type/:collection/:item/value
+-----------------------------------------------------
 
 Read an individual item value.
 
