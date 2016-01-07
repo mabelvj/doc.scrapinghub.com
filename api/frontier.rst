@@ -24,6 +24,8 @@ A typical example would be to use the URL as a fingerprint and the hostname as
 a slot. The crawler should ensure that each host is only crawled from one
 process at any given time so that politeness can be maintained.
 
+.. include:: client_library.rst
+
 Batch object
 ------------
 
@@ -62,19 +64,58 @@ POST   Enqueues a request in the specified slot. fp, qdata, fdata, p
 DELETE Deletes the specified slot.
 ====== ========================================= ====================
 
-POST examples::
+POST examples
+^^^^^^^^^^^^^
+
+**Add a request to the frontier**
+
+HTTP::
 
     $ curl -u API_KEY: -d '{"fp":"/some/path.html"}'  \
         https://storage.scrapinghub.com/hcf/78/test/s/example.com
     {"newcount":1}
-    # By using the same priority as request depth, the website can be traversed in breadth-first order from the starting URL.
+
+Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
+
+    >>> frontier = hc.get_project('78').frontier
+    >>> frontier.add('test', 'example.com', [{'fp': '/some/path.html'}])
+    >>> frontier.flush()
+    >>> frontier.newcount
+    1
+
+**Add requests with additional parameters**
+
+By using the same priority as request depth, the website can be traversed in breadth-first order from the starting URL.
+
+HTTP::
+
     $ curl -u API_KEY: -d $'{"fp":"/"}\n{"fp":"page1.html", "p": 1, "qdata": {"depth": 1}}' \
         https://storage.scrapinghub.com/hcf/78/test/s/example.com
     {"newcount":2}
 
-DELETE example::
+
+Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
+
+    >>> frontier = hc.get_project('78').frontier
+    >>> frontier.add('test', 'example.com', [{'fp': '/'}, {'fp': 'page1.html', 'p': 1, 'qdata': {'depth': 1}}])
+    >>> frontier.flush()
+    >>> frontier.newcount
+    2
+
+
+DELETE example
+^^^^^^^^^^^^^^
+
+The example belows delete the slot ``example.com`` from the frontier.
+
+HTTP::
 
     $ curl -u API_KEY: -X DELETE https://storage.scrapinghub.com/hcf/78/test/s/example.com/
+
+Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
+
+    >>> frontier = hc.get_project('78').frontier
+    >>> frontier.delete_slot('test', 'example.com')
 
 /hcf/:project_id/:frontier/s/:slot/q
 ------------------------------------
@@ -87,11 +128,16 @@ Parameter Description                                 Required
 mincount  The minimum number of requests to retrieve. No
 ========= =========================================== ========
 
-Example::
+HTTP::
 
     $ curl -u API_KEY: https://storage.scrapinghub.com/hcf/78/test/s/example.com/q
     {"id":"00013967d8af7b0001","requests":[["/",null]]}
     {"id":"01013967d8af7e0001","requests":[["page1.html",{"depth":1}]]}
+
+Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
+
+    >>> frontier = hc.get_project('78').frontier
+    >>> reqs = frontier.read('test', 'example.com')
 
 /hcf/:project_id/:frontier/s/:slot/q/deleted
 --------------------------------------------
@@ -106,16 +152,31 @@ This can be achieved by posting the IDs of the completed batches::
 
 You can specify the IDs as arrays or single values. As with the previous examples, multiple lines of input is accepted.
 
+You can do the same using the Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
+
+    >>> frontier = hc.get_project('78').frontier
+    >>> frontier.delete('test', 'example.com', '00013967d8af7b0001')
+
+
 /hcf/:project_id/:frontier/s/:slot/f
 ------------------------------------
 
 Retrieve fingerprints for a given slot.
 
-Example::
+Example
+^^^^^^^
+
+HTTP::
 
     $ curl -u API_KEY: https://storage.scrapinghub.com/hcf/78/test/s/example.com/f
     {"fp":"/"}
     {"fp":"page1.html"}
+
+Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
+
+    >>> frontier = hc.get_project('78').frontier
+    >>> fps = [req['requests'] for req in frontier.read('test', 'example.com')]
+
 
 Results are ordered lexicographically by fingerprint value.
 
@@ -124,17 +185,28 @@ Results are ordered lexicographically by fingerprint value.
 
 Lists the frontiers for a given project.
 
-Example::
+Example
+^^^^^^^
+
+HTTP::
 
     $ curl -u API_KEY: https://storage.scrapinghub.com/hcf/78/list
     ["test"]
+
+
 
 /hcf/:project_id/:frontier/list
 -------------------------------
 
 Lists the slots for a given frontier.
 
-Example::
+Example
+^^^^^^^
+
+HTTP::
 
     $ curl -u API_KEY: https://storage.scrapinghub.com/hcf/78/test/list
     ["example.com"]
+
+
+.. _`python-hubstorage`: http://github.com/scrapinghub/python-hubstorage

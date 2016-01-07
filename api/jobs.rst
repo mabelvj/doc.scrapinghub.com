@@ -4,7 +4,9 @@
 Jobs API
 ========
 
-The jobs API makes it easy to work with your spider's jobs.
+The jobs API makes it easy to work with your spider's jobs and lets you schedule, stop, update and delete them.
+
+.. include:: client_library.rst
 
 jobs/run.json
 -------------
@@ -230,6 +232,12 @@ Examples::
       ]
     }
 
+Python::
+
+  >>> project = hc.get_project('123')
+  >>> jobs_metadata = project.jobq.list()
+  >>> [j['key'] for j in jobs_metadata]
+  ['1111111/1/3', '1111111/1/2', '1111111/1/1']
 
 jobs/update.json
 ----------------
@@ -255,6 +263,11 @@ Example::
 
   $ curl -u APIKEY: https://dash.scrapinghub.com/api/jobs/update.json -d project=123 -d job=123/1/2 -d add_tag=consumed
 
+Python::
+
+  >>> job = hc.get_job('123/1/2')
+  >>> job.update(add_tag='consumed')
+
 jobs/delete.json
 ----------------
 
@@ -276,6 +289,12 @@ POST   Delete job(s). project, job
 Example::
 
   $ curl -u APIKEY: https://dash.scrapinghub.com/api/jobs/delete.json -d project=123 -d job=123/1/2 -d job=123/1/3
+
+Python::
+
+  >>> job = hc.get_job('123/1/2')
+  >>> job.delete()
+  1
 
 jobs/stop.json
 --------------
@@ -299,3 +318,8 @@ Example::
 
   $ curl -u APIKEY: https://dash.scrapinghub.com/api/jobs/stop.json -d project=123 -d job=123/1/1 -d job=123/1/2
 
+Python::
+
+  >>> job = hc.get_job('123/1/1')
+  >>> job.stop()
+  True

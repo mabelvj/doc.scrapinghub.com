@@ -18,17 +18,23 @@ The ``/s/`` in the path represents the collection type. See below for more detai
 Collection types
 ----------------
 
-In the above example,  The following
-collection types are available:
+The following collection types are available:
 
-====  ===================== ================================================================
-Type  Full name             Description
-====  ===================== ================================================================
-s     store                 Basic set store
-cs    cached store          Items expire after a month
-vs    versioned store       Up to 3 copies of each item will be retained
-vcs   versioned cache store Multiple copies are retained, and each one expires after a month
-====  ===================== ================================================================
+====  ===================== ========================== ================================================================
+Type  Full name             Hubstorage method          Description
+====  ===================== ========================== ================================================================
+s     store                 new_store                  Basic set store
+cs    cached store          new_cached_store           Items expire after a month
+vs    versioned store       new_versioned_store        Up to 3 copies of each item will be retained
+vcs   versioned cache store new_versioned_cached_store Multiple copies are retained, and each one expires after a month
+====  ===================== ========================== ================================================================
+
+When working with collections with :ref:`python-hubstorage<api-overview-ep-storage>`, you need to select the store. The method you use depends on the type. For example, to access a cached store, you need to use the ``new_cached_store`` method::
+
+    >>> collections = project.collections
+    >>> collections.new_cached_store('Pages')
+
+Using the wrong storage type will result in a ``KeyError`` when trying to retrieve an item.
 
 collections/:project_id/:type/:collection
 -----------------------------------------
@@ -64,7 +70,9 @@ GET examples::
     $ curl -u APIKEY: "https://storage.scrapinghub.com/collections/78/s/my_collection?startts=1402699941000&endts=1403039369570"
     {"value":"bar"}
 
-Prefix filters, unlikely other filters, use indexes and should be used when possible. You can use the ``prefixcount`` parameter to limit the number of values returned for each prefix.
+.. note:: When using :ref:`python-hubstorage <api-overview-ep-storage>`, you should use the method ``iter_json`` to iterate through items in order to filter them.
+
+Prefix filters, unlike other filters, use indexes and should be used when possible. You can use the ``prefixcount`` parameter to limit the number of values returned for each prefix.
 
 A common pattern is to download changes within a certain time period. You can use the ``startts`` and ``endts`` parameters to select records within a certain time window.
 
@@ -81,10 +89,16 @@ collections/:project_id/:type/:collection/:item
 
 Read an individual item.
 
-GET example::
+HTTP::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/collections/78/s/my_collection/foo
     {"value":"bar"}
+
+Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
+
+    >>> store = project.collections.new_store('my_collection')
+    >>> store.get('foo')
+    {u'value': u'bar'}
 
 collections/:project_id/:type/:collection/:item/value
 -----------------------------------------------------
