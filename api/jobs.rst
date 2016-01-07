@@ -4,7 +4,9 @@
 Jobs API
 ========
 
-The jobs API makes it easy to work with your spider's jobs and lets you schedule, stop, update and delete them. You can use the `python-hubstorage <api-overview-ep-dash>` library to interact with the API programmatically.
+The jobs API makes it easy to work with your spider's jobs and lets you schedule, stop, update and delete them.
+
+.. include:: client_library.rst
 
 jobs/run.json
 -------------
