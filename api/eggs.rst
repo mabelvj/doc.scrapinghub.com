@@ -66,7 +66,7 @@ project   Project ID. Yes
 ====== =========================================== ====================
 Method Description                                 Supported parameters
 ====== =========================================== ====================
-POST   List Python eggs for the specified project. project
+GET    List Python eggs for the specified project. project
 ====== =========================================== ====================
 
 Example::
