@@ -268,7 +268,7 @@ This header allows to disable internal cookies tracking performed by Crawlera.
 .. _x-crawlera-session:
 
 X-Crawlera-Session
--------------------
+------------------
 
 .. warning::
 
@@ -318,6 +318,26 @@ This header sets Crawlera's timeout in milliseconds for receiving a response fro
     X-Crawlera-Timeout: 40000
 
 The example above sets the response timeout to 40,000 milliseconds. In the case of a streaming response, each chunk has 40,000 milliseconds to be received. If no response is received after 40,000 milliseconds, a 504 response will be returned.
+
+[Deprecated] X-Crawlera-Use-Https
+---------------------------------
+
+Previously the way to perform https requests needed the http variant of the url
+ plus the header `X-Crawlera-Use-Https` with value `1` like the following
+ example:
+
+    curl -x proxy.crawlera.com:8010 -U <API key>: http://twitter.com -H x-crawlera-use-https:1
+
+Now you can directly use the https url and remove the `X-Crawlera-Use-Https`
+ header, like this:
+
+    curl -x proxy.crawlera.com:8010 -U <API key>: https://twitter.com
+
+If you don't use curl for crawlera you can check the rest of the documentation
+and update your scripts in order to continue using crawlera without issues.
+Also some programming languages will ask for the Certificate
+file :download:`crawlera-ca.crt`. You can install the certificate on your
+system or set it explicitely on the script.
 
 Response Headers
 ================
