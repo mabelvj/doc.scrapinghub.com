@@ -37,8 +37,7 @@ You can enable the middleware by adding the following lines to your Scrapy proje
 
     DOWNLOADER_MIDDLEWARES = {'scrapy_crawlera.CrawleraMiddleware': 600}
     CRAWLERA_ENABLED = True
-    CRAWLERA_USER = '<API key>'
-    CRAWLERA_PASS = ''
+    CRAWLERA_APIKEY = '<API key>'
 
 To achieve higher crawl rates when using Crawlera with Scrapy, it’s recommended to disable the :ref:`autothrottle-addon` extension and increase the maximum number of concurrent requests. You may also want to increase the download timeout. Here's an example::
 
@@ -140,7 +139,7 @@ domain_forbidden       523            Domain forbidden. Please contact help@scra
 bad_header             540            Bad header value for *<some_header>*
 ====================== =============  ======================
 
-\* Crawlera limits the number of concurrent connections to 500 for standard users, and 5000 for enterprise users.
+\* Crawlera limits the number of concurrent connections based on your Crawlera plan. See: `Crawlera pricing table <http://scrapinghub.com/pricing/#crawlera>`_ for more information on plans.
 
 .. _sessions-request-limits:
 
@@ -395,8 +394,7 @@ Settings
 ========================= ===================================================
 CRAWLERA_URL              proxy URL (default: ``http://proxy.crawlera.com:8010``)
 CRAWLERA_ENABLED          tick the checkbox to enable Crawlera
-CRAWLERA_USER             Crawlera API key
-CRAWLERA_PASS             Crawlera password (set as empty string if using an API key)
+CRAWLERA_APIKEY           Crawlera API key
 CRAWLERA_MAXBANS          number of bans to ignore before closing the spider (default: ``20``)
 CRAWLERA_DOWNLOAD_TIMEOUT timeout for requests (default: ``1800``)
 ========================= ===================================================
