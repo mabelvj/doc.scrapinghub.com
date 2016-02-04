@@ -53,40 +53,53 @@ For more information about Scrapy please refer to the `Scrapy documentation`_.
 Deploying a Scrapy Spider
 =========================
 
-.. note:: You will need the :ref:`Scrapinghub command line client <shub>` to deploy projects to Scrapy Cloud, so install it if you haven't done it yet.
+.. note::
+    You will need the :ref:`Scrapinghub command line client <shub>` to deploy
+    projects to Scrapy Cloud, so install it if you have not done so yet.
 
-The next step is to edit ``scrapy.cfg`` file of your project and configure Scrapinghub as deployment target::
+The next step is to deploy your Scrapy project to Scrapinghub. You will need
+your API key and the numeric ID of your Scrapinghub project. You can find the
+former on your `Account page`_,  and the latter in the URL when you are
+browsing your Scrapinghub project
+(``https://dash.scrapinghub.com/p/PROJECT_ID/...``). First, run::
 
-    [settings]
-    default = companies.settings
+    $ shub login
 
-    [deploy]
-    project = PROJECT_ID
-
-``PROJECT_ID`` is the numeric project ID which you can find in Scrapinghub URL:
-
-    https://dash.scrapinghub.com/p/PROJECT_ID/...
-
-Then you should put your API key (which you can get from your `Account page`_)
-in ``~/.scrapy.cfg`` to authenticate::
-
-    [deploy]
-    username = APIKEY
-
-Finally, you deploy your spider to Scrapinghub with the following command::
+to save your API key to a local file (``~/.scrapinghub.yml``). You can delete
+it from there anytime via ``shub logout``. Next, run::
 
     $ shub deploy
-    Server response (200):
-    {"status": "ok", "project": PROJECT_ID, "version": "1391115259", "spiders": 1}
 
-Now you should go to your project page and schedule the spider to run:
+to be guided through a wizard that will set up the project configuration file
+(``scrapinghub.yml``) for you. After the wizard, your project will be uploaded
+to Scrapinghub. You can re-trigger deployment (without having to go through the
+wizard again) anytime via another call to ``shub deploy``.
+
+Now you can schedule your spider to run on Scrapinghub::
+
+    $ shub schedule crunchbase
+    Spider crunchbase scheduled, job ID: 12345/1/1
+    Watch the log on the command line:
+        shub log -f 1/1
+    or print items as they are being scraped:
+        shub items -f 1/1
+    or watch it running in Scrapinghub's web interface:
+        https://dash.scrapinghub.com/p/12345/job/1/1
+
+And watch it run (replace ``1/1`` with the job ID ``shub`` gave you on the
+previous command, you can leave out the project ID)::
+
+    shub log -f 1/1
+
+Alternatively, you can go to your project page and schedule the spider there:
 
 .. image:: _static/sc-schedule.png
    :width: 300px
 
 |
 
-Once the job has finished, or while it's running, you can click on the job to review the scraped data and other information about the job:
+Once the job has finished, or while it's running, you can click on the job to
+review the scraped data and other information about the job:
 
 .. image:: _static/sc-items-scraped.png
    :width: 500px
@@ -99,12 +112,20 @@ Dependencies and External Libraries
 The Scrapy Cloud platform comes with some libraries pre-installed that you can
 use in your code without uploading an egg. `This support article
 <http://support.scrapinghub.com/topic/205467-supported-libraries-on-scrapy-cloud/>`_
-describes exactly which library versions are availble, and you can also
+describes exactly which library versions are available, and you can also
 subscribe to get notified of changes to such libraries.
 
-If your project needs code from an external Python library, you need to upload a Python egg of that dependency.
+If your project needs code from an external Python library, you need to upload
+a Python egg of that dependency. If available, you can simply import the
+library from PyPI (e.g. the ``requests`` library)::
 
-See `setuptools`_ for details about egg concepts, preparation and building. If you want to provide your own library for your project, proceed as described below:
+    shub deploy-egg --from-pypi requests
+
+Alternatively, you can point to a repository URL::
+
+    shub deploy-egg --from-url https://github.com/kennethreitz/requests.git
+
+If you want to provide your own library for your project, proceed as follows:
 
 #. Write your code.
 #. Add a ``setup.py`` file in the base package folder, e.g.::
@@ -116,8 +137,11 @@ See `setuptools`_ for details about egg concepts, preparation and building. If y
         packages = find_packages(),
     )
 
-#. Run ``python setup.py bdist_egg`` to deploy in your project.
-#. In Scrapinghub, go to **Settings -> Eggs -> Add Egg**, and fill the requested data in the upload form.
+#. Run ``shub deploy-egg PROJECTID`` to deploy to your project. (Note that you
+   need to add the project ID since you usually are no longer within the Scrapy
+   project's directory tree.)
+
+See `setuptools`_ for details about egg concepts, preparation and building.
 
 .. _sc-scripts:
 
