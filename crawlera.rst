@@ -448,6 +448,41 @@ If it's preferred that Crawlera operated only on specific URLs, they should be w
 .. literalinclude:: _static/crawlera-casperjs.js
     :language: javascript
 
+
+Using Crawlera with Splash
+==========================
+
+You can use `Splash <http://splash.readthedocs.org/en/stable/>`
+with Crawlera to render JavaScript and proxy all requests
+issued from Splash. This can be necessary if your crawler makes heavy usage
+of Splash and target website throttles or blocks requests from Splash.
+
+*How to do it?*
+
+You need to send your requests to Splash. Splash must proxy its requests via Crawlera.
+
+This is best achieved by using Splash `/execute` endpoint.
+You need to create Lua script that will tell Splash to use proxy for requests.
+Splash provides splash:on_request callback function that can be used for this purpose.
+
+.. literalinclude:: _static/crawlera-splash.lua
+    :language: lua
+
+The previous example rendered a page as a PNG image and the binary content its
+    returned in the HTTP request.
+
+The `/execute` endpoint reads the automation script in the `lua_source` parameter
+(which is a string containing the full script).
+
+Example (using python requests library):
+
+.. literalinclude:: _static/crawlera-splash.py
+    :language: python
+
+Note: in the previous python script Splash was running at address
+`192.168.99.100` default IP from docker container.
+
+
 Using Crawlera from Different Languages
 =======================================
 
