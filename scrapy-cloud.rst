@@ -58,10 +58,8 @@ Deploying a Scrapy Spider
     projects to Scrapy Cloud, so install it if you have not done so yet.
 
 The next step is to deploy your Scrapy project to Scrapinghub. You will need
-your API key and the numeric ID of your Scrapinghub project. You can find the
-former on your `Account page`_,  and the latter in the URL when you are
-browsing your Scrapinghub project
-(``https://dash.scrapinghub.com/p/PROJECT_ID/...``). First, run::
+your API key and the numeric ID of your Scrapinghub project. You can find both
+of these on your project's *Deploy* page. First, run::
 
     $ shub login
 
@@ -179,7 +177,6 @@ For running the script through the API, you need to use a private API (which may
 
 .. _Scrapy: http://scrapy.org
 .. _Scrapy installation guide: http://doc.scrapy.org/en/latest/intro/install.html
-.. _account page: https://dash.scrapinghub.com/account/
 .. _Scrapy documentation: http://doc.scrapy.org/
 .. _setuptools: http://peak.telecommunity.com/DevCenter/setuptools
 .. _Scrapinghub Pricing: http://scrapinghub.com/pricing/
