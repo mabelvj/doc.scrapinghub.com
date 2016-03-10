@@ -133,7 +133,7 @@ Monitoring
 
 The *Monitoring* addon lets you monitor your spiders, generate reports and send notifications. It works by allowing you to set one or more actions to execute on a certain job event. 
 
-``Monitors`` consist of one or more tests that check for one or more conditions. You can create a Monitor by clicking the ``Add monitor`` button. To then add a test to the monitor, click ``Add test``. Here you can enter a name and description, as well as an assert expression and fail message. The assert expression is used to check whether the test passed or failed. The fail message will be included in the report.
+``Monitors`` consist of one or more tests that check for one or more conditions. You can create a Monitor by clicking the ``Add monitor`` button, which you can access via the Addons menu, once you enable it. To then add a test to the monitor, click ``Add test``. Here you can enter a name and description, as well as an assert expression and fail message. The assert expression is used to check whether the test passed or failed. The fail message will be included in the report.
 
 In the ``Actions`` tab you can set up actions to occur when a certain event is triggered. The following triggers are available:
 
@@ -157,7 +157,7 @@ The ``Assert Expression`` field is where we write the logic to check the spider 
 
     $stats['finish_reason'] == 'finished'
 
-We can also add a fail message which will be included in the email report. Save the test, and click on the ``Actions`` tab. 
+We can also add a fail message as a simple string or python expression, which will be included in the email report. Save the test, and click on the ``Actions`` tab. 
 
 Because we want to be notified when the test fails, we need to add a ``Monitors failed`` action. Click ``Add action`` and you'll see this dialogue:
 
