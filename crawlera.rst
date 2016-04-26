@@ -233,11 +233,10 @@ X-Crawlera-UA
 This header controls Crawlera User-Agent behaviour. The supported values are:
 
 * ``pass`` - pass the User-Agent as it comes on the client request
-* ``crawlera`` - produce a User-Agent of type ``crawlera`` (e.g. ``Mozilla/5.0 (compatible; Crawlera/0.1; UID 10828)``)
 * ``desktop`` - use a random desktop browser User-Agent
 * ``mobile`` - use a random mobile browser User-Agent
 
-If ``X-Crawlera-UA`` isn’t specified, it will default to ``crawlera``. If an unsupported value is passed in ``X-Crawlera-UA`` header, Crawlera replies with a ``540 Bad Header Value``.
+If ``X-Crawlera-UA`` isn’t specified, it will default to ``desktop``. If an unsupported value is passed in ``X-Crawlera-UA`` header, Crawlera replies with a ``540 Bad Header Value``.
 
 More User-Agent types will be supported in the future (``chrome``, ``firefox``) and added to the list above.
 
