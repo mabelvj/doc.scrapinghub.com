@@ -235,7 +235,7 @@ You can also setup periodic jobs to run the script or do it via the API.
 
 For running the script through the API, you need to use a private API (which may subject to change in the future). Here is an example using ``curl``::
 
-    curl-u API_KEY: -X POST -d '{"job_cmd": ["py:hello.py"]}' https://storage.scrapinghub.com/jobq/PROJECT_ID/push
+    curl -u API_KEY: -X POST -d '{"job_cmd": ["py:hello.py"]}' https://storage.scrapinghub.com/jobq/PROJECT_ID/push
 
 
 .. _Scrapy: http://scrapy.org
