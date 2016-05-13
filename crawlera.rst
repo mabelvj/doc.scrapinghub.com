@@ -64,6 +64,12 @@ SSL certificate verification in your HTTP client.
 
 The Crawlera Certificate authority can be downloaded here: :download:`crawlera-ca.crt`
 
+The minimal example to check if the CA is working for you is to try:
+
+.. code-block:: sh
+
+    curl -x proxy.crawlera.com:8010 -U <API key>: --cacert /<folder-with-certificate>/crawlera-ca.crt https://httpbin.org/ip
+
 .. _working-with-cookies:
 
 Working with Cookies
