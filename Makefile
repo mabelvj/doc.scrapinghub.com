@@ -92,6 +92,8 @@ syncshub:
 	$(eval TMPSHUB:=$(shell mktemp))
 	@echo "Fetching latest shub release tag"
 	$(eval RLSTAG:=$(shell curl -s https://api.github.com/repos/scrapinghub/shub/releases/latest | grep tag_name | cut -d '"' -f 4))
+	# XXX: HOTFIX - REMOVE AFTER SHUB 2.1.2 RELEASE
+	$(eval RLSTAG:=master)
 	@echo "Downloading shub $(RLSTAG) README.rst"
 	curl -s https://raw.githubusercontent.com/scrapinghub/shub/$(RLSTAG)/README.rst -o $(TMPREADME)
 	sed -i -n '/BEGIN_SH_DOC/,/END_SH_DOC/{//!p}' $(TMPREADME)
