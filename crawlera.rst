@@ -46,7 +46,7 @@ To achieve higher crawl rates when using Crawlera with Scrapy, it’s recommende
     AUTOTHROTTLE_ENABLED = False
     DOWNLOAD_TIMEOUT = 300
 
-To enable Crawlera via `Scrapinghub dashboard <http://dash.scrapinghub.com/>`_, see :ref:`crawlera-scrapy-cloud` section.
+To enable Crawlera via `Scrapinghub dashboard <http://app.scrapinghub.com/>`_, see :ref:`crawlera-scrapy-cloud` section.
 
 .. _working-with-https:
 
@@ -592,7 +592,7 @@ You can use the `crawlera-bench tool <https://github.com/scrapinghub/crawlera-to
 Where can I monitor my Crawlera usage?
 --------------------------------------
 
-Go to your profile page in `Scrapinghub dashboard <http://dash.scrapinghub.com/>`_ and you should see your Crawlera accounts in the Crawlera section. If you click on a user, you will be able review the number of requests per day/month for that user.
+Go to your profile page in `Scrapinghub dashboard <http://app.scrapinghub.com/>`_ and you should see your Crawlera accounts in the Crawlera section. If you click on a user, you will be able review the number of requests per day/month for that user.
 
 Why are requests slower through Crawlera as opposed to using proxies directly?
 ------------------------------------------------------------------------------

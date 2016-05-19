@@ -34,7 +34,7 @@ POST   Schedule the specified spider. project, job, spider, add_tag, priority
 
 Example::
 
-	$ curl -u APIKEY: https://dash.scrapinghub.com/api/run.json -d project=123 -d spider=somespider -d add_tag=sometag -d spiderarg1=example -d job_settings='{ "setting1": "value1", "setting2": "value2" }'
+	$ curl -u APIKEY: https://app.scrapinghub.com/api/run.json -d project=123 -d spider=somespider -d add_tag=sometag -d spiderarg1=example -d job_settings='{ "setting1": "value1", "setting2": "value2" }'
 	{"status": "ok", "jobid": "123/1/1"}
 
 
@@ -65,7 +65,7 @@ GET    Retrieve job information. project, job, spider, state, has_tag, lacks_tag
 Examples::
 
     # Retrieve the latest 3 finished jobs
-    $ curl -u APIKEY: "https://dash.scrapinghub.com/api/jobs/list.json?project=123&spider=somespider&state=finished&count=3"
+    $ curl -u APIKEY: "https://app.scrapinghub.com/api/jobs/list.json?project=123&spider=somespider&state=finished&count=3"
     {
       "status": "ok",
       "count": 3,
@@ -130,7 +130,7 @@ Examples::
     }
 
     # Retrieve all running jobs
-    $ curl -u APIKEY: "https://dash.scrapinghub.com/api/jobs/list.json?project=123&state=running"
+    $ curl -u APIKEY: "https://app.scrapinghub.com/api/jobs/list.json?project=123&state=running"
     {
       "status": "ok",
       "count": 2,
@@ -173,7 +173,7 @@ Examples::
 
 
     # Retrieve all jobs with the tag ``consumed``
-    $ curl -u APIKEY: "https://dash.scrapinghub.com/api/jobs/list.json?project=123&lacks_tag=consumed" 
+    $ curl -u APIKEY: "https://app.scrapinghub.com/api/jobs/list.json?project=123&lacks_tag=consumed" 
     {
       "status": "ok",
       "count": 3,
@@ -261,7 +261,7 @@ POST   Update job information. project, job, add_tag, remove_tag
 
 Example::
 
-  $ curl -u APIKEY: https://dash.scrapinghub.com/api/jobs/update.json -d project=123 -d job=123/1/2 -d add_tag=consumed
+  $ curl -u APIKEY: https://app.scrapinghub.com/api/jobs/update.json -d project=123 -d job=123/1/2 -d add_tag=consumed
 
 Python::
 
@@ -288,7 +288,7 @@ POST   Delete job(s). project, job
 
 Example::
 
-  $ curl -u APIKEY: https://dash.scrapinghub.com/api/jobs/delete.json -d project=123 -d job=123/1/2 -d job=123/1/3
+  $ curl -u APIKEY: https://app.scrapinghub.com/api/jobs/delete.json -d project=123 -d job=123/1/2 -d job=123/1/3
 
 Python::
 
@@ -316,7 +316,7 @@ POST   Stop job(s). project, job
 
 Example::
 
-  $ curl -u APIKEY: https://dash.scrapinghub.com/api/jobs/stop.json -d project=123 -d job=123/1/1 -d job=123/1/2
+  $ curl -u APIKEY: https://app.scrapinghub.com/api/jobs/stop.json -d project=123 -d job=123/1/1 -d job=123/1/2
 
 Python::
 

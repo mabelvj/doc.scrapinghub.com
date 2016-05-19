@@ -190,7 +190,7 @@ You can also download the items in CSV or JSON format through the **Items** menu
 This covers the basics of the dashboard, but there is much more. Feel free to play around and check our `knowledge base`_ for more information on specific topics. If you have any questions, don't hesitate to ask them in the `support forum`_.
 
 
-.. _`Scrapinghub dashboard`: https://dash.scrapinghub.com/
+.. _`Scrapinghub dashboard`: https://app.scrapinghub.com/
 .. _`knowledge base`: http://support.scrapinghub.com/forum/24895-knowledge-base/
 .. _`support forum`: http://support.scrapinghub.com/
 .. _`Memory Usage Extension`: http://doc.scrapy.org/en/latest/topics/extensions.html#module-scrapy.contrib.memusage

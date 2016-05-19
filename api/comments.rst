@@ -41,11 +41,11 @@ DELETE Delete comment.      comment_id
 
 PUT example::
 
-  $ curl -X PUT -u APIKEY: --data 'text=my+new+text' "https://dash.scrapinghub.com/api/comments/12"
+  $ curl -X PUT -u APIKEY: --data 'text=my+new+text' "https://app.scrapinghub.com/api/comments/12"
 
 DELETE example::
 
-  $ curl -X DELETE -u APIKEY: "https://dash.scrapinghub.com/api/comments/12"
+  $ curl -X DELETE -u APIKEY: "https://app.scrapinghub.com/api/comments/12"
 
 
 comments/:project_id/:spider_id/:job_id
@@ -55,7 +55,7 @@ Retrieves all comments for a job indexed by item or item/field.
 
 Example::
 
-  $ curl -u APIKEY: "https://dash.scrapinghub.com/api/comments/14/13/12"
+  $ curl -u APIKEY: "https://app.scrapinghub.com/api/comments/14/13/12"
   {
       "0": [comment, comment, ...],
       "0/title": [comment, comment, ...],
@@ -72,7 +72,7 @@ Retrieves the number of items with unarchived comments for each job of the proje
 
 Example::
 
-  $ curl -u APIKEY: "https://dash.scrapinghub.com/api/comments/51/stats"
+  $ curl -u APIKEY: "https://app.scrapinghub.com/api/comments/51/stats"
   {
       "51/422/2": 1,
       "51/414/2": 1,
@@ -103,16 +103,16 @@ DELETE  Archive the specified comment.
 
 GET examples::
 
-  $ curl -u APIKEY: "https://dash.scrapinghub.com/api/comments/14/13/12/11"
-  $ curl -u APIKEY: "https://dash.scrapinghub.com/api/comments/14/13/12/11/logo"
+  $ curl -u APIKEY: "https://app.scrapinghub.com/api/comments/14/13/12/11"
+  $ curl -u APIKEY: "https://app.scrapinghub.com/api/comments/14/13/12/11/logo"
 
 POST examples::
 
-  $ curl -X POST --data 'text=some+text' -u APIKEY: "https://dash.scrapinghub.com/api/comments/14/13/12/11"
-  $ curl -X POST --data 'text=some+text' -u APIKEY: "https://dash.scrapinghub.com/api/comments/14/13/12/11/logo"
+  $ curl -X POST --data 'text=some+text' -u APIKEY: "https://app.scrapinghub.com/api/comments/14/13/12/11"
+  $ curl -X POST --data 'text=some+text' -u APIKEY: "https://app.scrapinghub.com/api/comments/14/13/12/11/logo"
 
 DELETE examples::
 
-  $ curl -X DELETE -u APIKEY: "https://dash.scrapinghub.com/api/comments/14/13/12/11"
-  $ curl -X DELETE -u APIKEY: "https://dash.scrapinghub.com/api/comments/14/13/12/11/logo"
+  $ curl -X DELETE -u APIKEY: "https://app.scrapinghub.com/api/comments/14/13/12/11"
+  $ curl -X DELETE -u APIKEY: "https://app.scrapinghub.com/api/comments/14/13/12/11/logo"
 

@@ -28,7 +28,7 @@ POST   Add Python egg to the given project. project, name, version, egg
 
 Example::
 
-    $ curl -u APIKEY: https://dash.scrapinghub.com/api/eggs/add.json -F project=123 -F name=somelib -F version=1.0 -F egg=@somelib-1.0.py2.6.egg
+    $ curl -u APIKEY: https://app.scrapinghub.com/api/eggs/add.json -F project=123 -F name=somelib -F version=1.0 -F egg=@somelib-1.0.py2.6.egg
 
 eggs/delete.json
 ----------------
@@ -50,7 +50,7 @@ POST   Delete Python egg from the given project. project, name
 
 Example::
 
-  $ curl -u APIKEY: https://dash.scrapinghub.com/api/eggs/delete.json -d project=123 -d name=somelib
+  $ curl -u APIKEY: https://app.scrapinghub.com/api/eggs/delete.json -d project=123 -d name=somelib
 
 eggs/list.json
 --------------
@@ -71,4 +71,4 @@ GET    List Python eggs for the specified project. project
 
 Example::
 
-  $ curl -u APIKEY: "https://dash.scrapinghub.com/api/eggs/list.json?project=123"
+  $ curl -u APIKEY: "https://app.scrapinghub.com/api/eggs/list.json?project=123"

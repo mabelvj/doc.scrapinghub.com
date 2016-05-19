@@ -12,7 +12,7 @@ Getting started
 Authentication
 --------------
 
-You'll need to authenticate using your `API key <https://dash.scrapinghub.com/account/apikey>`_. 
+You'll need to authenticate using your `API key <https://app.scrapinghub.com/account/apikey>`_. 
 
 There are two ways to authenticate:
 
@@ -29,7 +29,7 @@ Example
 
 Scheduling a spider is simple::
 
-	$ curl -u APIKEY: https://dash.scrapinghub.com/api/schedule.json -d project=PROJECT -d spider=SPIDER
+	$ curl -u APIKEY: https://app.scrapinghub.com/api/schedule.json -d project=PROJECT -d spider=SPIDER
 
 Where ``APIKEY`` is your API key, ``PROJECT`` is the spider's project ID, and ``SPIDER`` is the name of the spider you want to schedule.
 
@@ -39,8 +39,8 @@ Endpoints
 
 .. _api-overview-ep-dash:
 
-dash.scrapinghub.com
----------------------
+app.scrapinghub.com
+-------------------
 
 .. toctree::
    :maxdepth: 2

@@ -101,7 +101,7 @@ Now you can schedule your spider to run on Scrapy Cloud::
     or print items as they are being scraped:
         shub items -f 1/1
     or watch it running in Scrapinghub's web interface:
-        https://dash.scrapinghub.com/p/12345/job/1/1
+        https://app.scrapinghub.com/p/12345/job/1/1
 
 And watch it run (replace ``1/1`` with the job ID ``shub`` gave you on the
 previous command, you can leave out the project ID)::

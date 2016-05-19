@@ -24,17 +24,17 @@ Retrieves scraped items of a job.
 
 To retrieve items scraped by job ``123/1/4``::
 
-    curl -L -u APIKEY: "https://dash.scrapinghub.com/api/items.json?project=123&job=123/1/4"
+    curl -L -u APIKEY: "https://app.scrapinghub.com/api/items.json?project=123&job=123/1/4"
 
 .. warning:: This only returns the first 100 items. See :ref:`api-overview-pagination`. If you want to return all items in one stream, you can use `items.jl`_.
 
 To retrieve items scraped by the *last finished job* of the spider ``myspider``::
 
-    curl -L -u APIKEY: "https://dash.scrapinghub.com/api/items.json?project=123&spider=myspider"
+    curl -L -u APIKEY: "https://app.scrapinghub.com/api/items.json?project=123&spider=myspider"
 
 To retrieve the latest 20 items of job ``123/1/4`` *(this works even while the job is running)*::
 
-    curl -L -u APIKEY: "https://dash.scrapinghub.com/api/items.json?project=123&job=123/1/4&count=-20"
+    curl -L -u APIKEY: "https://app.scrapinghub.com/api/items.json?project=123&job=123/1/4&count=-20"
 
 items.jl
 --------
@@ -45,7 +45,7 @@ Similar to `items.json`_ but returns the items in jsonlines format, which allows
 
 To retrieve all items scraped by job ``123/1/4``::
 
-    curl -L -u APIKEY: "https://dash.scrapinghub.com/api/items.jl?project=123&job=123/1/4"
+    curl -L -u APIKEY: "https://app.scrapinghub.com/api/items.jl?project=123&job=123/1/4"
 
 items.csv
 ---------
@@ -61,7 +61,7 @@ Similar in usage to `items.json`_ and `items.jl`_, but returns items in CSV form
 
 To retrieve all items scraped by job ``123/1/4``, this time in CSV format, and dump ``name``, ``url`` and ``price`` fields, excluding headers::
 
-    curl -L -u APIKEY: "https://dash.scrapinghub.com/api/items.csv?project=123&job=123/1/4&include_headers=0&fields=name,url,price"
+    curl -L -u APIKEY: "https://app.scrapinghub.com/api/items.csv?project=123&job=123/1/4&include_headers=0&fields=name,url,price"
 
 
 Old Logs API
@@ -85,7 +85,7 @@ Retrieves the log of a job.
 
 To retrieve the log of job ``123/1/4`` in plain text format::
 
-    curl -u APIKEY: "https://dash.scrapinghub.com/api/log.txt?project=123&job=123/1/4"
+    curl -u APIKEY: "https://app.scrapinghub.com/api/log.txt?project=123&job=123/1/4"
 
 log.json
 --------
@@ -117,8 +117,8 @@ Retrieves information about spiders.
 
 To retrieve all spiders in project ``123``::
 
-    curl -u APIKEY: "https://dash.scrapinghub.com/api/spiders/list.json?project=123"
+    curl -u APIKEY: "https://app.scrapinghub.com/api/spiders/list.json?project=123"
 
 To retrieve spiders ``aspider`` and ``bspider`` in project ``123``::
 
-    curl -u APIKEY: "https://dash.scrapinghub.com/api/spiders/list.json?project=123&spider=aspider&spider=bspider"
+    curl -u APIKEY: "https://app.scrapinghub.com/api/spiders/list.json?project=123&spider=aspider&spider=bspider"
