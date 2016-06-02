@@ -8,8 +8,8 @@ The jobs API makes it easy to work with your spider's jobs and lets you schedule
 
 .. include:: client_library.rst
 
-jobs/run.json
--------------
+run.json
+--------
 
 Schedules a job for a given spider.
 
@@ -19,18 +19,18 @@ Parameter    Description                                                        
 project      Project ID.                                                            Yes
 job          Job ID.                                                                No
 spider       Spider name.                                                           Yes
-add_tag      Add specified tag to job                                               No
+add_tag      Add specified tag to job.                                              No
 priority     Job priority. Supported values: 0 (lowest) to 4 (highest). Default: 2. No
-job_settings JSON array of job settings.                                            No
+job_settings Job settings represented as a JSON object.                             No
 ============ ====================================================================== ========
 
 .. note:: Any other parameter will be treated as a spider argument.
 
-====== ============================== =======================================
+====== ============================== =====================================================
 Method Description                    Supported parameters
-====== ============================== =======================================
-POST   Schedule the specified spider. project, job, spider, add_tag, priority
-====== ============================== =======================================
+====== ============================== =====================================================
+POST   Schedule the specified spider. project, job, spider, add_tag, priority, job_settings
+====== ============================== =====================================================
 
 Example::
 
