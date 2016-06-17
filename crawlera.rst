@@ -317,7 +317,7 @@ This header sets Crawlera's timeout in milliseconds for receiving a response fro
 
     X-Crawlera-Timeout: 40000
 
-The example above sets the response timeout to 40,000 milliseconds. In the case of a streaming response, each chunk has 40,000 milliseconds to be received. If no response is received after 40,000 milliseconds, a 504 response will be returned.
+The example above sets the response timeout to 40,000 milliseconds. In the case of a streaming response, each chunk has 40,000 milliseconds to be received. If no response is received after 40,000 milliseconds, a 504 response will be returned. If not specified, it will default to ``30000``.
 
 [Deprecated] X-Crawlera-Use-Https
 ---------------------------------
@@ -397,7 +397,7 @@ CRAWLERA_URL              proxy URL (default: ``http://proxy.crawlera.com:8010``
 CRAWLERA_ENABLED          tick the checkbox to enable Crawlera
 CRAWLERA_APIKEY           Crawlera API key
 CRAWLERA_MAXBANS          number of bans to ignore before closing the spider (default: ``20``)
-CRAWLERA_DOWNLOAD_TIMEOUT timeout for requests (default: ``1800``)
+CRAWLERA_DOWNLOAD_TIMEOUT timeout for requests (default: ``190``)
 ========================= ===================================================
 
 
