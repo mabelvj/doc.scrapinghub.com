@@ -311,7 +311,7 @@ Passing ``1`` in the header instructs Crawlera to do up to 1 retry. Default numb
 X-Crawlera-Timeout
 ------------------
 
-This header sets Crawlera's timeout in milliseconds for receiving a response from the target website. The timeout must be specified in milliseconds and be between 0 and 180,000. It's not possible to set the timeout higher than 180,000 milliseconds or lower than 0 milliseconds.
+This header sets Crawlera's timeout in milliseconds for receiving a response from the target website. The timeout must be specified in milliseconds and be between 30,000 and 180,000. It's not possible to set the timeout higher than 180,000 milliseconds or lower than 30,000 milliseconds, it will be rounded to its nearest maximum or minimum value.
 
 *Example*::
 
