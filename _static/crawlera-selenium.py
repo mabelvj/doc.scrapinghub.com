@@ -13,7 +13,7 @@ proxy = Proxy({
 })
 
 driver = webdriver.Firefox(proxy=proxy)
-driver.get("http://www.scrapinghub.com")
+driver.get("https://www.scrapinghub.com")
 assert "Scrapinghub" in driver.title
 elem = driver.find_element_by_class_name("portia")
 actions = ActionChains(driver)

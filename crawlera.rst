@@ -46,7 +46,7 @@ To achieve higher crawl rates when using Crawlera with Scrapy, it’s recommende
     AUTOTHROTTLE_ENABLED = False
     DOWNLOAD_TIMEOUT = 300
 
-To enable Crawlera via `Scrapinghub dashboard <http://app.scrapinghub.com/>`_, see :ref:`crawlera-scrapy-cloud` section.
+To enable Crawlera via `Scrapinghub dashboard <https://app.scrapinghub.com/>`_, see :ref:`crawlera-scrapy-cloud` section.
 
 .. _working-with-https:
 
@@ -84,7 +84,7 @@ To store and manage cookies yourself you will need to disable Crawlera cookie ha
 Upgrading Your Account
 ======================
 
-You can upgrade your Crawlera account in the `Plans` section of your `Organizations's` page. You can choose to upgrade to a Shared, Dedicated or Enterprise plan. To find out more about these plans please visit the `Pricing & Plans <http://scrapinghub.com/pricing>`_ page.
+You can upgrade your Crawlera account in the `Plans` section of your `Organizations's` page. You can choose to upgrade to a Shared, Dedicated or Enterprise plan. To find out more about these plans please visit the `Pricing & Plans <https://www.scrapinghub.com/pricing>`_ page.
 
 .. _fetch-api:
 
@@ -145,7 +145,7 @@ domain_forbidden       523            Domain forbidden. Please contact help@scra
 bad_header             540            Bad header value for *<some_header>*
 ====================== =============  ======================
 
-\* Crawlera limits the number of concurrent connections based on your Crawlera plan. See: `Crawlera pricing table <http://scrapinghub.com/pricing/#crawlera>`_ for more information on plans.
+\* Crawlera limits the number of concurrent connections based on your Crawlera plan. See: `Crawlera pricing table <https://www.scrapinghub.com/pricing/#crawlera>`_ for more information on plans.
 
 .. _sessions-request-limits:
 
@@ -592,7 +592,7 @@ You can use the `crawlera-bench tool <https://github.com/scrapinghub/crawlera-to
 Where can I monitor my Crawlera usage?
 --------------------------------------
 
-Go to your profile page in `Scrapinghub dashboard <http://app.scrapinghub.com/>`_ and you should see your Crawlera accounts in the Crawlera section. If you click on a user, you will be able review the number of requests per day/month for that user.
+Go to your profile page in `Scrapinghub dashboard <https://app.scrapinghub.com/>`_ and you should see your Crawlera accounts in the Crawlera section. If you click on a user, you will be able review the number of requests per day/month for that user.
 
 Why are requests slower through Crawlera as opposed to using proxies directly?
 ------------------------------------------------------------------------------

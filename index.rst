@@ -53,7 +53,7 @@ API
    shub
    addons
 
-.. _Support center: http://support.scrapinghub.com
-.. _Knowledge Base: http://support.scrapinghub.com/forum/24895-knowledge-base/
+.. _Support center: https://support.scrapinghub.com
+.. _Knowledge Base: https://support.scrapinghub.com/forum/24895-knowledge-base/
 .. _Scrapy: http://scrapy.org
-.. _Portia: http://scrapinghub.com/portia/
+.. _Portia: https://www.scrapinghub.com/portia/

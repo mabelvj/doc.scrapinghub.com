@@ -127,7 +127,7 @@ Dependencies and External Libraries
 
 The Scrapy Cloud platform comes with some libraries pre-installed that you can
 use in your code without uploading an egg. `This support article
-<http://support.scrapinghub.com/topic/205467-supported-libraries-on-scrapy-cloud/>`_
+<https://support.scrapinghub.com/topic/205467-supported-libraries-on-scrapy-cloud/>`_
 describes exactly which library versions are available, and you can also
 subscribe to get notified of changes to such libraries.
 
@@ -171,7 +171,7 @@ create custom Docker images having whatever dependencies they need and
 deploy these images to Scrapy Cloud using
 `shub-image <https://github.com/scrapinghub/shub-image/>`_.
 
-Check out this `walkthrough <http://shub-image.readthedocs.io/en/latest/>`_
+Check out this `walkthrough <https://shub-image.readthedocs.io/en/latest/>`_
 on how to deploy custom images to Scrapy Cloud.
 
 Using Stacks
@@ -242,4 +242,4 @@ For running the script through the API, you need to use a private API (which may
 .. _Scrapy installation guide: http://doc.scrapy.org/en/latest/intro/install.html
 .. _Scrapy documentation: http://doc.scrapy.org/
 .. _setuptools: http://peak.telecommunity.com/DevCenter/setuptools
-.. _Scrapinghub Pricing: http://scrapinghub.com/pricing/
+.. _Scrapinghub Pricing: https://www.scrapinghub.com/pricing/
