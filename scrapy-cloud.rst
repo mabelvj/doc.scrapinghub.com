@@ -242,4 +242,4 @@ For running the script through the API, you need to use a private API (which may
 .. _Scrapy installation guide: http://doc.scrapy.org/en/latest/intro/install.html
 .. _Scrapy documentation: http://doc.scrapy.org/
 .. _setuptools: http://peak.telecommunity.com/DevCenter/setuptools
-.. _Scrapinghub Pricing: https://www.scrapinghub.com/pricing/
+.. _Scrapinghub Pricing: http://scrapinghub.com/pricing/

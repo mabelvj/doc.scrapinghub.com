@@ -56,4 +56,4 @@ API
 .. _Support center: https://support.scrapinghub.com
 .. _Knowledge Base: https://support.scrapinghub.com/forum/24895-knowledge-base/
 .. _Scrapy: http://scrapy.org
-.. _Portia: https://www.scrapinghub.com/portia/
+.. _Portia: http://scrapinghub.com/portia/
