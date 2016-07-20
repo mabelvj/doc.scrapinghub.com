@@ -126,7 +126,6 @@ X-Crawlera-Error       Response Code  Error Message
 ====================== =============  ======================
 bad_session_id         400            Incorrect session ID
 user_session_limit     400            Session limit exceeded
-bad_auth               401            Unauthorized mashape request
 bad_auth               407
 too_many_conns         429            Too many connections*
 header_auth            470            Unauthorized Crawlera header
