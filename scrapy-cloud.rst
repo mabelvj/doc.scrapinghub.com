@@ -150,11 +150,16 @@ you can proceed as follows:
 #. Add a ``setup.py`` file in the base package folder, e.g.::
 
     from setuptools import setup, find_packages
+
     setup(
-        name = "mylibrary",
-        version = "0.1",
-        packages = find_packages(),
+        name         = 'myproject',
+        version      = '1.0',
+        packages     = find_packages(),
+        entry_points = {'scrapy': ['settings = myproject.settings']},
     )
+   
+   Note that ``entry_points`` line is essential because it points Scrapy Cloud to 
+   default project settings.
 
 #. Run ``shub deploy-egg PROJECTID`` to deploy to your project. (Note that you
    need to add the project ID since you usually are no longer within the Scrapy
