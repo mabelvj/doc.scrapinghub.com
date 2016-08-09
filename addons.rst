@@ -10,8 +10,11 @@ Addons are very popular among Autoscraping users as a way of obtaining additiona
 
 To put an addon to use, you have to:
 
-    #. Add it to your project, by going to **Settings -> Addons** in the Scrapinghub dashboard.
-    #. Enable it. Some addons are enabled automatically when added, while others require configuring (e.g. editing ``ADDON_ENABLED`` setting). It should be clear from the addon page in the dashboard which case it is.
+#. Add it to your project, by going to **Settings -> Addons** in the Scrapinghub dashboard.
+    
+   .. important:: You'll need to redeploy your project after new addons are added or removed.
+      
+#. Enable it. Some addons are enabled automatically when added, while others require configuring (e.g. editing ``ADDON_ENABLED`` setting). It should be clear from the addon page in the dashboard which case it is.
 
 You can also enable addons per spider, instead of project-wide: select the spider in **Spiders** section, click **Settings** tab (next to **Details**), click ``+`` button in the corresponding addon field to add a new entry and choose ``ADDON_ENABLED`` from the list of options.
 
