@@ -167,6 +167,8 @@ you can proceed as follows:
 
 See `setuptools`_ for details about egg concepts, preparation and building.
 
+.. important:: You'll need to redeploy your project after new addons are added or removed.
+
 .. _custom-docker-image:
 
 Deploying Custom Docker Images
