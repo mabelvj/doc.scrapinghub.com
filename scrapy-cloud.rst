@@ -39,26 +39,26 @@ This assumes you have Scrapy already installed, otherwise please refer to the
 `Scrapy installation guide`_.
 
 For this example, we will build a spider to scrape famous quotes from this
-website: http://spidyquotes.herokuapp.com/
+website: http://quotes.toscrape.com/
 
 We begin by creating a Scrapy project which we will call ``quotes_crawler``::
 
     $ scrapy startproject quotes_crawler
 
-Then we create a spider for ``spidyquotes.herokuapp.com``::
+Then we create a spider for ``quotes.toscrape.com``::
 
-    $ scrapy genspider spidyquotes spidyquotes.herokuapp.com
-    Created spider 'spidyquotes' using template 'basic' in module:
-    quotes_crawler.spiders.spidyquotes
+    $ scrapy genspider quotes-toscrape quotes.toscrape.com
+    Created spider 'quotes-toscrape' using template 'basic' in module:
+    quotes_crawler.spiders.quotes_toscrape
 
 
 Then we edit the spider::
 
-    $ scrapy edit spidyquotes
+    $ scrapy edit quotes-toscrape
 
 Here is the code:
 
-.. literalinclude:: _static/sc-spidyquotes.py
+.. literalinclude:: _static/sc-quotes-toscrape.py
 
 For more information about Scrapy please refer to the `Scrapy documentation`_.
 
@@ -94,14 +94,14 @@ the wizard again) anytime via another call to ``shub deploy``.
 
 Now you can schedule your spider to run on Scrapy Cloud::
 
-    $ shub schedule spidyquotes
-    Spider spidyquotes scheduled, job ID: 12345/1/1
+    $ shub schedule quotes-toscrape
+    Spider quotes-toscrape scheduled, job ID: 99830/1/1
     Watch the log on the command line:
         shub log -f 1/1
     or print items as they are being scraped:
         shub items -f 1/1
     or watch it running in Scrapinghub's web interface:
-        https://app.scrapinghub.com/p/12345/job/1/1
+        https://app.scrapinghub.com/p/99830/job/1/1
 
 And watch it run (replace ``1/1`` with the job ID ``shub`` gave you on the
 previous command, you can leave out the project ID)::
