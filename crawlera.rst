@@ -84,7 +84,7 @@ To store and manage cookies yourself you will need to disable Crawlera cookie ha
 Upgrading Your Account
 ======================
 
-You can upgrade your Crawlera account in the `Plans` section of your `Organizations's` page. You can choose to upgrade to a Shared, Dedicated or Enterprise plan. To find out more about these plans please visit the `Pricing & Plans <http://scrapinghub.com/pricing>`_ page.
+You can upgrade your Crawlera account in the `Plans` section of your `Organizations's` page. You can choose to upgrade to a Shared, Dedicated or Enterprise plan. To find out more about these plans please visit the `Pricing & Plans <https://scrapinghub.com/pricing>`_ page.
 
 .. _fetch-api:
 
