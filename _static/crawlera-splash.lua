@@ -13,7 +13,7 @@ function main(splash)
     end)
 
     splash:on_response_headers(function (response)
-        if type(response.headers[session_header]) ~= nil then
+        if response.headers[session_header] ~= nil then
             session_id = response.headers[session_header]
         end
     end)
