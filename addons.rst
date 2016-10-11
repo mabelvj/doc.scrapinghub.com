@@ -129,7 +129,7 @@ We want to leave only the parameter ``pid``. To achieve this objective we can us
 .. _Scrapy: https://github.com/scrapy/scrapy
 .. _DeltaFetch code:  https://github.com/scrapinghub/scrapylib/blob/master/scrapylib/deltafetch.py
 .. _`Scrapy Autothrottle`: https://scrapy.readthedocs.org/en/latest/topics/autothrottle.html
-.. _`Scrapy Images Pipeline`: http://doc.scrapy.org/en/latest/topics/images.html
+.. _`Scrapy Images Pipeline`: https://doc.scrapy.org/en/latest/topics/images.html
 
 Monitoring
 ==========

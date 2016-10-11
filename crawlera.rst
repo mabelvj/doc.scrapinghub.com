@@ -144,7 +144,7 @@ domain_forbidden       523            Domain forbidden. Please contact help@scra
 bad_header             540            Bad header value for *<some_header>*
 ====================== =============  ======================
 
-\* Crawlera limits the number of concurrent connections based on your Crawlera plan. See: `Crawlera pricing table <http://scrapinghub.com/pricing/#crawlera>`_ for more information on plans.
+\* Crawlera limits the number of concurrent connections based on your Crawlera plan. See: `Crawlera pricing table <https://scrapinghub.com/pricing/#crawlera>`_ for more information on plans.
 
 .. _sessions-request-limits:
 
@@ -563,11 +563,11 @@ We have prepared several best practices when using crawlera smart proxy.
 
 Set download timeout
 --------------------
-One of the most common problems our users have is too low download timeout in their scrapping application. Handling one request in crawlera can take a long time. This happens due to `throtling <http://doc.scrapinghub.com/crawlera.html#why-are-requests-slower-through-crawlera-as-opposed-to-using-proxies-directly>`_. Crawlera will try to process your request with different slaves and delay time. Recommended value is **300s**. If you are using scrapy please check our `example configuration <http://doc.scrapinghub.com/crawlera.html#using-crawlera-with-scrapy>`_.
+One of the most common problems our users have is too low download timeout in their scrapping application. Handling one request in crawlera can take a long time. This happens due to `throtling <https://doc.scrapinghub.com/crawlera.html#why-are-requests-slower-through-crawlera-as-opposed-to-using-proxies-directly>`_. Crawlera will try to process your request with different slaves and delay time. Recommended value is **300s**. If you are using scrapy please check our `example configuration <https://doc.scrapinghub.com/crawlera.html#using-crawlera-with-scrapy>`_.
 
 Use session
 -----------
-Using crawlera session is best option most of the time. It helps crawlera to choose best proxies for your job and minimize the ban ratio. You can find more details in the `session chapter <http://doc.scrapinghub.com/crawlera.html#sessions>`_.
+Using crawlera session is best option most of the time. It helps crawlera to choose best proxies for your job and minimize the ban ratio. You can find more details in the `session chapter <https://doc.scrapinghub.com/crawlera.html#sessions>`_.
 
 
 FAQ

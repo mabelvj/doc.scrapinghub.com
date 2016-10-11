@@ -191,7 +191,7 @@ This covers the basics of the dashboard, but there is much more. Feel free to pl
 
 
 .. _`Scrapinghub dashboard`: https://app.scrapinghub.com/
-.. _`knowledge base`: http://support.scrapinghub.com/forum/24895-knowledge-base/
-.. _`support forum`: http://support.scrapinghub.com/
-.. _`Memory Usage Extension`: http://doc.scrapy.org/en/latest/topics/extensions.html#module-scrapy.contrib.memusage
-.. _`Scrapy CloseSpider extension`: http://doc.scrapy.org/en/latest/topics/extensions.html#module-scrapy.contrib.closespider
+.. _`knowledge base`: https://support.scrapinghub.com/forum/24895-knowledge-base/
+.. _`support forum`: https://support.scrapinghub.com/
+.. _`Memory Usage Extension`: https://doc.scrapy.org/en/latest/topics/extensions.html#module-scrapy.contrib.memusage
+.. _`Scrapy CloseSpider extension`: https://doc.scrapy.org/en/latest/topics/extensions.html#module-scrapy.contrib.closespider
