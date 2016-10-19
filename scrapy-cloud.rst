@@ -234,16 +234,26 @@ Here is a ``setup.py`` example for a project that ships a ``hello.py`` script::
         entry_points = {'scrapy': ['settings = myproject.settings']},
     )
 
-After you :ref:`deploy <deploy>` your project, you will see the ``hello.py``
-script right below the list of spiders, in the schedule box (on Scrapinghub
-dashboard).
+After you :ref:`deploy <deploy>` your project, you will see the ``py:hello.py``
+script on Scrapinghub dashboard in the **Run** pop-up dialog and in the 
+**Add periodic job** pop-up dialog.
 
-You can also setup periodic jobs to run the script or do it via the API.
+It's also possible to schedule a script via the Scrapinghub API:
 
-For running the script through the API, you need to use a private API (which may subject to change in the future). Here is an example using ``curl``::
+.. code:: sh
 
-    curl -u API_KEY: -X POST -d '{"job_cmd": ["py:hello.py"]}' https://storage.scrapinghub.com/jobq/PROJECT_ID/push
+    curl -u API_KEY: -X POST https://app.scrapinghub.com/api/schedule.json -d "project=123" -d "spider=py:hello.py" -d "cmd_args=-a --loglevel=10 x y" 
 
+The same using `python-scrapinghub <https://github.com/scrapinghub/python-scrapinghub>`__ library:
+
+.. code:: python
+
+    from scrapinghub import Connection
+
+    conn = Connection('API_KEY')
+    project = conn[123]
+    project.schedule('py:hello.py', cmd_args='-a --loglevel=10 x y')
+    
 
 .. _Scrapy: https://scrapy.org
 .. _Scrapy installation guide: https://doc.scrapy.org/en/latest/intro/install.html
