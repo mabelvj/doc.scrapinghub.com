@@ -8,6 +8,37 @@ The JobQ API allows you to retrieve finished jobs from the queue.
 
 .. include:: client_library.rst
 
+jobq/:project_id/count
+----------------------
+
+Count the jobs for the specified project.
+
+========= ========================================================== ========
+Parameter Description                                                Required
+========= ========================================================== ========
+spider    Filter results by spider name.                             No
+state     Filter results by state (pending/running/finished/deleted) No
+startts   UNIX timestamp at which to begin results, in millisecons.  No
+endts     UNIX timestamp at which to end results, in millisecons.    No
+has_tag   Filter results by existing tags                            No
+lacks_tag Filter results by missing tags                             No
+========= ========================================================== ========
+
+.. hint:: It's possible to repeat ``has_tag``, ``lacks_tag`` multiple times.
+
+====== ===================================== =================================================
+Method Description                           Supported parameters
+====== ===================================== =================================================
+GET    Count jobs for the specified project. spider, state, startts, endts, has_tag, lacks_tag
+====== ===================================== =================================================
+
+**Count jobs for a given project**
+
+HTTP::
+
+    $ curl -u APIKEY: https://storage.scrapinghub.com/jobq/53/count
+    32110
+
 jobq/:project_id/list
 ---------------------
 
@@ -19,13 +50,20 @@ Field Description
 ts    The time at which the job was added to the queue.
 ===== =================================================
 
-========= ========================================================= ========
-Parameter Description                                               Required
-========= ========================================================= ========
-startts   UNIX timestamp at which to begin results, in millisecons. No
-endts     UNIX timestamp at which to end results, in millisecons.   No
-stop      The job key at which to stop showing results.             No
-========= ========================================================= ========
+========= ========================================================== ========
+Parameter Description                                                Required
+========= ========================================================== ========
+spider    Filter results by spider name.                             No
+state     Filter results by state (pending,running,finished,deleted) No
+startts   UNIX timestamp at which to begin results, in millisecons.  No
+endts     UNIX timestamp at which to end results, in millisecons.    No
+count     Limit results by a given number of jobs                    No
+start     Skip N first jobs from results                             No
+stop      The job key at which to stop showing results.              No
+key       Get job data for a given set of job keys                   No
+has_tag   Filter results by existing tags                            No
+lacks_tag Filter results by missing tags                             No
+========= ========================================================== ========
 
 ====== ==================================== ====================
 Method Description                          Supported parameters
