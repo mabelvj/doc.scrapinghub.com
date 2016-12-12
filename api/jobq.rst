@@ -8,6 +8,35 @@ The JobQ API allows you to retrieve finished jobs from the queue.
 
 .. include:: client_library.rst
 
+jobq/:project_id/count
+----------------------
+
+Count the jobs for the specified project.
+
+========== ============================================================= ========
+Parameter  Description                                                   Required
+========== ============================================================= ========
+spider     Filter results by spider name.                                No
+state      Filter results by state (pending, running, finished, deleted) No
+startts    UNIX timestamp at which to begin results, in millisecons.     No
+endts      UNIX timestamp at which to end results, in millisecons.       No
+has_tags   Filter results by existing tags                               No
+lacks_tags Filter results by missing tags                                No
+========== ============================================================= ========
+
+====== ===================================== ===================================================
+Method Description                           Supported parameters
+====== ===================================== ===================================================
+GET    Count jobs for the specified project. spider, state, startts, endts, has_tags, lacks_tags
+====== ===================================== ===================================================
+
+**Count jobs for a given project**
+
+HTTP::
+
+    $ curl -u APIKEY: https://storage.scrapinghub.com/jobq/53/count
+    32110
+
 jobq/:project_id/list
 ---------------------
 
