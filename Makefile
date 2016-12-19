@@ -26,7 +26,6 @@ help:
 	@echo "  changes   to make an overview of all changed/added/deprecated items"
 	@echo "  linkcheck to check all external links for integrity"
 	@echo "  doctest   to run all doctests embedded in the documentation (if enabled)"
-	@echo "  syncshub  to update shub documentation with the README from its latest release"
 
 clean:
 	-rm -rf $(BUILDDIR)/*
@@ -86,21 +85,6 @@ linkcheck:
 
 htmlview: html
 	python -c "import webbrowser; webbrowser.open('_build/html/index.html')"
-
-syncshub:
-	$(eval TMPREADME:=$(shell mktemp))
-	$(eval TMPSHUB:=$(shell mktemp))
-	@echo "Fetching latest shub release tag"
-	$(eval RLSTAG:=$(shell curl -s https://api.github.com/repos/scrapinghub/shub/releases/latest | grep tag_name | cut -d '"' -f 4))
-	@echo "Downloading shub $(RLSTAG) README.rst"
-	curl -s https://raw.githubusercontent.com/scrapinghub/shub/$(RLSTAG)/README.rst -o $(TMPREADME)
-	sed -i -n '/BEGIN_SH_DOC/,/END_SH_DOC/{//!p}' $(TMPREADME)
-	@echo "Updating shub.rst"
-	awk '/BEGIN_SHUB_README/ { print; skip=1; next; }; /END_SHUB_README/ { skip=0; system("cat $(TMPREADME)")}; !skip {print}' shub.rst > $(TMPSHUB)
-	cat $(TMPSHUB) > shub.rst
-	rm -f $(TMPSHUB)
-	rm -f $(TMPREADME)
-	@echo "Done"
 
 doctest:
 	$(SPHINXBUILD) -b doctest $(ALLSPHINXOPTS) $(BUILDDIR)/doctest
