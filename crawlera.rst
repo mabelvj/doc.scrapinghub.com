@@ -1,118 +1,17 @@
 .. _crawlera:
 
-========
-Crawlera
-========
+============
+Crawlera API
+============
 
-Crawlera is a HTTP/HTTPS downloader that routes your requests through a pool of IP addresses, introducing delays and discarding IPs where necessary to evade anti-crawling measures. Crawlera is useful if you want to save yourself the hassle of tinkering with download delays and concurrent requests, dealing with cookies, user-agents, referrers to avoid getting banned.
-
-First Steps
-===========
-
-Creating a Crawlera User
-------------------------
-
-You can create a new Crawlera user from the homepage by clicking the 'Add a crawlera user' button. A modal will pop up. Select the organization you wish to assign the user to and click 'Create'. Your Crawlera user will take the name of the organization you selected. You can only create one Crawlera user per organization, if you wish to create more than one please contact support.
-
-The API key for your Crawlera user can be found on the user's 'Details' page. When authenticating use your API key as the username, leaving the password blank. You can also generate a new API key if you wish.
-
-Testing Credentials
--------------------
-
-You can test your credentials using ``curl``, like so:
-
-.. code-block:: text
-
-    curl -vx proxy.crawlera.com:8010 -U <API key>: http://www.food.com/
-
-
-Using Crawlera with Scrapy
---------------------------
-
-You can use Crawlera with Scrapy with the Crawlera middleware provided by the ``scrapy-crawlera`` library::
-
-    pip install scrapy-crawlera
-
-You can enable the middleware by adding the following lines to your Scrapy project settings::
-
-    DOWNLOADER_MIDDLEWARES = {'scrapy_crawlera.CrawleraMiddleware': 300}
-    CRAWLERA_ENABLED = True
-    CRAWLERA_APIKEY = '<API key>'
-
-To achieve higher crawl rates when using Crawlera with Scrapy, it’s recommended to disable the :ref:`autothrottle-addon` extension and increase the maximum number of concurrent requests. You may also want to increase the download timeout. Here's an example::
-
-    CONCURRENT_REQUESTS = 32
-    CONCURRENT_REQUESTS_PER_DOMAIN = 32
-    AUTOTHROTTLE_ENABLED = False
-    DOWNLOAD_TIMEOUT = 300
-
-To enable Crawlera via `Scrapinghub dashboard <https://app.scrapinghub.com/>`_, see :ref:`crawlera-scrapy-cloud` section.
-
-.. _working-with-https:
-
-Working with HTTPS
-------------------
-
-Crawlera provides three ways for working with HTTPS:
-
-#. CONNECT method (standard mechanism used by browsers)
-#. the :ref:`fetch-api`
-#. HTTPs request over HTTP proxy
-
-To use CONNECT method you need to download and install the certificate file for Crawlera Certificate Authority or disable
-SSL certificate verification in your HTTP client.
-
-The Crawlera Certificate authority can be downloaded here: :download:`crawlera-ca.crt`
-
-The minimal example to check if the CA is working for you is to try:
-
-.. code-block:: sh
-
-    curl -x proxy.crawlera.com:8010 -U <API key>: --cacert /<folder-with-certificate>/crawlera-ca.crt https://httpbin.org/ip
-
-.. _working-with-cookies:
-
-Working with Cookies
---------------------
-
-Crawlera manages cookies for you by default and retains them for up to 15 minutes since the last request. Crawlera keeps separate groups of cookies per outgoing node, and as a result consecutive requests will almost always have different cookies, so if you need to use cookies for things like authentication then you will want to manage them yourself.
-
-To store and manage cookies yourself you will need to disable Crawlera cookie handling with the :ref:`x-crawlera-cookies` header. If cookie handling is not disabled, Crawlera will discard the cookies and send its own instead.
-
-.. _upgrading-your-account:
-
-Upgrading Your Account
-======================
-
-You can upgrade your Crawlera account in the `Plans` section of your `Organizations's` page. You can choose to upgrade to a Shared, Dedicated or Enterprise plan. To find out more about these plans please visit the `Pricing & Plans <https://scrapinghub.com/pricing>`_ page.
-
-.. _fetch-api:
-
-Fetch API
+Proxy API
 =========
 
-Crawlera's fetch API let's you request URLs as an alternative to Crawlera's proxy interface.
+Crawlera works with a standard HTTP web proxy API, where you only need an API
+key for authentication. This is the standard way to perform a request via
+Crawlera::
 
-Fields
-------
-
-.. note:: Field values should always be encoded.
-
-=========== ======== ========================================= ===============================
-Field       Required Description                               Example
-=========== ======== ========================================= ===============================
-url         yes      URL to fetch                              `http://www.food.com/`
-headers     no       Headers to send in the outgoing request   `header1:value1;header2:value2`
-=========== ======== ========================================= ===============================
-
-Basic example::
-
-    curl -u <API key>: http://proxy.crawlera.com:8010/fetch?url=https://twitter.com
-
-Headers example::
-
-    curl -u <API key>: 'http://proxy.crawlera.com:8010/fetch?url=http%3A//www.food.com&headers=Header1%3AVal1%3BHeader2%3AVal2'
-
+    curl -vx proxy.crawlera.com:8010 -U <API key>: http://httpbin.org/ip
 
 Errors
 ======
@@ -557,46 +456,47 @@ C#
 .. literalinclude:: _static/crawlera-proxy.cs
     :language: csharp
 
-Best practices
-==============
-We have prepared several best practices when using crawlera smart proxy.
+.. _fetch-api:
 
-Set download timeout
+Fetch API
+=========
+
+.. warning::
+
+    The Fetch API is deprecated and will be removed soon. Use the standard proxy API instead.
+
+Crawlera's fetch API let's you request URLs as an alternative to Crawlera's proxy interface.
+
+Fields
+------
+
+.. note:: Field values should always be encoded.
+
+=========== ======== ========================================= ===============================
+Field       Required Description                               Example
+=========== ======== ========================================= ===============================
+url         yes      URL to fetch                              `http://www.food.com/`
+headers     no       Headers to send in the outgoing request   `header1:value1;header2:value2`
+=========== ======== ========================================= ===============================
+
+Basic example::
+
+    curl -u <API key>: http://proxy.crawlera.com:8010/fetch?url=https://twitter.com
+
+Headers example::
+
+    curl -u <API key>: 'http://proxy.crawlera.com:8010/fetch?url=http%3A//www.food.com&headers=Header1%3AVal1%3BHeader2%3AVal2'
+
+.. _working-with-https:
+
+Working with HTTPS
+------------------
+
+See http://help.scrapinghub.com/crawlera/crawlera-with-https
+
+.. _working-with-cookies:
+
+Working with Cookies
 --------------------
-One of the most common problems our users have is too low download timeout in their scrapping application. Handling one request in crawlera can take a long time. This happens due to `throtling <https://doc.scrapinghub.com/crawlera.html#why-are-requests-slower-through-crawlera-as-opposed-to-using-proxies-directly>`_. Crawlera will try to process your request with different slaves and delay time. Recommended value is **300s**. If you are using scrapy please check our `example configuration <https://doc.scrapinghub.com/crawlera.html#using-crawlera-with-scrapy>`_.
 
-Use session
------------
-Using crawlera session is best option most of the time. It helps crawlera to choose best proxies for your job and minimize the ban ratio. You can find more details in the `session chapter <https://doc.scrapinghub.com/crawlera.html#sessions>`_.
-
-
-FAQ
-===
-
-How do I change my user-agent?
-------------------------------
-
-To change your User-Agent you will need to use the :ref:`x-crawlera-ua` header with value ``pass``. This will instruct Crawlera to use the User-Agent header you send in the request.
-
-How do I find the slave used in a request?
-------------------------------------------
-
-Crawlera sends ``X-Crawlera-Slave`` response header containing the IP address and port of the slave used to make the request.
-
-How do I measure Crawlera's speed for a particular domain?
-----------------------------------------------------------
-
-You can use the `crawlera-bench tool <https://github.com/scrapinghub/crawlera-tools>`_. Check the GitHub page for more information on how to use it.
-
-Where can I monitor my Crawlera usage?
---------------------------------------
-
-Go to your profile page in `Scrapinghub dashboard <https://app.scrapinghub.com/>`_ and you should see your Crawlera accounts in the Crawlera section. If you click on a user, you will be able review the number of requests per day/month for that user.
-
-Why are requests slower through Crawlera as opposed to using proxies directly?
-------------------------------------------------------------------------------
-
-If you're using your own proxies, you may notice a discrepancy in speed between using your own proxies and using them with Crawlera. This is because Crawlera throttles requests by introducing delays to avoid being banned on the target website.
-
-These delays can differ depending on the target domain, as some popular sites have more rigorous anti-scraping measures than others. Throttling also helps prevent inadvertently bringing down the target website should it lack the resources to handle a large volume of requests.
-
+See http://help.scrapinghub.com/crawlera/crawlera-and-cookies

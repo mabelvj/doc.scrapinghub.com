@@ -5,7 +5,7 @@ Activity API
 ============
 
 Scrapinghub keeps track of certain project events such as when spiders are run
-or new spiders are deployed. This activity log can be accessed in :doc:`../dash` by
+or new spiders are deployed. This activity log can be accessed in the dashboard by
 clicking on **Activity** in the left sidebar, or programmatically through the
 API described below.
 

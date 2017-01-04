@@ -1,7 +1,7 @@
-Scrapinghub Documentation
+Scrapinghub API Reference
 =========================
 
-This repository holds the Scrapinghub public documentation.
+This repository holds the documentation for Scrapinghub API.
 
 Please head over to `doc.scrapinghub.com`_ to browse the documentation online.
 

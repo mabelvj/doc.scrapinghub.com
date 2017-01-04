@@ -108,15 +108,15 @@ Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
 
 **Retrieve jobs finished after some job**
 
-JobQ returns the list of jobs, with the most recently finished first. We recommend associating the key of the most recently finished job with the downloaded data. When you want to update your data later on, you can list the jobs and stop at the previously downloaded job, through the ``stop`` parameter::
+JobQ returns the list of jobs, with the most recently finished first. We recommend associating the key of the most recently finished job with the downloaded data. When you want to update your data later on, you can list the jobs and stop at the previously downloaded job, through the ``stop`` parameter.
 
-HTTP::
+Using HTTP::
 
     $ curl -u APIKEY: "https://storage.scrapinghub.com/jobq/53/list?stop=53/7/81"
     {"key":"53/7/83","ts":1403610146780}
     {"key":"53/7/82","ts":1397827910849}
 
-Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
+Using Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
 
     >>> jobs = hc.get_project('53').jobq.list(stop='53/7/81')
 

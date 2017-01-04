@@ -64,7 +64,7 @@ release = ''
 
 # List of directories, relative to source directory, that shouldn't be searched
 # for source files.
-exclude_trees = ['_build', 'README.rst']
+exclude_patterns = ['_build', 'README.rst', 'api.rst', 'api/client_library.rst', 'api/overview.rst', 'api/eggs.rst']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
