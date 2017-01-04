@@ -4,6 +4,8 @@
 Scrapy Cloud API
 ================
 
+.. note:: Check also the `Help Center`_ for general guides and articles.
+
 Scrapy Cloud API provides an interface for interacting with your spiders, jobs and scraped data.
 
 Getting started
@@ -156,3 +158,4 @@ Example::
 
 .. note:: If the data contains fields with the same name as the requested fields, they will both appear in the result.
 
+.. _Help center: http://help.scrapinghub.com

@@ -4,6 +4,8 @@
 Crawlera API
 ============
 
+.. note:: Check also the `Help Center`_ for general guides and articles.
+
 Proxy API
 =========
 
@@ -500,3 +502,5 @@ Working with Cookies
 --------------------
 
 See http://help.scrapinghub.com/crawlera/crawlera-and-cookies
+
+.. _Help center: http://help.scrapinghub.com
