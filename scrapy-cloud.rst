@@ -14,13 +14,13 @@ Getting started
 Authentication
 --------------
 
-You'll need to authenticate using your `API key <https://app.scrapinghub.com/account/apikey>`_. 
+You'll need to authenticate using your `API key <https://app.scrapinghub.com/account/apikey>`_.
 
 There are two ways to authenticate:
 
 HTTP Basic::
 
-	$ curl -u APIKEY: https://storage.scrapinghub.com/foo
+    $ curl -u APIKEY: https://storage.scrapinghub.com/foo
 
 URL Parameter::
 
@@ -29,11 +29,18 @@ URL Parameter::
 Example
 -------
 
-Scheduling a spider is simple::
+Running a spider is simple::
 
-	$ curl -u APIKEY: https://app.scrapinghub.com/api/schedule.json -d project=PROJECT -d spider=SPIDER
+    $ curl -u APIKEY: https://app.scrapinghub.com/api/run.json -d project=PROJECT -d spider=SPIDER
 
-Where ``APIKEY`` is your API key, ``PROJECT`` is the spider's project ID, and ``SPIDER`` is the name of the spider you want to schedule.
+Where ``APIKEY`` is your API key, ``PROJECT`` is the spider's project ID, and ``SPIDER`` is the name of the spider you want to run.
+
+It's possible to override Scrapy settings for a job::
+
+    $ curl -u APIKEY: https://app.scrapinghub.com/api/run.json -d project=PROJECT -d spider=SPIDER \
+        -d job_settings='{"LOG_LEVEL": "DEBUG"}'
+
+``job_settings`` should be a valid JSON and will be merged with project and spider settings provided for given spider.
 
 .. _api-overview-ep-dash:
 
@@ -48,7 +55,7 @@ app.scrapinghub.com
 
 You can use the `python-scrapinghub <https://github.com/scrapinghub/python-scrapinghub>`_ library to interface with these endpoints. To install with pip::
 
-	$ pip install scrapinghub
+    $ pip install scrapinghub
 
 .. _api-overview-ep-storage:
 
@@ -68,7 +75,7 @@ storage.scrapinghub.com
 
 You can use the `python-hubstorage <https://github.com/scrapinghub/python-hubstorage>`_ library to interface with these endpoints. To install with pip::
 
-	$ pip install hubstorage
+    $ pip install hubstorage
 
 .. _api-overview-pagination:
 
