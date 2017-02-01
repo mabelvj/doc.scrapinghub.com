@@ -323,11 +323,11 @@ To use session-wide Crawlera proxy with PhantomJs or CasperJS provide ``--proxy=
 
     casperjs|phantomjs --proxy="proxy.crawlera.com:8010" --proxy-auth="<API KEY>:''" yourscript.js
 
-When making HTTPS requests, the URLs should be wrapped in a :ref:`fetch-api` call.
+When making HTTPS requests, you should provider path to :download:`crawlera-ca.crt`.
 
 *Example*::
 
-    phantomjs --ssl-protocol=any phantomjs/examples/rasterize.js http://<API KEY>:@proxy.crawlera.com:8010/fetch?url=https://twitter.com twitter.jpg
+    phantomjs --ssl-protocol=any --proxy="proxy.crawlera.com:8010" --proxy-auth="<API KEY>:''" --ssl-client-certificate-file=/PATH/CRAWLERA_CA.crt phantomjs/examples/rasterize.js  https://twitter.com twitter.jpg
 
 SpookyJS allows you to spawn multiple instances of CasperJS suites, so ``proxy`` and ``proxy-auth`` arguments should be provided when creating a Spooky object.
 
