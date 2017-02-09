@@ -195,7 +195,7 @@ HTTP::
 
 
 
-/hcf/:project_id/:frontier/list
+/hcf/:project_id/list
 -------------------------------
 
 Lists the slots for a given frontier.
