@@ -170,10 +170,6 @@ This header allows to disable internal cookies tracking performed by Crawlera.
 X-Crawlera-Session
 ------------------
 
-.. warning::
-
-    An experimental beta feature.
-
 This header instructs Crawlera to use sessions which will tie requests to a particular slave until it gets banned.
 
 *Example*::
