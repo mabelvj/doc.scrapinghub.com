@@ -180,8 +180,8 @@ Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
 
 Results are ordered lexicographically by fingerprint value.
 
-/hcf/:project_id/:frontier/list
--------------------------------
+/hcf/:project_id/list
+---------------------
 
 Lists the frontiers for a given project.
 
