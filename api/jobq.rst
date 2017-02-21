@@ -24,7 +24,16 @@ has_tag   Filter results by existing tags                            No
 lacks_tag Filter results by missing tags                             No
 ========= ========================================================== ========
 
-.. hint:: It's possible to repeat ``has_tag``, ``lacks_tag`` multiple times.
+.. hint:: It's possible to repeat ``has_tag``, ``lacks_tag`` multiple times. In this case ``has_tag`` works as an ``OR`` operation, while ``lacks_tag`` works as an ``AND`` operation.
+
+HTTP (assuming only 2 jobs, where 1st one is marked with ``tagA``, 2nd - with ``tagB``)::
+
+    $ curl -u APIKEY: "https://storage.scrapinghub.com/jobq/53/count"
+    2
+    $ curl -u APIKEY: "https://storage.scrapinghub.com/jobq/53/count?has_tag=tagA&has_tag=tagB"
+    2
+    $ curl -u APIKEY: "https://storage.scrapinghub.com/jobq/53/count?lacks_tag=tagA&lacks_tag=tagB"
+    0
 
 ====== ===================================== =================================================
 Method Description                           Supported parameters
