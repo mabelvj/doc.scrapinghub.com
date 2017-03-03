@@ -323,7 +323,7 @@ To use session-wide Crawlera proxy with PhantomJs or CasperJS provide ``--proxy=
 
     casperjs|phantomjs --proxy="proxy.crawlera.com:8010" --proxy-auth="<API KEY>:''" yourscript.js
 
-When making HTTPS requests, you should provider path to :download:`crawlera-ca.crt`.
+When making HTTPS requests, you should provide path to :download:`crawlera-ca.crt`.
 
 *Example*::
 
