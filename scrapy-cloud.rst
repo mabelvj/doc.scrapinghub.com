@@ -6,7 +6,7 @@ Scrapy Cloud API
 
 .. note:: Check also the `Help Center`_ for general guides and articles.
 
-Scrapy Cloud API provides an interface for interacting with your spiders, jobs and scraped data.
+Scrapy Cloud provides an HTTP API for interacting with your spiders, jobs and scraped data.
 
 Getting started
 ===============
@@ -53,10 +53,6 @@ app.scrapinghub.com
    api/jobs
    api/comments
 
-You can use the `python-scrapinghub <https://github.com/scrapinghub/python-scrapinghub>`_ library to interface with these endpoints. To install with pip::
-
-    $ pip install scrapinghub
-
 .. _api-overview-ep-storage:
 
 storage.scrapinghub.com
@@ -73,11 +69,16 @@ storage.scrapinghub.com
    api/collections
    api/frontier
 
-You can use the `python-hubstorage <https://github.com/scrapinghub/python-hubstorage>`_ library to interface with these endpoints. To install with pip::
+.. _python-client:
 
-    $ pip install hubstorage
+Python client
+-------------
 
-.. _api-overview-pagination:
+You can use the `python-scrapinghub`_ library to interact with Scrapy Cloud API.
+Check the `documentation`__ for installation instructions and usage examples.
+
+.. _python-scrapinghub: https://github.com/scrapinghub/python-scrapinghub
+__ https://python-scrapinghub.readthedocs.io/
 
 Pagination
 ==========
