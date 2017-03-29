@@ -11,17 +11,18 @@ The requests API allows you to work with request and response data from your cra
 Request object
 --------------
 
-======== ==================================== ========
-Field    Description                          Required
-======== ==================================== ========
-parent   The index of the parent request.     No
-duration Request duration in milliseconds.    Yes
-status   HTTP response code.                  Yes
-method   HTTP method. Default: GET            No
-rs       Response size in bytes.              Yes
-url      Request URL.                         Yes
-fp       Request fingerprint.                 No
-======== ==================================== ========
+======== =============================================== ========
+Field    Description                                     Required
+======== =============================================== ========
+time     Request start timestamp in milliseconds         Yes
+method   HTTP method. Default: GET                       Yes
+url      Request URL.                                    Yes
+status   HTTP response code.                             Yes
+duration Request duration in milliseconds.               Yes
+rs       Response size in bytes.                         Yes
+parent   The index of the parent request.                No
+fp       Request fingerprint.                            No
+======== =============================================== ========
 
 .. note:: Seed requests from start URLs will have no parent field.
 
@@ -55,8 +56,8 @@ HTTP::
 
 Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
 
-	>>> job = hc.get_job('53/34/7')
-	>>> job.requests.add('http://scrapy.org/', 200, GET, 1024, 0, 12, 1351521736957)
+    >>> job = hc.get_job('53/34/7')
+    >>> job.requests.add('http://scrapy.org/', 200, GET, 1024, 0, 12, 1351521736957)
 
 
 requests/:project_id/:spider_id/:job_id/stats
