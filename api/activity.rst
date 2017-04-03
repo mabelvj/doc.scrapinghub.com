@@ -10,7 +10,7 @@ clicking on **Activity** in the left sidebar, or programmatically through the
 API described below.
 
 activity/:project_id
----------------------
+--------------------
 
 Retrieve messages for a specified project. Results are returned in reverse order.
 
@@ -42,7 +42,7 @@ POST example::
 activity/projects
 -----------------
 
-Retrieve messages for multiple projects. 
+Retrieve messages for multiple projects.
 
 Results are returned in reverse order.
 

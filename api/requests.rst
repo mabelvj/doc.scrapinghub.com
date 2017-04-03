@@ -41,10 +41,6 @@ HTTP::
     $ curl -u APIKEY: https://storage.scrapinghub.com/requests/53/34/7
     {"parent":0,"duration":12,"status":200,"method":"GET","rs":1024,"url":"http://scrapy.org/","time":1351521736957}
 
-Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
-
-    >>> reqs = hc.get_job('53/34/7').requests.list()
-
 
 .. note:: Pagination and meta parameters are supported, see :ref:`api-overview-pagination` and :ref:`api-overview-metapar`.
 
@@ -53,11 +49,6 @@ Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
 HTTP::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/requests/53/34/7 -X POST -T requests.jl
-
-Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
-
-    >>> job = hc.get_job('53/34/7')
-    >>> job.requests.add('http://scrapy.org/', 200, GET, 1024, 0, 12, 1351521736957)
 
 
 requests/:project_id/:spider_id/:job_id/stats
@@ -80,10 +71,3 @@ HTTP::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/requests/53/34/7/stats
     {"counts":{"url":21,"parent":19,"status":21,"method":21,"rs":21,"duration":21,"fp":21},"totals":{"input_bytes":2397,"input_values":21}}
-
-Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
-
-    >>> print hc.get_job('53/34/7').requests.stats()
-
-
-.. _`python-hubstorage`: http://github.com/scrapinghub/python-hubstorage

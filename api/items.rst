@@ -24,7 +24,7 @@ _cached_page_id Cached page ID. Used to identify the scraped page in storage.
 =============== =======================================================================
 
 Scraped fields will be top level alongside the internal fields listed above.
- 
+
 items/:project_id[/:spider_id][/:job_id][/:item_no][/:field_name]
 -----------------------------------------------------------------
 
@@ -62,19 +62,12 @@ HTTP::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7
 
-Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
-
-    >>> items = hc.get_job('53/34/7').items.list()
 
 **Retrive first item from a given job**
 
 HTTP::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7/0
-
-Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
-
-    >>> item = hc.get_job('53/34/7').items.get(0)
 
 
 **Retrieve values from a single field**
@@ -83,10 +76,6 @@ HTTP::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7/fieldname
 
-Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
-
-    >>> items_fieldname = [item['fieldname'] for item in hc.get_job('53/34/7').items.list()]
-
 
 **Retrieve all items from a given spider**
 
@@ -94,22 +83,12 @@ HTTP::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34
 
-Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
-
-    >>> for job in hc.get_project(53).jobq.list(spider='spidername'):
-    >>>     for item in hc.get_job(job['key']).items.list():
-                print item
-
 
 **Retrieve all items from a given project**
 
 HTTP::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/
-
-Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
-
-    >>> items = hc.get_project(53).items.list()
 
 
 **Get meta field from items**
@@ -122,10 +101,6 @@ HTTP::
     {"_key":"53/1/7/0"}
     {"_key":"53/1/7/1"}
     {"_key":"53/1/7/2"}
-
-Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
-
-    >>> items = hc.get_job('53/1/7').items.iter_values(meta='_key', nodata='1')
 
 
 **Get items in a specific format**
@@ -194,10 +169,3 @@ HTTP::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7/stats
     {"counts":{"field1":9350,"field2":514},"totals":{"input_bytes":14390294,"input_values":10000}}
-
-Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
-
-    >>> print hc.get_job('53/34/7').items.stats()
-
-
-.. _`python-hubstorage`: http://github.com/scrapinghub/python-hubstorage

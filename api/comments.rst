@@ -66,7 +66,7 @@ Where ``comment`` is a comment object as defined above.
 
 
 comments/:project_id/stats
----------------------------
+--------------------------
 
 Retrieves the number of items with unarchived comments for each job of the project.
 

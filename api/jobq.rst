@@ -93,10 +93,6 @@ HTTP::
     {"key":"53/7/78","ts":1393972804722}
     {"key":"53/7/77","ts":1393972734215}
 
-Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
-
-    >>> jobs = hc.get_project('53').jobq.list()
-
 
 **List jobs finished between two timestamps**
 
@@ -109,11 +105,6 @@ HTTP::
     {"key":"53/3/3","ts":1359774955437}
     {"key":"53/9/1","ts":1359774955431}
 
-Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
-
-    >>> jobs = hc.get_project('53').jobq.list(startts=1359774955431, endts=1359774955440)
-
-
 
 **Retrieve jobs finished after some job**
 
@@ -124,10 +115,3 @@ Using HTTP::
     $ curl -u APIKEY: "https://storage.scrapinghub.com/jobq/53/list?stop=53/7/81"
     {"key":"53/7/83","ts":1403610146780}
     {"key":"53/7/82","ts":1397827910849}
-
-Using Python (:ref:`python-hubstorage<api-overview-ep-storage>`)::
-
-    >>> jobs = hc.get_project('53').jobq.list(stop='53/7/81')
-
-
-.. _`python-hubstorage`: http://github.com/scrapinghub/python-hubstorage
