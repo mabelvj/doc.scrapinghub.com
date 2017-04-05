@@ -35,15 +35,15 @@ collections/:project_id/:type/:collection
 
 Read or write items from or to a collection.
 
-=========== ========================================================= ========
-Parameter   Description                                               Required
-=========== ========================================================= ========
-key         Read items with specified key. Multiple values supported. No
-prefix      Read items with specified key prefix.                     No
-prefixcount Maximum number of values to return per prefix.            No
-startts     UNIX timestamp at which to begin results.                 No
-endts       UNIX timestamp at which to end results.                   No
-=========== ========================================================= ========
+=========== ========================================================== ========
+Parameter   Description                                                Required
+=========== ========================================================== ========
+key         Read items with specified key. Multiple values supported.  No
+prefix      Read items with specified key prefix.                      No
+prefixcount Maximum number of values to return per prefix.             No
+startts     UNIX timestamp at which to begin results, in milliseconds. No
+endts       UNIX timestamp at which to end results, in milliseconds.   No
+=========== ========================================================== ========
 
 ====== ========================================= ========================================
 Method Description                               Supported parameters

@@ -18,8 +18,8 @@ Parameter Description                                                Required
 ========= ========================================================== ========
 spider    Filter results by spider name.                             No
 state     Filter results by state (pending/running/finished/deleted) No
-startts   UNIX timestamp at which to begin results, in millisecons.  No
-endts     UNIX timestamp at which to end results, in millisecons.    No
+startts   UNIX timestamp at which to begin results, in milliseconds. No
+endts     UNIX timestamp at which to end results, in milliseconds.   No
 has_tag   Filter results by existing tags                            No
 lacks_tag Filter results by missing tags                             No
 ========= ========================================================== ========
@@ -64,8 +64,8 @@ Parameter Description                                                Required
 ========= ========================================================== ========
 spider    Filter results by spider name.                             No
 state     Filter results by state (pending,running,finished,deleted) No
-startts   UNIX timestamp at which to begin results, in millisecons.  No
-endts     UNIX timestamp at which to end results, in millisecons.    No
+startts   UNIX timestamp at which to begin results, in milliseconds. No
+endts     UNIX timestamp at which to end results, in milliseconds.   No
 count     Limit results by a given number of jobs                    No
 start     Skip N first jobs from results                             No
 stop      The job key at which to stop showing results.              No

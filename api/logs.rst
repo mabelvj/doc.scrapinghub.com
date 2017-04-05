@@ -13,7 +13,7 @@ Field   Description
 ======= ===================================================
 message Log message.
 level   Log level as defined in the Python logging library.
-time    UNIX timestamp of the message.
+time    UNIX timestamp of the message, in milliseconds.
 ======= ===================================================
 
 logs/:project_id/:spider_id/:job_id
