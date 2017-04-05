@@ -1,14 +1,12 @@
 import requests
-from requests.auth import HTTPProxyAuth
 
 url = "https://twitter.com"
 proxy_host = "proxy.crawlera.com"
 proxy_port = "8010"
-proxy_auth = HTTPProxyAuth("<API KEY>", "")
-proxies = {"https": "https://{}:{}/".format(proxy_host, proxy_port)}
+proxy_auth = "<APIKEY>:"
+proxies = {"https": "https://{}@{}:{}/".format(proxy_auth, proxy_host, proxy_port)}
 
-r = requests.get(url, proxies=proxies, auth=proxy_auth,
-                 verify='/path/to/crawlera-ca.crt')
+r = requests.get(url, proxies=proxies, verify='/path/to/crawlera-ca.crt')
 
 print("""
 Requesting [{}]
