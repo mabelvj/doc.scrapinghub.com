@@ -3,31 +3,44 @@
 Scrapy Cloud Write Entrypoint
 =============================
 
-Scrapy Cloud Write Entrypoint is a write-only interface to a Scrapy Cloud storage. Jobs in Scrapy Cloud
-run inside containers. When container is started - `named pipe`_ is created at the location stored in the
-``SHUB_FIFO_PATH`` environment variable. User program - crawler or script - can open that named pipe and
-start writing data following a simple text protocol.
+Scrapy Cloud Write Entrypoint is a write-only interface to a Scrapy Cloud storage. Its main purpose is to
+make it easy to write crawlers and scripts compatible with Scrapy Cloud in different programming languages
+using `custom Docker images`_.
 
+Jobs in Scrapy Cloud run inside Docker containers. When a Job container is started, a `named pipe`_ is created
+at the location stored in the ``SHUB_FIFO_PATH`` environment variable. The user program -- for example crawler
+or script -- can open that named pipe and start writing data following a simple text protocol.
+
+.. _custom Docker images: http://help.scrapinghub.com/scrapy-cloud/custom-docker-images-on-scrapy-cloud
 .. _named pipe: http://man7.org/linux/man-pages/man7/fifo.7.html
 
 Protocol
 --------
 
-Each messages is a line of ASCII characters terminated by a newline character. Messages consist of
-the following parts: 3 character command, space, payload as a JSON object, newline character::
+Each message is a line of ASCII characters terminated by a newline character. Message consists of
+the following parts:
+
+- a 3-character command (one of "ITM", "LOG", "REQ", "STA", or "FIN"),
+- followed by a space character,
+- then followed by a payload as a `JSON`_ object,
+- and a final newline character ``\n``.
+
+This is how example log message will look like::
 
     LOG {"time": 1485269941065, "level": 20, "message": "Some log message"}\n
 
-Newline characters is used as a message separator, so make sure that serialized JSON object doesn't contain newline
-character between tokens and that newline characters inside strings are properly escaped::
+Newline characters are used as message separators. Please make sure that the serialized JSON object payload
+doesn't contain newline characters between key/value pairs and that newline characters inside strings
+(for both keys and values) are properly escaped::
 
     LOG {"time": 1485269941065, "level": 20, "message": "Line 1\\nLine 2"}\n
 
-Unicode characters in JSON object should be properly escaped, e.g. item ``{"ключ": "значение"}`` should look like this::
+Unicode characters in JSON object MUST be escaped using standard JSON \u four-hex-digits syntax,
+e.g. item ``{"ключ": "значение"}`` should look like this::
 
     ITM {"\\u043a\\u043b\\u044e\\u0447": "\\u0437\\u043d\\u0430\\u0447\\u0435\\u043d\\u0438\\u0435"}\n
 
-The total size of the message should not exceed 1 MiB.
+The total size of the message MUST not exceed 1 MiB.
 
 .. note::
 
@@ -36,14 +49,15 @@ The total size of the message should not exceed 1 MiB.
 ITM command
 ~~~~~~~~~~~
 
-``ITM`` command stores single :ref:`item <api-items>` in the Scrapy Cloud storage.
+``ITM`` command stores a single :ref:`item <api-items>` in the Scrapy Cloud storage.
 ``ITM`` payload has not predefined schema.
 
 Example::
 
     ITM {"key": "value"}
 
-To support very simple scripts we allow sending plain JSON objects as items, so the following to lines are equivalent::
+To support very simple scripts the Scrapy Cloud Write Entrypoint allows sending plain JSON objects as items,
+so the following two lines are equivalent::
 
     ITM {"key": "value"}
 
@@ -86,7 +100,7 @@ time    UNIX timestamp of the message, in milliseconds.     No
 stats   JSON object with arbitrary keys and values.         Yes
 ======= =================================================== ========
 
-If following keys are present in the ``STA`` payload - their values will be used to populate
+If following keys are present in the ``STA`` payload -- their values will be used to populate
 Scheduled Requests graph on a job details page:
 
 - ``scheduler/enqueued``
@@ -118,14 +132,14 @@ Example::
 Support for stdout and stderr
 -----------------------------
 
-Job output in Scrapy Cloud is converted to log messages - lines coming to stdout are converted to ``INFO``
+Job output in Scrapy Cloud is converted to log messages -- lines coming to stdout are converted to ``INFO``
 level log messages and lines of stderr are converted to ``ERROR`` level log messages. For example,
-if script prints "Hello, world" to stdout, the resulting `LOG command`_ will look like this::
+if script prints ``Hello, world`` to stdout, the resulting `LOG command`_ will look like this::
 
     LOG {"time": 1485269941065, "level": 20, "message": "Hello, world"}
 
-There's very basic support for multiline standard output - if output consists of multiple lines where subsequent
-lines start from a space character - such output will be considered as a single log message. For example,
+There's very basic support for multiline standard output -- if output consists of multiple lines where subsequent
+lines start from a space character -- such output will be considered as a single log message. For example,
 the following traceback in stderr::
 
     Traceback (most recent call last):
@@ -137,17 +151,17 @@ will produce the following log messages::
     LOG {"time": 1485269941065, "level": 40, "message": "Traceback (most recent call last):\\n  File \\"<stdin>\\", line 1, in <module>"}
     LOG {"time": 1485269941066, "level": 40, "message": "NameError: name 'e' is not defined"}
 
-Resulting log messages are subject to 1 MiB limit - this means that output longer than 1023 KiB
+Resulting log messages are subject to 1 MiB limit -- this means that output longer than 1023 KiB
 is likely to cause errors.
 
 .. warning::
 
     It's recommended to use named pipe as the only way to produce log messages. Due to the way data
     is sent between processes it not possible to maintain order of messages coming from different sources
-    (named pipe, stdout, stderr). For example consider 2 lines - first line is sent to stdout, then shortly
+    (named pipe, stdout, stderr). For example consider 2 lines -- first line is sent to stdout, then shortly
     afterwards another line is sent to stderr. It's possible that on the receiving side line from stderr is received
     first and line for stdout is received afterwards. For high volumes of logs this can lead to confusing results,
-    so it's highly recommended to use only named pipe - this will both guarantee the best performance and guarantee
+    so it's highly recommended to use only named pipe -- this will both guarantee the best performance and guarantee
     that logs are received in exactly the same order they were sent.
 
 
@@ -171,7 +185,7 @@ Each spider needs to follow the pattern:
        path = os.environ['SHUB_FIFO_PATH']
        pipe = open(path, 'w')
 
-#. Write `commands <Protocol>`_ to the pipe. If you want to send command instantly - don't forget to flush,
+#. Write `commands <Protocol>`_ to the pipe. If you want to send command instantly -- don't forget to flush,
    otherwise command may remain in the file buffer. However this is not always required as buffer will be flushed
    once enough data is written or when file object is closed (depends on the programming language you use):
 
@@ -208,3 +222,4 @@ Each spider needs to follow the pattern:
     `scrapinghub-entrypoint-scrapy`__ uses Scrapy Cloud Write Entrypoint, check the code if you need an example.
 
 __ https://github.com/scrapinghub/scrapinghub-entrypoint-scrapy/blob/master/sh_scrapy/writer.py
+.. _JSON: http://json.org/
