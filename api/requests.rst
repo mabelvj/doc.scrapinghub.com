@@ -8,6 +8,8 @@ The requests API allows you to work with request and response data from your cra
 
 .. include:: client_library.rst
 
+.. _request-object:
+
 Request object
 --------------
 

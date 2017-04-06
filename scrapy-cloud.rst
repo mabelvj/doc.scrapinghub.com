@@ -80,6 +80,8 @@ Check the `documentation`__ for installation instructions and usage examples.
 .. _python-scrapinghub: https://github.com/scrapinghub/python-scrapinghub
 __ https://python-scrapinghub.readthedocs.io/
 
+.. _api-overview-pagination:
+
 Pagination
 ==========
 

@@ -5,16 +5,18 @@ Logs API
 
 The logs API lets you work with logs from your crawls.
 
+.. _log-object:
+
 Log object
 ----------
 
-======= ===================================================
-Field   Description
-======= ===================================================
-message Log message.
-level   Log level as defined in the Python logging library.
-time    UNIX timestamp of the message, in milliseconds.
-======= ===================================================
+======= =================================================== ========
+Field   Description                                         Required
+======= =================================================== ========
+message Log message.                                        Yes
+level   Log level as defined in the Python logging library. Yes
+time    UNIX timestamp of the message, in milliseconds.     No
+======= =================================================== ========
 
 logs/:project_id/:spider_id/:job_id
 -----------------------------------
