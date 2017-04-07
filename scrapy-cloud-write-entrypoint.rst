@@ -8,10 +8,10 @@ make it easy to write crawlers and scripts compatible with Scrapy Cloud in diffe
 using `custom Docker images`_.
 
 Jobs in Scrapy Cloud run inside Docker containers. When a Job container is started, a `named pipe`_ is created
-at the location stored in the ``SHUB_FIFO_PATH`` environment variable. The user program -- for example crawler
-or script -- can open that named pipe and start writing data following a simple text protocol.
+at the location stored in the ``SHUB_FIFO_PATH`` environment variable. To interface with Scrapy Cloud storage,
+your crawler has to open this named pipe and write messages on it, following a simple text-based protocol
+as described below.
 
-.. _custom Docker images: http://help.scrapinghub.com/scrapy-cloud/custom-docker-images-on-scrapy-cloud
 .. _named pipe: http://man7.org/linux/man-pages/man7/fifo.7.html
 
 Protocol
@@ -29,9 +29,9 @@ This is how example log message will look like::
 
     LOG {"time": 1485269941065, "level": 20, "message": "Some log message"}\n
 
-Newline characters are used as message separators. Please make sure that the serialized JSON object payload
+Newline characters are used as message separators. So, make sure that the serialized JSON object payload
 doesn't contain newline characters between key/value pairs and that newline characters inside strings
-(for both keys and values) are properly escaped::
+for both keys and values are properly escaped::
 
     LOG {"time": 1485269941065, "level": 20, "message": "Line 1\\nLine 2"}\n
 
@@ -49,7 +49,7 @@ The total size of the message MUST not exceed 1 MiB.
 ITM command
 ~~~~~~~~~~~
 
-``ITM`` command stores a single :ref:`item <api-items>` in the Scrapy Cloud storage.
+The ``ITM`` command writes a single :ref:`item <api-items>` into Scrapy Cloud storage.
 ``ITM`` payload has not predefined schema.
 
 Example::
@@ -57,7 +57,7 @@ Example::
     ITM {"key": "value"}
 
 To support very simple scripts the Scrapy Cloud Write Entrypoint allows sending plain JSON objects as items,
-so the following two lines are equivalent::
+so the following two lines are valid and equivalent::
 
     ITM {"key": "value"}
 
@@ -65,24 +65,21 @@ so the following two lines are equivalent::
 
     {"key": "value"}
 
-Both lines are valid and will produce the item.
-
 LOG command
 ~~~~~~~~~~~
 
-``LOG`` command stores single :ref:`log <api-logs>` message in the Scrapy Cloud storage.
-Fields for ``LOG`` payload are described in :ref:`log-object`.
+The ``LOG`` command writes a single :ref:`log <api-logs>` message into Scrapy Cloud storage.
+The schema for the ``LOG`` payload is described in :ref:`log-object`.
 
 Example::
 
     LOG {"level": 20, "message": "Some log message"}
 
-
 REQ command
 ~~~~~~~~~~~
 
-``REQ`` command stores single :ref:`request <api-requests>` in the Scrapy Cloud storage.
-Fields for ``REQ`` payload are described in :ref:`request-object`.
+The ``REQ`` command writes a single :ref:`request <api-requests>` into Scrapy Cloud storage.
+The schema for the ``REQ`` payload is described in :ref:`request-object`.
 
 Example::
 
@@ -91,7 +88,7 @@ Example::
 STA command
 ~~~~~~~~~~~
 
-``STA`` stands for stats and is used to populate job stats page and create graphs on the job details page.
+``STA`` stands for stats and is used to populate the job stats page and to create graphs on the job details page.
 
 ======= =================================================== ========
 Field   Description                                         Required
@@ -112,12 +109,12 @@ The keys names are picked for compatibility with `Scrapy stats`_.
 
 Example::
 
-    STA {"time": 1485269941065, "stats": {"key": 0, "key2": 20.5}}
+    STA {"time": 1485269941065, "stats": {"key": 0, "key2": 20.5, "scheduler/enqueued": 20, "scheduler/dequeued": 15}}
 
 FIN command
 ~~~~~~~~~~~
 
-``FIN`` command is used to set outcome with when crawl is finished.
+The ``FIN`` command is used to set the outcome of a crawler execution, once it's finished.
 
 ======= ======================================================== ========
 Field   Description                                              Required
@@ -129,18 +126,19 @@ Example::
 
    FIN {"outcome": "finished"}
 
-Support for stdout and stderr
+Printing to stdout and stderr
 -----------------------------
 
-Job output in Scrapy Cloud is converted to log messages -- lines coming to stdout are converted to ``INFO``
-level log messages and lines of stderr are converted to ``ERROR`` level log messages. For example,
-if script prints ``Hello, world`` to stdout, the resulting `LOG command`_ will look like this::
+The output printed by a job in Scrapy Cloud is automatically converted into log messages. Lines printed
+to ``stdout`` are converted into ``INFO`` level log messages. Lines printed to ``stderr`` are converted
+into ``ERROR`` level log messages. For example, if the script prints ``Hello, world`` to stdout,
+the resulting `LOG command`_ will look like this::
 
     LOG {"time": 1485269941065, "level": 20, "message": "Hello, world"}
 
-There's very basic support for multiline standard output -- if output consists of multiple lines where subsequent
-lines start from a space character -- such output will be considered as a single log message. For example,
-the following traceback in stderr::
+There's very basic support for multiline standard output -- if some output consists of multiple lines
+where first line starts with a non-space character and subsequent lines start with a space character,
+it would be considered as a single log entry. For example, the following traceback in stderr::
 
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
@@ -156,13 +154,11 @@ is likely to cause errors.
 
 .. warning::
 
-    It's recommended to use named pipe as the only way to produce log messages. Due to the way data
-    is sent between processes it not possible to maintain order of messages coming from different sources
-    (named pipe, stdout, stderr). For example consider 2 lines -- first line is sent to stdout, then shortly
-    afterwards another line is sent to stderr. It's possible that on the receiving side line from stderr is received
-    first and line for stdout is received afterwards. For high volumes of logs this can lead to confusing results,
-    so it's highly recommended to use only named pipe -- this will both guarantee the best performance and guarantee
-    that logs are received in exactly the same order they were sent.
+    Even though you can write log messages by printing them to stdout and stderr, we recommend you
+    to use the named pipe and ``LOG`` message instead. Due to the way data is sent between processes,
+    it is not possible to maintain the order of the messages coming from different sources
+    (named pipe, stdout, stderr). Exclusive usaged of the named pipe will both give the best performance
+    and guarantee that messages are received in exactly the same order they were sent.
 
 
 How to build compatible scraper
@@ -170,12 +166,9 @@ How to build compatible scraper
 
 Scripts or non-Scrapy spiders have to be deployed as `custom Docker images`_.
 
-.. _custom Docker images: https://shub.readthedocs.io/en/stable/deploy-custom-image.html
-
-
 Each spider needs to follow the pattern:
 
-#. Get path to a named pipe from ``SHUB_FIFO_PATH`` environment variable.
+#. Get the path to a named pipe from ``SHUB_FIFO_PATH`` environment variable.
 #. Open named pipe for writing. E.g. in Python you do it like this:
 
    .. code-block:: python
@@ -185,9 +178,10 @@ Each spider needs to follow the pattern:
        path = os.environ['SHUB_FIFO_PATH']
        pipe = open(path, 'w')
 
-#. Write `commands <Protocol>`_ to the pipe. If you want to send command instantly -- don't forget to flush,
-   otherwise command may remain in the file buffer. However this is not always required as buffer will be flushed
-   once enough data is written or when file object is closed (depends on the programming language you use):
+#. Write `messages <Protocol>`_ to the pipe. If you want to send a message instantly, you have to flush the stream,
+   otherwise it may remain in the file buffer inside the crawler process. However this is not always required
+   as buffer will be flushed once enough data is written or when file object is closed
+   (depends on the programming language you use):
 
    .. code-block:: python
 
@@ -223,3 +217,4 @@ Each spider needs to follow the pattern:
 
 __ https://github.com/scrapinghub/scrapinghub-entrypoint-scrapy/blob/master/sh_scrapy/writer.py
 .. _JSON: http://json.org/
+.. _custom Docker images: http://help.scrapinghub.com/scrapy-cloud/custom-docker-images-on-scrapy-cloud
