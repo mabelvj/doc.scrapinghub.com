@@ -108,7 +108,7 @@ Scheduled Requests graph on a job details page:
 - ``scheduler/enqueued``
 - ``scheduler/dequeued``
 
-The keys names are picked for compatibility with `Scrapy stats`_.
+The key names above were picked for compatibility with `Scrapy stats`_.
 
 .. _Scrapy stats: https://doc.scrapy.org/en/latest/topics/stats.html
 
