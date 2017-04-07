@@ -3,7 +3,7 @@
 Scrapy Cloud Write Entrypoint
 =============================
 
-Scrapy Cloud Write Entrypoint is a write-only interface to a Scrapy Cloud storage. Its main purpose is to
+Scrapy Cloud Write Entrypoint is a write-only interface to Scrapy Cloud storage. Its main purpose is to
 make it easy to write crawlers and scripts compatible with Scrapy Cloud in different programming languages
 using `custom Docker images`_.
 
@@ -58,7 +58,10 @@ e.g. item ``{"ключ": "значение"}`` should look like this::
 
     ITM {"\u043a\u043b\u044e\u0447": "\u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435"}
 
-The total size of the message MUST not exceed 1 MiB.
+.. _1mib-limit:
+
+The total size of the message MUST not exceed 1 MiB. For messages that exceed this size
+the error will be logged instead.
 
 
 ITM command
@@ -72,7 +75,7 @@ Example::
     ITM {"key": "value"}
 
 To support very simple scripts the Scrapy Cloud Write Entrypoint allows sending plain JSON objects as items,
-so the following two lines are valid and equivalent::
+i.e. without the 3-character command and space prefix. The following two messages are valid and equivalent::
 
     ITM {"key": "value"}
 
@@ -161,10 +164,10 @@ it would be considered as a single log entry. For example, the following traceba
 
 will produce the following log messages::
 
-    LOG {"time": 1485269941065, "level": 40, "message": "Traceback (most recent call last):\\n  File \\"<stdin>\\", line 1, in <module>"}
+    LOG {"time": 1485269941065, "level": 40, "message": "Traceback (most recent call last):\n  File \"<stdin>\", line 1, in <module>"}
     LOG {"time": 1485269941066, "level": 40, "message": "NameError: name 'e' is not defined"}
 
-Resulting log messages are subject to 1 MiB limit -- this means that output longer than 1023 KiB
+Resulting log messages are subject to :ref:`1 MiB limit <1mib-limit>` -- this means that output longer than 1023 KiB
 is likely to cause errors.
 
 .. warning::
@@ -183,7 +186,7 @@ Scripts or non-Scrapy spiders have to be deployed as `custom Docker images`_.
 
 Each spider needs to follow the pattern:
 
-#. Get the path to a named pipe from ``SHUB_FIFO_PATH`` environment variable.
+#. Get the path to the named pipe mentioned earlier from ``SHUB_FIFO_PATH`` environment variable.
 #. Open named pipe for writing. E.g. in Python you do it like this:
 
    .. code-block:: python
