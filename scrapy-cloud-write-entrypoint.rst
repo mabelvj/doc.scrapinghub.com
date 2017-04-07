@@ -176,8 +176,8 @@ is likely to cause errors.
     and guarantee that messages are received in exactly the same order they were sent.
 
 
-How to build compatible scraper
--------------------------------
+How to build a compatible crawler
+---------------------------------
 
 Scripts or non-Scrapy spiders have to be deployed as `custom Docker images`_.
 
