@@ -10,13 +10,28 @@ The logs API lets you work with logs from your crawls.
 Log object
 ----------
 
-======= =================================================== ========
-Field   Description                                         Required
-======= =================================================== ========
-message Log message.                                        Yes
-level   Log level as defined in the Python logging library. Yes
-time    UNIX timestamp of the message, in milliseconds.     No
-======= =================================================== ========
+======= ==================================================================== ========
+Field   Description                                                          Required
+======= ==================================================================== ========
+message Log message.                                                         Yes
+level   Integer log level as defined in the :ref:`table <log-levels>` below. Yes
+time    UNIX timestamp of the message, in milliseconds.                      No
+======= ==================================================================== ========
+
+.. _log-levels:
+
+Log levels
+~~~~~~~~~~
+
+===== =========
+Value Log level
+===== =========
+10    DEBUG
+20    INFO
+30    WARNING
+40    ERROR
+50    CRITICAL
+===== =========
 
 logs/:project_id/:spider_id/:job_id
 -----------------------------------
