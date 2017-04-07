@@ -39,9 +39,10 @@ a non-printable character. This is how you would write the above example message
 
 Newline characters are used as message separators. So, make sure that the serialized JSON object payload
 doesn't contain newline characters between key/value pairs and that newline characters inside strings
-for both keys and values are properly escaped::
+for both keys and values are properly escaped. Here's an example of two consecutive log messages::
 
-    LOG {"time": 1485269941065, "level": 20, "message": "Line 1\nLine 2"}
+    LOG {"time": 1485269941065, "level": 20, "message": "First multiline message. Line 1\nLine 2"}
+    LOG {"time": 1485269941065, "level": 30, "message": "Second multiline message. Line 1\nLine 2"}
 
 Unicode characters in JSON object MUST be escaped using standard JSON \u four-hex-digits syntax,
 e.g. item ``{"ключ": "значение"}`` should look like this::
