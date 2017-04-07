@@ -27,24 +27,29 @@ the following parts:
 
 This is how example log message will look like::
 
-    LOG {"time": 1485269941065, "level": 20, "message": "Some log message"}\n
+    LOG {"time": 1485269941065, "level": 20, "message": "Some log message"}
+
+This example and all the following examples omit the trailing newline character because it's
+a non-printable character. This is how you would write the above example message in Python:
+
+.. code-block:: python
+
+    pipe.write('LOG {"time": 1485269941065, "level": 20, "message": "Some log message"}\n')
+    pipe.flush()
 
 Newline characters are used as message separators. So, make sure that the serialized JSON object payload
 doesn't contain newline characters between key/value pairs and that newline characters inside strings
 for both keys and values are properly escaped::
 
-    LOG {"time": 1485269941065, "level": 20, "message": "Line 1\\nLine 2"}\n
+    LOG {"time": 1485269941065, "level": 20, "message": "Line 1\nLine 2"}
 
 Unicode characters in JSON object MUST be escaped using standard JSON \u four-hex-digits syntax,
 e.g. item ``{"ключ": "значение"}`` should look like this::
 
-    ITM {"\\u043a\\u043b\\u044e\\u0447": "\\u0437\\u043d\\u0430\\u0447\\u0435\\u043d\\u0438\\u0435"}\n
+    ITM {"\u043a\u043b\u044e\u0447": "\u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435"}
 
 The total size of the message MUST not exceed 1 MiB.
 
-.. note::
-
-    For simplicity all the following examples omit the trailing newline character.
 
 ITM command
 ~~~~~~~~~~~
