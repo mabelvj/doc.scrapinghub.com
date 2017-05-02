@@ -196,7 +196,7 @@ Each spider needs to follow the pattern:
        path = os.environ['SHUB_FIFO_PATH']
        pipe = open(path, 'w')
 
-#. Write `messages <Protocol>`_ to the pipe. If you want to send a message instantly, you have to flush the stream,
+#. Write `messages <Protocol_>`_ to the pipe. If you want to send a message instantly, you have to flush the stream,
    otherwise it may remain in the file buffer inside the crawler process. However this is not always required
    as buffer will be flushed once enough data is written or when file object is closed
    (depends on the programming language you use):
