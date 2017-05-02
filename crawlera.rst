@@ -490,13 +490,13 @@ Headers example::
 Working with HTTPS
 ------------------
 
-See `Crawlera with HTTPS<https://helpdesk.scrapinghub.com/support/solutions/articles/22000188407-crawlera-with-https>` in our Knowledge Base
+See `Crawlera with HTTPS <https://helpdesk.scrapinghub.com/support/solutions/articles/22000188407-crawlera-with-https>`_ in our Knowledge Base
 
 .. _working-with-cookies:
 
 Working with Cookies
 --------------------
 
-See `Crawlera and Cookies<https://helpdesk.scrapinghub.com/support/solutions/articles/22000188409-crawlera-and-cookies>`in our Knowledge Base
+See `Crawlera and Cookies <https://helpdesk.scrapinghub.com/support/solutions/articles/22000188409-crawlera-and-cookies>`_in our Knowledge Base
 
 .. _Help center: https://helpdesk.scrapinghub.com/support/home
