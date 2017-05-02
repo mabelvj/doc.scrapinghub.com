@@ -497,6 +497,6 @@ See `Crawlera with HTTPS <https://helpdesk.scrapinghub.com/support/solutions/art
 Working with Cookies
 --------------------
 
-See `Crawlera and Cookies <https://helpdesk.scrapinghub.com/support/solutions/articles/22000188409-crawlera-and-cookies>`_in our Knowledge Base
+See `Crawlera and Cookies <https://helpdesk.scrapinghub.com/support/solutions/articles/22000188409-crawlera-and-cookies>`_ in our Knowledge Base
 
 .. _Help center: https://helpdesk.scrapinghub.com/support/home
