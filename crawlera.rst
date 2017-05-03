@@ -297,78 +297,20 @@ CRAWLERA_DOWNLOAD_TIMEOUT timeout for requests (default: ``190``)
 ========================= ===================================================
 
 
-Using Crawlera with Selenium and Polipo
-=======================================
+Using Crawlera with different browsers
+======================================
 
-Since it's not so trivial to set up proxy authentication in Selenium, a popular option is to employ `Polipo <http://www.pps.univ-paris-diderot.fr/~jch/software/polipo/>`_ as a proxy. Update Polipo configuration file ``/etc/polipo/config`` to include Crawlera credentials (if the file is not present, copy and rename ``config.sample`` found in Polipo source folder)::
-
-    parentProxy = "proxy.crawlera.com:8010"
-    parentAuthCredentials = "<API key>:"
-
-For password safety reasons this content is displayed as ``(hidden)`` in the Polipo `web interface manager <http://www.pps.univ-paris-diderot.fr/~jch/software/polipo/polipo.html#Web-interface>`_. The next step is to specify Polipo proxy details in the Selenium automation script, e.g. for Python and Firefox:
-
-.. literalinclude:: _static/crawlera-selenium.py
-    :language: python
-
-Using Crawlera with CasperJS, PhantomJS and SpookyJS
-====================================================
-
-To use session-wide Crawlera proxy with PhantomJs or CasperJS provide ``--proxy=proxy.crawlera.com:8010`` and ``--proxy-auth=<API key>:`` arguments to PhantomJS (CasperJS passes these arguments to PhantomJS).
-
-*Example*::
-
-    casperjs|phantomjs --proxy="proxy.crawlera.com:8010" --proxy-auth="<API KEY>:''" yourscript.js
-
-When making HTTPS requests, you should provide path to :download:`crawlera-ca.crt`.
-
-*Example*::
-
-    phantomjs --ssl-protocol=any --proxy="proxy.crawlera.com:8010" --proxy-auth="<API KEY>:''" --ssl-client-certificate-file=/PATH/CRAWLERA_CA.crt phantomjs/examples/rasterize.js  https://twitter.com twitter.jpg
-
-SpookyJS allows you to spawn multiple instances of CasperJS suites, so ``proxy`` and ``proxy-auth`` arguments should be provided when creating a Spooky object.
-
-*Example*::
-
-    var spooky = new Spooky({
-        child: {
-            proxy: 'proxy.crawlera.com:8010',
-            proxy-auth: '<API key>:'
-            /* ... */
-        },
-        /* ... */
-    },
-
-If it's preferred that Crawlera operated only on specific URLs, they should be wrapped according to :ref:`fetch-api`.
-
-*Example in CasperJS*:
-
-.. literalinclude:: _static/crawlera-casperjs.js
-    :language: javascript
+See our articles in our Knowledge base:
 
 
-Using Crawlera with Splash
-==========================
+`Using Crawlera with Selenium and Polipo <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203564-using-crawlera-with-selenium-and-polipo>`_ 
 
-You can use `Splash <http://splash.readthedocs.org/en/stable/>`_ with Crawlera to render JavaScript and proxy all requests
-issued from Splash. This can be necessary if your crawler makes heavy usage of Splash and target website throttles or blocks requests from Splash.
 
-*How to do it?*
+`Using Crawlera with CasperJS, PhantomJS and SpookyJS <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203565-using-crawlera-with-casperjs-phantomjs-and-spookyjs>`_
 
-You need to send your requests to Splash. Splash must proxy its requests via Crawlera.
 
-This is best achieved by using Splash ``/execute`` endpoint. You need to create Lua script that will tell Splash to use proxy for requests. Splash provides ``splash:on_request`` callback function that can be used for this purpose.
+`Using Crawlera with Splash <https://helpdesk.scrapinghub.com/support/solutions/articles/22000188428-using-crawlera-with-splash>`_
 
-.. literalinclude:: _static/crawlera-splash.lua
-    :language: lua
-
-The previous example rendered a page as a PNG image and the binary content its returned in the HTTP request. The ``/execute`` endpoint reads the automation script in the ``lua_source`` parameter (which is a string containing the full script).
-
-Example (using python requests library):
-
-.. literalinclude:: _static/crawlera-splash.py
-    :language: python
-
-Note: in the previous python script Splash was running at address ``192.168.99.100`` default IP from docker container.
 
 
 Using Crawlera from Different Languages
@@ -383,78 +325,25 @@ through Crawlera. It is assumed that Crawlera Certificate has been installed,
 since `CONNECT method <http://doc.scrapinghub.com/crawlera.html#working-with-https>`_
 will be employed.
 
-Python
-------
 
-Making use of `Requests <http://docs.python-requests.org/en/latest/>`_ HTTP Proxy Authentication:
+`Python <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203567-using-crawlera-with-python>`_
 
-.. literalinclude:: _static/crawlera-python-requests-httpproxyauth.py
-    :language: python
 
-PHP
----
+`PHP <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203568-using-crawlera-with-php>`_
 
-Making use of `PHP binding <http://curl.haxx.se/libcurl/php/examples>`_ for *libcurl* library:
 
-.. literalinclude:: _static/crawlera-php-binding.php
-    :language: php
+`Ruby <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203569-using-crawlera-with-ruby>`_
 
-Making use of `Guzzle <https://github.com/guzzle/guzzle>`_, a PHP HTTP client, in the context of `Symfony <https://symfony.com/>`_ framework:
 
-.. literalinclude:: _static/crawlera-php-symfony.php
-    :language: php
+`Node.js <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203570-using-crawlera-with-node-js>`_
 
-Ruby
-----
 
-Making use of `curb <https://github.com/taf2/curb>`_, a Ruby binding for *libcurl*:
+`Java <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203571-using-crawlera-with-java>`_
 
-.. literalinclude:: _static/crawlera-curb.rb
-    :language: ruby
 
-Making use of `typhoeus <https://github.com/typhoeus/typhoeus>`_, another Ruby binding for *libcurl*:
+`C# <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203572-using-crawlera-with-c->`_
 
-.. literalinclude:: _static/crawlera-typhoeus.rb
-    :language: ruby
 
-Making use of `mechanize <https://github.com/sparklemotion/mechanize>`_, a Ruby library for automated web interaction:
-Don't forget to load the Certificate file :download:`crawlera-ca.crt` and set it
-using the env variable `export SSL_CERT_FILE=/path/to/crawlera-ca.crt`
-
-.. literalinclude:: _static/crawlera-mechanize.rb
-    :language: ruby
-
-Node.js
--------
-
-Making use of `request <https://github.com/request/request>`_, an HTTP client:
-
-.. literalinclude:: _static/crawlera-request.js
-    :language: javascript
-
-Java
-----
-
-.. note:: Because of `HTTPCLIENT-1649 <https://issues.apache.org/jira/browse/HTTPCLIENT-1649>`_ you should use version 4.5 of HttpComponents Client or later.
-
-Extending an example published at `The Apache HttpComponents™ <http://hc.apache.org/httpcomponents-client-ga/examples.html>`_ project website and inserting Crawlera details:
-
-.. literalinclude:: _static/crawlera-httpc.java
-    :language: java
-
-:download:`crawlera-ca.crt` should be added to keystore, for instance with *keytool*:
-
-.. code-block:: text
-
-    keytool -import -file /path/to/crawlera-ca.crt -storepass changeit -keystore $JAVA_HOME/jre/lib/security/cacerts -alias crawleracert
-
-C#
---
-
-.. literalinclude:: _static/crawlera-proxy.cs
-    :language: csharp
-
-.. _fetch-api:
 
 Fetch API
 =========
