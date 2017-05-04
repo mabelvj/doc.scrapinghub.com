@@ -3,6 +3,8 @@
 Scrapy Cloud Write Entrypoint
 =============================
 
+.. note:: This is the documentation of a low-level protocol that most Scrapy Cloud users don't need to deal with. For more high-level documentation and user guides check the `Help Center`_.
+
 Scrapy Cloud Write Entrypoint is a write-only interface to Scrapy Cloud storage. Its main purpose is to
 make it easy to write crawlers and scripts compatible with Scrapy Cloud in different programming languages
 using `custom Docker images`_.
@@ -236,3 +238,4 @@ Each spider needs to follow the pattern:
 __ https://github.com/scrapinghub/scrapinghub-entrypoint-scrapy/blob/master/sh_scrapy/writer.py
 .. _JSON: http://json.org/
 .. _custom Docker images: http://help.scrapinghub.com/scrapy-cloud/custom-docker-images-on-scrapy-cloud
+.. _Help Center: http://help.scrapinghub.com
