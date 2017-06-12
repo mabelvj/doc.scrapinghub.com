@@ -29,6 +29,7 @@ vs    versioned store       new_versioned_store        Up to 3 copies of each it
 vcs   versioned cache store new_versioned_cached_store Multiple copies are retained, and each one expires after a month
 ====  ===================== ========================== ================================================================
 
+.. note:: Avoid using multiple collections with the same name and different type like ``/s/my_collection`` and ``/cs/my_collection``. During operations on an entire collection, like renaming or deleting, Hubstorage will treat homonyms as a single entity and rename or delete, both.
 
 collections/:project_id/:type/:collection
 -----------------------------------------
