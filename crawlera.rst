@@ -104,7 +104,7 @@ Issue the endpoint :ref:`/sessions/SESSION_ID` with the ``DELETE`` method in ord
 Request Limits
 --------------
 
-Crawlera’s default request limit is 5 requests per second (rps) for each website. There is a default delay of 200ms between each request and a default delay of 1 second between requests through the same slave. These delays can differ for more popular domains. If the requests per second limit is exceeded, further requests will be delayed for up to 15 minutes. Each request made after exceeding the limit will increase the request delay. If the request delay reaches the soft limit (120 seconds), then each subsequent request will contain :ref:`x-crawlera-next-request-in` header with the calculated delay as the value.
+Crawlera’s default request limit is 5 requests per second (rps) for each website. There is a default delay of 12 seconds between each request and a default delay of 1 second between requests through the same slave. These delays can differ for more popular domains. If the requests per second limit is exceeded, further requests will be delayed for up to 15 minutes. Each request made after exceeding the limit will increase the request delay. If the request delay reaches the soft limit (120 seconds), then each subsequent request will contain :ref:`x-crawlera-next-request-in` header with the calculated delay as the value.
 
 
 Request Headers
