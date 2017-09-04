@@ -34,4 +34,4 @@ See :ref:`crawlera`.
 
    crawlera
 
-.. _Help center: http://help.scrapinghub.com
+.. _Help center: https://support.scrapinghub.com/support/home

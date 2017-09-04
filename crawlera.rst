@@ -303,13 +303,13 @@ Using Crawlera with headless browsers
 See our articles in our Knowledge base:
 
 
-* `Using Crawlera with Selenium and Polipo <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203564-using-crawlera-with-selenium-and-polipo>`_ 
+* `Using Crawlera with Selenium and Polipo <https://support.scrapinghub.com/support/solutions/articles/22000203564-using-crawlera-with-selenium-and-polipo>`_ 
 
 
-* `Using Crawlera with CasperJS, PhantomJS and SpookyJS <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203565-using-crawlera-with-casperjs-phantomjs-and-spookyjs>`_
+* `Using Crawlera with CasperJS, PhantomJS and SpookyJS <https://support.scrapinghub.com/support/solutions/articles/22000203565-using-crawlera-with-casperjs-phantomjs-and-spookyjs>`_
 
 
-* `Using Crawlera with Splash <https://helpdesk.scrapinghub.com/support/solutions/articles/22000188428-using-crawlera-with-splash>`_
+* `Using Crawlera with Splash <https://support.scrapinghub.com/support/solutions/articles/22000188428-using-crawlera-with-splash>`_
 
 
 
@@ -318,22 +318,22 @@ Using Crawlera from different languages
 
 Check out our Knowledge Base for examples using Crawlera with different programming languages:
 
-* `Python <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203567-using-crawlera-with-python>`_
+* `Python <https://support.scrapinghub.com/support/solutions/articles/22000203567-using-crawlera-with-python>`_
 
 
-* `PHP <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203568-using-crawlera-with-php>`_
+* `PHP <https://support.scrapinghub.com/support/solutions/articles/22000203568-using-crawlera-with-php>`_
 
 
-* `Ruby <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203569-using-crawlera-with-ruby>`_
+* `Ruby <https://support.scrapinghub.com/support/solutions/articles/22000203569-using-crawlera-with-ruby>`_
 
 
-* `Node.js <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203570-using-crawlera-with-node-js>`_
+* `Node.js <https://support.scrapinghub.com/support/solutions/articles/22000203570-using-crawlera-with-node-js>`_
 
 
-* `Java <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203571-using-crawlera-with-java>`_
+* `Java <https://support.scrapinghub.com/support/solutions/articles/22000203571-using-crawlera-with-java>`_
 
 
-* `C# <https://helpdesk.scrapinghub.com/support/solutions/articles/22000203572-using-crawlera-with-c->`_
+* `C# <https://support.scrapinghub.com/support/solutions/articles/22000203572-using-crawlera-with-c->`_
 
 
 
@@ -371,13 +371,13 @@ Headers example::
 Working with HTTPS
 ------------------
 
-See `Crawlera with HTTPS <https://helpdesk.scrapinghub.com/support/solutions/articles/22000188407-crawlera-with-https>`_ in our Knowledge Base
+See `Crawlera with HTTPS <https://support.scrapinghub.com/support/solutions/articles/22000188407-crawlera-with-https>`_ in our Knowledge Base
 
 .. _working-with-cookies:
 
 Working with Cookies
 --------------------
 
-See `Crawlera and Cookies <https://helpdesk.scrapinghub.com/support/solutions/articles/22000188409-crawlera-and-cookies>`_ in our Knowledge Base
+See `Crawlera and Cookies <https://support.scrapinghub.com/support/solutions/articles/22000188409-crawlera-and-cookies>`_ in our Knowledge Base
 
-.. _Help center: https://helpdesk.scrapinghub.com/support/home
+.. _Help center: https://support.scrapinghub.com/support/home

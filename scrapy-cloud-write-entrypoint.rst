@@ -237,5 +237,5 @@ Each spider needs to follow the pattern:
 
 __ https://github.com/scrapinghub/scrapinghub-entrypoint-scrapy/blob/master/sh_scrapy/writer.py
 .. _JSON: http://json.org/
-.. _custom Docker images: http://help.scrapinghub.com/scrapy-cloud/custom-docker-images-on-scrapy-cloud
-.. _Help Center: http://help.scrapinghub.com
+.. _custom Docker images: https://support.scrapinghub.com/support/solutions/articles/22000200425-deploying-custom-docker-images-on-scrapy-cloud
+.. _Help Center: https://support.scrapinghub.com/support/home

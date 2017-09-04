@@ -168,4 +168,4 @@ Example::
 
 .. note:: If the data contains fields with the same name as the requested fields, they will both appear in the result.
 
-.. _Help center: http://help.scrapinghub.com
+.. _Help center: https://support.scrapinghub.com/support/home
