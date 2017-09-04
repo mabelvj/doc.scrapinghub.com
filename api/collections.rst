@@ -96,3 +96,21 @@ GET example::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/collections/78/s/my_collection/foo/value
     bar
+
+collections/:project_id/delete?name=:collection
+-----------------------------------------------
+
+Delete an entire collection immediately.
+
+POST example::
+
+    $ curl -u APIKEY: -X POST https://storage.scrapinghub.com/collections/78/delete?name=my_collection
+
+collections/:project_id/rename?name=:collection&new_name=:new_name
+------------------------------------------------------------------
+
+Rename a collection and move all its items immediately.
+
+POST example::
+
+    $ curl -u APIKEY: -X POST https://storage.scrapinghub.com/collections/rename?name=my_collection&new_name=my_collection_renamed
