@@ -17,7 +17,6 @@ Schedules a job for a given spider.
 Parameter    Description                                                            Required
 ============ ====================================================================== ========
 project      Project ID.                                                            Yes
-job          Job ID.                                                                No
 spider       Spider name.                                                           Yes
 add_tag      Add specified tag to job.                                              No
 priority     Job priority. Supported values: 0 (lowest) to 4 (highest). Default: 2. No
