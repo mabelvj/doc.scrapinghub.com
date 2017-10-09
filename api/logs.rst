@@ -44,6 +44,8 @@ Parameter Description                                            Required
 format    Results format. See :ref:`api-overview-resultformats`. No
 ========= ====================================================== ========
 
+.. note:: Pagination and meta parameters are supported, see :ref:`api-overview-pagination` and :ref:`api-overview-metapar`.
+
 ====== ============== ====================
 Method Description    Supported parameters
 ====== ============== ====================

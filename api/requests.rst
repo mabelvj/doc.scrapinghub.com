@@ -28,10 +28,26 @@ fp       Request fingerprint.                            No
 
 .. note:: Seed requests from start URLs will have no parent field.
 
+
+requests/:project_id[/:spider_id][/:job_id][/:request_no]
+-----------------------------------------------------------------
+
+Retrieve or insert request data for a project, spider or job, where ``request_no`` is the index of the request.
+
+========= ==================================================================== ========
+Parameter Description                                                          Required
+========= ==================================================================== ========
+format    Results format. See :ref:`api-overview-resultformats`.               No
+meta      Meta keys to show.                                                   No
+nodata    If set, no data will be returned other than specified ``meta`` keys. No
+========= ==================================================================== ========
+
+.. note:: Pagination and meta parameters are supported, see :ref:`api-overview-pagination` and :ref:`api-overview-metapar`.
+
+
 requests/:project_id/:spider_id/:job_id
 ---------------------------------------
 
-Retrieve or insert request data.
 
 Examples
 ^^^^^^^^
@@ -43,8 +59,6 @@ HTTP::
     $ curl -u APIKEY: https://storage.scrapinghub.com/requests/53/34/7
     {"parent":0,"duration":12,"status":200,"method":"GET","rs":1024,"url":"http://scrapy.org/","time":1351521736957}
 
-
-.. note:: Pagination and meta parameters are supported, see :ref:`api-overview-pagination` and :ref:`api-overview-metapar`.
 
 **Adding requests**
 
