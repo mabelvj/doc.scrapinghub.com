@@ -53,7 +53,7 @@ GET    Retrieve items for a given project, spider, or job. format, meta, nodata
 POST   Insert items for a given job                        N/A
 ====== =================================================== ====================
 
-.. note:: Please always use pagination parameters ``start`` and ``count`` to limit amount of items in response to prevent timeouts and different performance issues. See pagination examples below for more details.
+.. note:: Please always use pagination parameters (``start``, ``startafter`` and ``count``) to limit amount of items in response to prevent timeouts and different performance issues. See pagination examples below for more details.
 
 .. _items-examples:
 
@@ -105,6 +105,12 @@ HTTP::
 HTTP::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7?count=10&start=53/34/7/20
+
+**[Pagination] Retrieve N items from a given job starting from the item following to the given one**
+
+HTTP::
+
+    $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7?count=10&startafter=53/34/7/19
 
 **[Pagination] Retrieve a few items from a given job by its IDs**
 
