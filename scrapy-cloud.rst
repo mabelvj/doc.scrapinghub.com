@@ -87,15 +87,16 @@ Pagination
 
 You can paginate the results for the majority of the APIs using a number of parameters.
 
-========= =================================================================
-Parameter Description
-========= =================================================================
-start     Skip results before the given one. See a note about format below.
-count     Number of results per page.
-index     Offset to retrieve specific records. Multiple values supported.
-========= =================================================================
+========== ==================================================================
+Parameter  Description
+========== ==================================================================
+start      Skip results before the given one. See a note about format below.
+startafter Return results after the given one. See a note about format below.
+count      Number of results per page.
+index      Offset to retrieve specific records. Multiple values supported.
+========== ==================================================================
 
-.. note:: While ``index`` parameter is just a short ``<entity_id>`` (ex: ``index=4``), ``start`` parameter should have the full form ``<project_id>/<spider_id>/<job_id>/<entity_id>`` (ex: ``start=1/2/3/4``).
+.. note:: While ``index`` parameter is just a short ``<entity_id>`` (ex: ``index=4``), ``start`` and ``startafter`` parameters should have the full form ``<project_id>/<spider_id>/<job_id>/<entity_id>`` (ex: ``start=1/2/3/4``, ``startafter=1/2/3/3``).
 
 .. _api-overview-resultformats:
 
