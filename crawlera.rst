@@ -302,14 +302,13 @@ Using Crawlera with headless browsers
 
 See our articles in our Knowledge base:
 
+* `Using Crawlera with Splash <https://support.scrapinghub.com/support/solutions/articles/22000188428-using-crawlera-with-splash>`_
+
 
 * `Using Crawlera with Selenium and Polipo <https://support.scrapinghub.com/support/solutions/articles/22000203564-using-crawlera-with-selenium-and-polipo>`_ 
 
 
-* `Using Crawlera with CasperJS, PhantomJS and SpookyJS <https://support.scrapinghub.com/support/solutions/articles/22000203565-using-crawlera-with-casperjs-phantomjs-and-spookyjs>`_
-
-
-* `Using Crawlera with Splash <https://support.scrapinghub.com/support/solutions/articles/22000188428-using-crawlera-with-splash>`_
+* `Using Crawlera with PhantomJS <https://support.scrapinghub.com/support/solutions/articles/22000214738-using-crawlera-with-phantomjs>`_
 
 
 
