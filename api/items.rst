@@ -38,6 +38,8 @@ meta      Meta keys to show.                                                   N
 nodata    If set, no data will be returned other than specified ``meta`` keys. No
 ========= ==================================================================== ========
 
+.. note:: Pagination and meta parameters are supported, see :ref:`api-overview-pagination` and :ref:`api-overview-metapar`.
+
 ============= ==========================================================
 Header        Description
 ============= ==========================================================
@@ -50,6 +52,8 @@ Method Description                                         Supported parameters
 GET    Retrieve items for a given project, spider, or job. format, meta, nodata
 POST   Insert items for a given job                        N/A
 ====== =================================================== ====================
+
+.. note:: Please always use pagination parameters (``start``, ``startafter`` and ``count``) to limit amount of items in response to prevent timeouts and different performance issues. See pagination examples below for more details.
 
 .. _items-examples:
 
@@ -90,6 +94,30 @@ HTTP::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/
 
+**[Pagination] Retrieve first N items from a given job**
+
+HTTP::
+
+    $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7?count=10
+
+**[Pagination] Retrieve N items from a given job starting from the given item**
+
+HTTP::
+
+    $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7?count=10&start=53/34/7/20
+
+**[Pagination] Retrieve N items from a given job starting from the item following to the given one**
+
+HTTP::
+
+    $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7?count=10&startafter=53/34/7/19
+
+**[Pagination] Retrieve a few items from a given job by their IDs**
+
+HTTP::
+
+    $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7?index=5&index=6
+
 
 **Get meta field from items**
 
@@ -101,7 +129,6 @@ HTTP::
     {"_key":"53/1/7/0"}
     {"_key":"53/1/7/1"}
     {"_key":"53/1/7/2"}
-
 
 **Get items in a specific format**
 
