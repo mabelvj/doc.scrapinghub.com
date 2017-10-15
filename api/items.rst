@@ -112,7 +112,7 @@ HTTP::
 
     $ curl -u APIKEY: https://storage.scrapinghub.com/items/53/34/7?count=10&startafter=53/34/7/19
 
-**[Pagination] Retrieve a few items from a given job by its IDs**
+**[Pagination] Retrieve a few items from a given job by their IDs**
 
 HTTP::
 
