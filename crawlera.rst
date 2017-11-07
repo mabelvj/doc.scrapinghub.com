@@ -194,6 +194,8 @@ This header sets the job ID for the request (useful for tracking requests in the
 X-Crawlera-Max-Retries
 ----------------------
 
+.. note:: This header has no effect when using :ref:`x-crawlera-session` header.
+
 This header limits the number of retries performed by Crawlera.
 
 *Example*::
