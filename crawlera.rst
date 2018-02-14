@@ -73,7 +73,7 @@ Another way to create sessions is using the `/sessions` endpoint::
 
     curl -u <API key>: proxy.crawlera.com:8010/sessions -X POST
 
-This will also return a session ID which you can pass to future requests with the `X-Crawlera-Session` header like before. This is helpful when you can't get the next request using `X-Crawlera-Session`. 
+This will also return a session ID which you can pass to future requests with the `X-Crawlera-Session` header like before. This is helpful when you can't get the next request using `X-Crawlera-Session`.
 
 If an incorrect session ID is sent, Crawlera responds with a ``bad_session_id`` error.
 
@@ -118,6 +118,7 @@ Not all headers are available in every plan, here is a chart of the headers avai
 Header                         C10 C50 C100 C200 Enterprise
 ============================== === === ==== ==== ==========
 :ref:`x-crawlera-ua`               ✔   ✔    ✔    ✔
+:ref:`x-crawlera-profile`          ✔   ✔    ✔    ✔
 :ref:`x-crawlera-no-bancheck`      ✔   ✔    ✔    ✔
 :ref:`x-crawlera-cookies`      ✔   ✔   ✔    ✔    ✔
 :ref:`x-crawlera-timeout`      ✔   ✔   ✔    ✔    ✔
@@ -132,6 +133,8 @@ X-Crawlera-UA
 -------------
 :sub:`Only available on C50, C100, C200 and Enterprise plans.`
 
+**Deprecated.** Use :ref:`x-crawlera-profile` instead.
+
 This header controls Crawlera User-Agent behaviour. The supported values are:
 
 * ``pass`` - pass the User-Agent as it comes on the client request
@@ -141,6 +144,56 @@ This header controls Crawlera User-Agent behaviour. The supported values are:
 If ``X-Crawlera-UA`` isn’t specified, it will default to ``desktop``. If an unsupported value is passed in ``X-Crawlera-UA`` header, Crawlera replies with a ``540 Bad Header Value``.
 
 More User-Agent types will be supported in the future (``chrome``, ``firefox``) and added to the list above.
+
+.. _x-crawlera-profile:
+
+X-Crawlera-Profile
+------------------
+:sub:`Only available on C50, C100, C200 and Enterprise plans.`
+
+This is a replacement of ``X-Crawlera-UA`` header with slightly
+different behaviour: ``X-Crawlera-UA`` only sets ``User-Agent`` header
+but ``X-Crawlera-Profile`` applies a set of headers which actually used
+by the browser. For example, all modern browsers set ``Accept-Language``
+and ``Accept-Encoding`` headers. Also, some browsers set ``DNT`` and
+``Upgrade-Insecure-Requests`` headers.
+
+We provide *correct default values* for the headers sent by the mimicked
+browser but if you set your own header, we will use it instead. For
+example, by default Crawlera will send ``Accept-Encoding: identity``
+header so if you want to have compressed responses, simply pass
+``Accept-Encoding: gzip, deflate`` in your request. Also, by default
+Crawlera mimics browser with *en-US locale* so if you want to override
+that, provide ``Accept-Language`` header.
+
+For better experience, we recommend to use as much default values
+as possible: your clients **should avoid** sending ``Accept`` or
+``Accept-Language`` headers, Crawlera will choose browser values
+instead. To use default headers from Crawlera you need either to remove
+them from your request or set them blank.
+
+This header’s intent is to replace legacy ``X-Crawlera-UA`` so if
+you pass both ``X-Crawlera-UA`` and ``X-Crawlera-Profile``, the latter
+supersedes ``X-Crawlera-UA``.
+
+*Example*::
+
+    X-Crawlera-UA: desktop
+    X-Crawlera-Profile: pass
+
+Crawlera won’t respect ``X-Crawlera-UA`` setting here because
+``X-Crawlera-Profile`` is set.
+
+Supported values for this headers are:
+
+* ``pass`` - do not use any browser profile, use User-Agent, provided by the client
+* ``desktop``- use a random desktop browser profile ignoring client User-Agent header
+* ``mobile`` - use a random mobile browser profile ignoring client User-Agent header
+
+By default, no profile is used. Crawlera starts to process
+``X-Crawlera-UA`` header. If an unsupported value is passed in
+``X-Crawlera-Profile`` header, Crawlera replies with a ``540 Bad Header
+Value``.
 
 .. _x-crawlera-no-bancheck:
 
@@ -307,7 +360,7 @@ See our articles in our Knowledge base:
 * `Using Crawlera with Splash <https://support.scrapinghub.com/support/solutions/articles/22000188428-using-crawlera-with-splash>`_
 
 
-* `Using Crawlera with Selenium and Polipo <https://support.scrapinghub.com/support/solutions/articles/22000203564-using-crawlera-with-selenium-and-polipo>`_ 
+* `Using Crawlera with Selenium and Polipo <https://support.scrapinghub.com/support/solutions/articles/22000203564-using-crawlera-with-selenium-and-polipo>`_
 
 
 * `Using Crawlera with PhantomJS <https://support.scrapinghub.com/support/solutions/articles/22000214738-using-crawlera-with-phantomjs>`_
