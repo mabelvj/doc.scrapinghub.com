@@ -21,6 +21,7 @@ spider       Spider name.                                                       
 add_tag      Add specified tag to job.                                              No
 priority     Job priority. Supported values: 0 (lowest) to 4 (highest). Default: 2. No
 job_settings Job settings represented as a JSON object.                             No
+units        Amount of units to run job. Supported values: 1 to 6.                  No
 ============ ====================================================================== ========
 
 .. note:: Any other parameter will be treated as a spider argument.
@@ -33,7 +34,7 @@ POST   Schedule the specified spider. project, job, spider, add_tag, priority, j
 
 Example::
 
-	$ curl -u APIKEY: https://app.scrapinghub.com/api/run.json -d project=123 -d spider=somespider -d add_tag=sometag -d spiderarg1=example -d job_settings='{ "setting1": "value1", "setting2": "value2" }'
+	$ curl -u APIKEY: https://app.scrapinghub.com/api/run.json -d project=123 -d spider=somespider -d units=2 -d add_tag=sometag -d spiderarg1=example -d job_settings='{ "setting1": "value1", "setting2": "value2" }'
 	{"status": "ok", "jobid": "123/1/1"}
 
 
