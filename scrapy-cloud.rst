@@ -96,6 +96,8 @@ count      Number of results per page.
 index      Offset to retrieve specific records. Multiple values supported.
 ========== ==================================================================
 
+.. note:: Please use ``offset`` parameter instead of ``start`` when paginating results from ``app.scrapinghub.com`` endpoints. This inconsistency is caused by historical reasons and will be fixed in the coming platform updates.
+
 .. note:: While ``index`` parameter is just a short ``<entity_id>`` (ex: ``index=4``), ``start`` and ``startafter`` parameters should have the full form ``<project_id>/<spider_id>/<job_id>/<entity_id>`` (ex: ``start=1/2/3/4``, ``startafter=1/2/3/3``).
 
 .. _api-overview-resultformats:
