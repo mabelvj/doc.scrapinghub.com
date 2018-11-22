@@ -45,7 +45,7 @@ domain_forbidden       523            Domain forbidden. The domain is forbidden 
 bad_header             540            Bad header value for *<some_header>*
 ====================== =============  ======================
 
-\* Crawlera limits the number of concurrent connections based on your Crawlera plan. See: `Crawlera pricing table <https://scrapinghub.com/pricing/#crawlera>`_ for more information on plans.
+\* Crawlera limits the number of concurrent connections based on your Crawlera plan. See: `Crawlera pricing table <https://scrapinghub.com/crawlera>`_ for more information on plans.
 
 .. _sessions-request-limits:
 
