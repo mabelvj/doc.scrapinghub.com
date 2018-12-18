@@ -90,7 +90,7 @@ vcs   versioned cache store new_versioned_cached_store Multiple copies are retai
 
 Records are ``json`` objects, with the following constraints:
 
-- Their serialized size can't be larger than ``10Mo``;
+- Their serialized size can't be larger than ``1 MB``;
 - Javascript's ``inf`` values are not supported;
 - Floating-point numbers can't be larger than ``2^64 - 1``.
 
