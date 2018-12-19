@@ -25,24 +25,25 @@ When an error occurs, Crawlera sends a response containing an :ref:`x-crawlera-e
 ====================== =============  ======================
 X-Crawlera-Error       Response Code  Error Message
 ====================== =============  ======================
-bad_session_id         400            Incorrect session ID
+bad_session_id         400            Bad session ID
 user_session_limit     400            Session limit exceeded
-bad_auth               407
-too_many_conns         429            Too many connections*
-header_auth            470            Unauthorized Crawlera header
+bad_proxy_auth         407            Incorrect authentication data
+too_many_conns         429            Parallel connections limit has been reached*
+header_auth            470            Unauthorized header
 \                      500            Unexpected error
 nxdomain               502            Error looking up domain
+ehostunreach           502            Host is unreachable
 econnrefused           502            Connection refused
-econnreset             502            Connection reset
-socket_closed_remotely 502            Server closed socket connection
-send_failed            502            Send failed
-noslaves               503            No available proxies
-slavebanned            503            Website crawl ban
+econnreset             502            Connection reset by peer
+socket_closed_remotely 502            The socket has been closed remotely
+client_conn_closed     503            Connection closed by client
+no_proxies             503            No available proxies
+banned                 503            Proxy has been banned
 serverbusy             503            Server busy: too many outstanding requests
-timeout                504            Timeout from upstream server
-msgtimeout             504            Timeout processing HTTP stream
-domain_forbidden       523            Domain forbidden. The domain is forbidden in Crawlera.
-bad_header             540            Bad header value for *<some_header>*
+timeout                504            Connection timed out
+msgtimeout             504            Message passing timeout
+domain_forbidden       523            The domain is forbidden for crawling
+bad_header             540            Bad header value
 ====================== =============  ======================
 
 \* Crawlera limits the number of concurrent connections based on your Crawlera plan. See: `Crawlera pricing table <https://scrapinghub.com/crawlera>`_ for more information on plans.
