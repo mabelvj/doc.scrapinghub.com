@@ -37,7 +37,7 @@ econnrefused           502            Connection refused
 econnreset             502            Connection reset by peer
 socket_closed_remotely 502            The socket has been closed remotely
 client_conn_closed     503            Connection closed by client
-no_proxies             503            No available proxies
+noslaves               503            No available proxies
 banned                 503            Proxy has been banned
 serverbusy             503            Server busy: too many outstanding requests
 timeout                504            Connection timed out
