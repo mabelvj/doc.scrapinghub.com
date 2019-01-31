@@ -44,9 +44,13 @@ timeout                504            Connection timed out
 msgtimeout             504            Message passing timeout
 domain_forbidden       523            The domain is forbidden for crawling
 bad_header             540            Bad header value
+data_error             541            Response size is too big
 ====================== =============  ======================
 
 \* Crawlera limits the number of concurrent connections based on your Crawlera plan. See: `Crawlera pricing table <https://scrapinghub.com/crawlera>`_ for more information on plans.
+
+\* Crawlera limits the size of response. If you attempt to download file larger than 500MB it will return an error.
+
 
 .. _sessions-request-limits:
 
