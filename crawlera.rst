@@ -360,7 +360,10 @@ CRAWLERA_DOWNLOAD_TIMEOUT timeout for requests (default: ``190``)
 Using Crawlera with headless browsers
 =====================================
 
-See our articles in our Knowledge base:
+See our articles in the Knowledge Base:
+
+* `Using Crawlera Headless Proxy <https://support.scrapinghub.com/support/solutions/articles/22000234854-how-to-use-crawlera-with-headless-browsers>`_
+
 
 * `Using Crawlera with Splash <https://support.scrapinghub.com/support/solutions/articles/22000188428-using-crawlera-with-splash>`_
 
@@ -371,11 +374,14 @@ See our articles in our Knowledge base:
 * `Using Crawlera with PhantomJS <https://support.scrapinghub.com/support/solutions/articles/22000214738-using-crawlera-with-phantomjs>`_
 
 
+* `Using Crawlera with Puppeteer <https://support.scrapinghub.com/support/solutions/articles/22000220800-using-crawlera-with-puppeteer>`_
+
+
 
 Using Crawlera from different languages
 =======================================
 
-Check out our Knowledge Base for examples using Crawlera with different programming languages:
+Check out our Knowledge Base for examples of using Crawlera with different programming languages:
 
 * `Python <https://support.scrapinghub.com/support/solutions/articles/22000203567-using-crawlera-with-python>`_
 
@@ -392,7 +398,7 @@ Check out our Knowledge Base for examples using Crawlera with different programm
 * `Java <https://support.scrapinghub.com/support/solutions/articles/22000203571-using-crawlera-with-java>`_
 
 
-* `C# <https://support.scrapinghub.com/support/solutions/articles/22000203572-using-crawlera-with-c->`_
+* `C# <https://support.scrapinghub.com/support/solutions/articles/22000204134-using-crawlera-with-c->`_
 
 
 
