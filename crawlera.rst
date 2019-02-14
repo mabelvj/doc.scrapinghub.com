@@ -163,19 +163,25 @@ by the browser. For example, all modern browsers set ``Accept-Language``
 and ``Accept-Encoding`` headers. Also, some browsers set ``DNT`` and
 ``Upgrade-Insecure-Requests`` headers.
 
-We provide *correct default values* for the headers sent by the mimicked
-browser but if you set your own header, we will use it instead. For
-example, by default Crawlera will send ``Accept-Encoding: identity``
-header so if you want to have compressed responses, simply pass
-``Accept-Encoding: gzip, deflate`` in your request. Also, by default
-Crawlera mimics browser with *en-US locale* so if you want to override
-that, provide ``Accept-Language`` header.
+We provide *correct default values* for the headers sent by the
+mimicked browser. If you want to use your own header, please use
+complimentary header ``X-Crawlera-Profile-Pass``. The value of
+``X-Crawlera-Profile-Pass`` is the name of the header you need to use.
+In that case, Crawlera won't override you value. You can put several
+header names there, delimited by comma.
 
-For better experience, we recommend to use as much default values
-as possible: your clients **should avoid** sending ``Accept`` or
-``Accept-Language`` headers, Crawlera will choose browser values
-instead. To use default headers from Crawlera you need either to remove
-them from your request or set them blank.
+*Example*
+
+You want to use your own specific browser locale (de_DE) instead of
+default en_US. In that case, you need to put ``Accept-Language`` as a
+value of ``X-Crawlera-Profile-Pass`` and provide de_DE as a value of
+``Accept-Language``.
+
+::
+
+    X-Crawlera-Profile: desktop
+    X-Crawlera-Profile-Pass: Accept-Language
+    Accept-Language: de_DE
 
 This header’s intent is to replace legacy ``X-Crawlera-UA`` so if
 you pass both ``X-Crawlera-UA`` and ``X-Crawlera-Profile``, the latter
