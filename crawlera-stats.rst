@@ -14,6 +14,8 @@ This API uses HTTP Basic authentication. You’ll need to use your `API key <htt
 API endpoints
 =============
 
+root url: "crawlera-stats.scrapinghub.com"
+
 /stats
 -----
 
