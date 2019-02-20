@@ -34,4 +34,14 @@ See :ref:`crawlera`.
 
    crawlera
 
+Crawlera Stats API
+==================
+
+See :ref:`crawlera-stats`.
+
+.. toctree::
+   :hidden:
+
+   crawlera-stats
+
 .. _Help center: https://support.scrapinghub.com/support/home
