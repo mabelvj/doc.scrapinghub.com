@@ -33,7 +33,7 @@ failed       Number of unsuccessful responses
 concurrency  80 percentile of concurrent connections
 total_time   80 percentile of response time (milliseconds)
 traffic      Total traffic (bytes)
-============ ================================================
+============ ===============================================
 
 Parameters
 ----------
