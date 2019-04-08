@@ -211,7 +211,7 @@ Read an individual item value.
 collections/:project_id/:type/:collection/deleted
 -----------------------------------------------------
 
-``POST`` with a list of item key to delete them.
+``POST`` with a list of item keys to delete them.
 
 .. note:: This endpoint is designed to delete a large number of
           non-consecutive items. To delete consecutives items
@@ -219,7 +219,7 @@ collections/:project_id/:type/:collection/deleted
 
 .. code:: shell
 
-    $ curl -u $APIKEY: -X POST -d 'TODO' \
+    $ curl -u $APIKEY: -X POST -d '"foo"' -d '"bar"' \
         https://storage.scrapinghub.com/collections/78/s/my_collection/deleted
 
 collections/:project_id/delete?name=:collection
