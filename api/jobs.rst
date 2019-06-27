@@ -284,7 +284,7 @@ Example::
 jobs/stop.json
 --------------
 
-Stops one or more running jobs.
+Stops one running job.
 
 =========  ============================== ========
 Parameter  Description                    Required
@@ -296,9 +296,9 @@ job        Job ID.                        Yes
 ====== ============ =================================
 Method Description  Supported parameters
 ====== ============ =================================
-POST   Stop job(s). project, job
+POST   Stop job.    project, job
 ====== ============ =================================
 
 Example::
 
-  $ curl -u APIKEY: https://app.scrapinghub.com/api/jobs/stop.json -d project=123 -d job=123/1/1 -d job=123/1/2
+  $ curl -u APIKEY: https://app.scrapinghub.com/api/jobs/stop.json -d project=123 -d job=123/1/1
