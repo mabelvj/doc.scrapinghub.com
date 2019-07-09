@@ -390,7 +390,7 @@ in accordance with
     print(response.status_code)                       # 413
     print(response.headers['content-type']            # application/problem+json
     print(response.json()['title'])                   # Limit of 100 queries per request exceeded
-    print(response.json()['type'])                    # http://errors.autoextract.scrapinghub.com/queries-limit-reached
+    print(response.json()['type'])                    # http://errors.xod.scrapinghub.com/queries-limit-reached
 
 Such response can be easily parsed and used for programmatic error handling.
 The ``type`` field should be used to check the error type
