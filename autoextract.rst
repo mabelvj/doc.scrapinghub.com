@@ -145,7 +145,7 @@ then the product field will be available in the query result:
     response = requests.post(
         'https://autoextract.scrapinghub.com/v1/extract',
         auth=('[api key]', ''),
-        json=[{'url': 'http://www.waterbedbargains.com/innomax-perfections-deep-fill-softside-waterbed/', 'pageType': 'product'}])
+        json=[{'url': 'http://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html', 'pageType': 'product'}])
     print(response.json()[0]['product'])
 
 The following fields will be available for the product:
@@ -260,3 +260,224 @@ Below is an example response with all product fields present:
 
 Article Extraction
 ==================
+
+If you requested an article extraction, and the extraction succeeds,
+then the article field will be available in the query result:
+
+.. code-block:: python
+
+    import requests
+
+    response = requests.post(
+        'https://xod.scrapinghub.com/v1/extract',
+        auth=('[api key]', ''),
+        json=[{'url': 'https://blog.scrapinghub.com/2016/08/17/introducing-scrapy-cloud-with-python-3-support',
+               'pageType': 'article'}])
+    print(response.json()[0]['article'])
+
+
+The following fields will be available for the article:
+
+======================   =======================================  ===========
+Name                     Type                                     Description
+======================   =======================================  ===========
+``headline``             String                                   Article headline or title.
+``datePublished``        String                                   Date, ISO-formatted with 'T' separator, may contain a timezone.
+``datePublishedRaw``     String                                   Same date but before parsing, as it appeared on the site.
+``author``               String                                   Author (or authors) of the article.
+``authorsList``          List of strings                          All authors of the article split into separate strings, for example the
+                                                                  ``author`` value might be ``"Alice and Bob"`` and ``authorList`` value
+                                                                  ``["Alice", "Bob"]``, while for a single author
+                                                                  ``author`` value might be ``"Alice Johnes"`` and ``authorList`` value
+                                                                  ``["Alice Johnes"]``.
+``inLanguage``           String                                   Language of the article, as an ISO 639-1 language code.
+``breadcrumbs``          List of dictionaries with                A list of breadcrumbs (a specific navigation element) with optional name and URL.
+                         ``name`` and ``link`` optional
+                         string fields
+``mainImage``            String                                   A URL or data URL value of the main image of the article.
+``images``               List of strings                          A list of URL or data URL values of all images of the article (may include the main image).
+``description``          String                                   A short summary of the article, human-provided if available, or auto-generated.
+``articleBody``          String                                   Text of the article, including sub-headings and image captions, with newline separators.
+``articleBodyRaw``       String                                   html of the article body.
+``videoUrls``            List of strings                          A list of URLs of all videos inside the article body.
+``audioUrls``            List of strings                          A list of URLs of all audios inside the article body.
+``probability``          Float                                    Probability that this is a single article page.
+``url``                  String                                   URL of page where this article was extracted.
+======================   =======================================  ===========
+
+All fields are optional, except for ``url`` and ``probability``.
+
+Below is an example response with all article fields present:
+
+.. code-block:: json
+
+
+    [
+      {
+        "article": {
+          "headline": "Article headline",
+          "datePublished": "2019-06-19T00:00:00",
+          "datePublishedRaw": "June 19, 2018",
+          "author": "Article author",
+          "authorsList": [
+            "Article author"
+          ],
+          "inLanguage": "en",
+          "breadcrumbs": [
+            {
+              "name": "Level 1",
+              "link": "http://example"
+            }
+          ],
+          "mainImage": "http://example/image.png",
+          "images": [
+            "http://example/image.png"
+          ],
+          "description": "Article summary",
+          "articleBody": "Article body ...",
+          "articleBodyRaw": "<div>html of article body ...",
+          "videoUrls": [
+            "https://example/video"
+          ],
+          "audioUrls": [
+            "https://example/audio"
+          ],
+          "probability": 0.95,
+          "url": "https://example/article"
+        },
+        "error": null,
+        "html": "<!DOCTYPE html><html ...",
+        "product": null,
+        "query": {
+          "userQuery": {
+            "pageTypeHint": "article",
+            "url": "https://example/article"
+          }
+        }
+      }
+    ]
+
+Errors
+======
+
+Errors fall into two broad categories: request-level and query-level.
+Request-level errors occur when the API server can't process
+the input that it receives. Examples include:
+
+- Authentication failure
+- Malformed request JSON
+- Too many queries in request
+- Request payload size too large
+
+If a request-level error occurs,
+the API server will return a 4xx or 5xx response code.
+If possible, a JSON response body with content type
+``application/problem+json`` will be returned that describes the error
+in accordance with
+`RFC-7807 - Problem Details for HTTP APIs <https://tools.ietf.org/html/rfc7807>`_
+
+.. code-block:: python
+
+    import requests
+
+    # Send a request with 101 queries
+    response = requests.post(
+        'https://autoextract.scrapinghub.com/v1/extract',
+         auth=('[api key]', ''),
+         json=[{'url': 'http://www.example.com', 'pageType': 'product'}] * 101)
+
+    print(response.status_code == requests.codes.ok)  # False
+    print(response.status_code)                       # 413
+    print(response.headers['content-type']            # application/problem+json
+    print(response.json()['title'])                   # Limit of 100 queries per request exceeded
+    print(response.json()['type'])                    # http://errors.xod.scrapinghub.com/queries-limit-reached
+
+Such response can be easily parsed and used for programmatic error handling.
+The ``type`` field should be used to check the error type
+as this will not change in subsequent versions.
+If it is not possible to return a JSON description of the error,
+then no content type header will be set for the response
+and the response body will be empty.
+
+Query-level errors occur when the API server processes the request correctly,
+but something goes wrong during the extraction process.
+You can detect these by checking the ``error`` field in query results.
+If the error field is not null,
+then an error has occurred and the extraction result will not be available.
+
+.. code-block:: python
+
+    import requests
+
+    response = requests.post(
+        'https://autoextract.scrapinghub.com/v1/extract',
+        auth=('[api key]', ''),
+        json=[{'url': 'http://www.example.com/this-page-does-not-exist', 'pageType': 'article'}])
+
+    print(response.json()[0]['error'] is None)  # False
+    print(response.json()[0]['error'])          # Downloader error: http404
+
+Batching Queries
+================
+
+Multiple queries can be submitted in a single API request,
+resulting in an equivalent number of query results.
+
+
+.. code-block:: python
+
+    import requests
+
+    response = requests.post(
+        'https://autoextract.scrapinghub.com/v1/extract',
+        auth=('[api key]', ''),
+        json=[{'url': 'https://blog.scrapinghub.com/2016/08/17/introducing-scrapy-cloud-with-python-3-support', 'pageType': 'article'},
+              {'url': 'https://blog.scrapinghub.com/spidermon-scrapy-spider-monitoring', 'pageType': 'article'},
+              {'url': 'https://blog.scrapinghub.com/gopro-study', 'pageType': 'article'}])
+
+    for query_result in response.json():
+        print(query_result['article']['headline'])
+
+Note that query results are not necessarily returned
+in the same order as the original queries.
+If you need an easy way to associate the results with the queries
+that generated them, you can pass an additional ``meta`` field in the query.
+The value that you pass will appear as a ``userMeta`` field
+in the corresponding query result.
+For example, you can create a dictionary keyed on the ``meta`` field
+to match queries with their corresponding results:
+
+.. code-block:: python
+
+    import requests
+
+    queries = [
+        {'meta': 'query1', 'url': 'https://blog.scrapinghub.com/2016/08/17/introducing-scrapy-cloud-with-python-3-support', 'pageType': 'article'},
+        {'meta': 'query2', 'url': 'https://blog.scrapinghub.com/spidermon-scrapy-spider-monitoring', 'pageType': 'article'},
+        {'meta': 'query3', 'url': 'https://blog.scrapinghub.com/gopro-study', 'pageType': 'article'}]
+
+    response = requests.post(
+        'https://autoextract.scrapinghub.com/v1/extract',
+        auth=('[api key]', ''),
+        json=queries)
+
+    query_results = {result['query']['userMeta']: result for result in response.json()}
+
+    for query in queries:
+        query_result = query_results[query['meta']]
+        print(query_result['article']['headline'])
+
+
+Restrictions and Failure Modes
+==============================
+
+- A maximum of 100 queries may be submitted in a single request.
+  The total size of the request body cannot exceed 128KB.
+- There is a global timeout of 10 minutes for queries.
+  Queries can time out for a number of reasons,
+  such as difficulties during content download.
+  If a query in a batched request times out,
+  the API will try to return the results of the extractions
+  that did succeed along with errors for those that timed out.
+  We therefore recommend that you set the HTTP timeout for API requests
+  to over 10 minutes.
