@@ -269,7 +269,7 @@ then the article field will be available in the query result:
     import requests
 
     response = requests.post(
-        'https://xod.scrapinghub.com/v1/extract',
+        'https://autoextract.scrapinghub.com/v1/extract',
         auth=('[api key]', ''),
         json=[{'url': 'https://blog.scrapinghub.com/2016/08/17/introducing-scrapy-cloud-with-python-3-support',
                'pageType': 'article'}])
@@ -390,7 +390,7 @@ in accordance with
     print(response.status_code)                       # 413
     print(response.headers['content-type']            # application/problem+json
     print(response.json()['title'])                   # Limit of 100 queries per request exceeded
-    print(response.json()['type'])                    # http://errors.xod.scrapinghub.com/queries-limit-reached
+    print(response.json()['type'])                    # http://errors.autoextract.scrapinghub.com/queries-limit-reached
 
 Such response can be easily parsed and used for programmatic error handling.
 The ``type`` field should be used to check the error type
