@@ -503,6 +503,7 @@ error contains                                                   Description
 query timed out                                                  10 minutes time out for query reached
 malformed url                                                    URL cannot be parsed
 non-HTTP schemas are not allowed                                 Only http and https schemas are allowed
+Domain ... is occupied, please retry in ... seconds              Per-domain rate limiting was applied. It is recommended to retry after the specified interval.
 Downloader error: No response (network301)                       Redirects are not supported
 Downloader error: No visible elements                            There are no visible elements in downloaded content
 Downloader error: http304
