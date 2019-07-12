@@ -58,7 +58,7 @@ Or, in Python
 
 
 Requests
-========
+--------
 
 Requests are composed of a JSON array of queries.
 Each query is a map containing the following fields:
@@ -68,11 +68,11 @@ Name          Required  Type     Description
 ============  ========  =======  ===========
 ``url``       Yes       String   URL of web page to extract from. Must be a valid ``http://`` or ``https://`` URL.
 ``pageType``  Yes       String   Type of extraction to perform. Must be ``article`` or ``product``.
-``meta``      No        String   User UTF-8 string, which will be passed throughout the extraction pipeline and returned in the query result.
+``meta``      No        String   User UTF-8 string, which will be passed throughout the extraction pipeline and returned in the query result. Max size 4 Kb.
 ============  ========  =======  ===========
 
 Responses
-=========
+---------
 
 API responses are wrapped in a JSON array
 (this is to facilitate query batching; see below).
@@ -118,8 +118,8 @@ A query response for a single article extraction looks like this
         }
     ]
 
-Common Result Information
-=========================
+Output fields
+=============
 
 All API responses will include some basic information about the content
 in the query:
@@ -133,7 +133,7 @@ in the query:
     print(response.json()[0]['html'])
 
 Product Extraction
-==================
+------------------
 
 If you requested a product extraction, and the extraction succeeds,
 then the product field will be available in the query result:
@@ -259,7 +259,7 @@ Below is an example response with all product fields present:
     ]
 
 Article Extraction
-==================
+------------------
 
 If you requested an article extraction, and the extraction succeeds,
 then the article field will be available in the query result:
@@ -361,8 +361,15 @@ Errors
 ======
 
 Errors fall into two broad categories: request-level and query-level.
-Request-level errors occur when the API server can't process
-the input that it receives. Examples include:
+Request-level errors occur when the HTTP API server can't process
+the input that it receives. Query-level errors occur when specific query
+cannot be processed. You can detect these by checking the ``error``
+field in query results.
+
+Request-level
+-------------
+
+Examples include:
 
 - Authentication failure
 - Malformed request JSON
@@ -399,11 +406,10 @@ If it is not possible to return a JSON description of the error,
 then no content type header will be set for the response
 and the response body will be empty.
 
-Query-level errors occur when the API server processes the request correctly,
-but something goes wrong during the extraction process.
-You can detect these by checking the ``error`` field in query results.
-If the error field is not null,
-then an error has occurred and the extraction result will not be available.
+Query-level
+-----------
+
+If the ``error`` field is not null, then an error has occurred and the extraction result will not be available.
 
 .. code-block:: python
 
@@ -468,6 +474,51 @@ to match queries with their corresponding results:
         print(query_result['article']['headline'])
 
 
+Reference
+---------
+
+Request-level
+^^^^^^^^^^^^^
+=======================================================================  =========================================
+Type                                                                     Short description
+=======================================================================  =========================================
+http://errors.xod.scrapinghub.com/queries-limit-reached.html             Limit of 100 queries per request exceeded
+http://errors.xod.scrapinghub.com/malformed-json.html
+http://errors.xod.scrapinghub.com/rate-limit-exceeded.html               System-wide rate limit exceeded
+http://errors.xod.scrapinghub.com/user-rate-limit-exceeded.html          User rate limit exceeded
+http://errors.xod.scrapinghub.com/account-disabled.html
+http://errors.xod.scrapinghub.com/unrecognized-content-type.html
+http://errors.xod.scrapinghub.com/empty-request.html
+http://errors.xod.scrapinghub.com/malformed-request.html
+http://errors.xod.scrapinghub.com/http-pipelining-not-supported.html
+http://errors.xod.scrapinghub.com/unknown-uri.html
+http://errors.xod.scrapinghub.com/method-not-allowed.html
+=======================================================================  =========================================
+
+Query-level
+^^^^^^^^^^^
+===============================================================  =======================================================
+error contains                                                   Description
+===============================================================  =======================================================
+query timed out                                                  10 minutes time out for query reached
+malformed url                                                    URL cannot be parsed
+non-HTTP schemas are not allowed                                 Only http and https schemas are allowed
+Downloader error: No response (network301)                       Redirects are not supported
+Downloader error: No visible elements                            There are no visible elements in downloaded content
+Downloader error: http304
+Downloader error: http404
+Downloader error: http500
+Downloader error: No response (network5)                         Remote server closed connection before transfer was finished
+Proxy error: ssl_tunnel_error
+Proxy error: banned                                              Crawlera made several retries, but was unable to avoid banning. This flags antiban measures in actions, but doesn't mean the proxy pool is exhausted. Retry is recommended.
+Proxy error: domain_forbidden                                    Domain is forbidden on Crawlera side
+Proxy error: internal_error
+Proxy error: nxdomain                                            Crawlera wasn't able to resolve domain through DNS
+===============================================================  =======================================================
+
+there could be also other, rare errors.
+
+
 Restrictions and Failure Modes
 ==============================
 
@@ -477,7 +528,7 @@ Restrictions and Failure Modes
   Queries can time out for a number of reasons,
   such as difficulties during content download.
   If a query in a batched request times out,
-  the API will try to return the results of the extractions
+  the API will return the results of the extractions
   that did succeed along with errors for those that timed out.
   We therefore recommend that you set the HTTP timeout for API requests
   to over 10 minutes.
