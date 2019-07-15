@@ -38,19 +38,20 @@ traffic      Total traffic (bytes)
 Parameters
 ----------
 
-=========== ======================================================== ========
-Field       Description                                              Required
-=========== ======================================================== ========
-start_date  ISO 8601 formatted date. Defaults to 7 days ago from now No
-end_date    ISO 8601 formatted date. Defaults to UTC now             No
-groupby     How to group results. Defaults to no grouping.           No
-            Available values: max, hour, day, month, year
-            "max" means group by the most granular
-            datetime precision possible (5min)
-users       Only fetch data for this set of users (comma separated)  No
-limit       Number of desired items per page. Defaults to 500        No
-after       Token for requesting next items on timeline              No
-=========== ======================================================== ========
+============= ======================================================== ========
+Field         Description                                              Required
+============= ======================================================== ========
+start_date    ISO 8601 formatted date. Defaults to 7 days ago from now No
+end_date      ISO 8601 formatted date. Defaults to UTC now             No
+groupby       How to group results. Defaults to no grouping.           No
+              Available values: max, hour, day, month, year
+              "max" means group by the most granular
+              datetime precision possible (5min)
+users         Only fetch data for this set of users (comma separated)  No
+limit         Number of desired items per page. Defaults to 500        No
+after         Token for requesting next items on timeline              No
+reverse_order Reverse response list                                    No
+============= ======================================================== ========
 
 Examples
 --------
