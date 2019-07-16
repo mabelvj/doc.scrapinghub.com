@@ -44,4 +44,14 @@ See :ref:`crawlera-stats`.
 
    crawlera-stats
 
+AutoExtract API
+===============
+
+See :ref:`autoextract`.
+
+.. toctree::
+   :hidden:
+
+   autoextract
+
 .. _Help center: https://support.scrapinghub.com/support/home
