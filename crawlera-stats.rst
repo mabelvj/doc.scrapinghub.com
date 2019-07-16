@@ -17,7 +17,7 @@ API endpoints
 root url: "crawlera-stats.scrapinghub.com"
 
 /stats
------
+------
 
 Crawlera usage stats.
 
