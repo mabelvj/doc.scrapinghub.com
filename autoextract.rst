@@ -399,12 +399,14 @@ in accordance with
     print(response.json()['title'])                   # Limit of 100 queries per request exceeded
     print(response.json()['type'])                    # http://errors.xod.scrapinghub.com/queries-limit-reached
 
-Such response can be easily parsed and used for programmatic error handling.
-The ``type`` field should be used to check the error type
-as this will not change in subsequent versions.
-If it is not possible to return a JSON description of the error,
-then no content type header will be set for the response
-and the response body will be empty.
+
+In the above example of queries-limit problem (identified by the URI type) the reason for 413 is indicated
+in the ``title``. The ``type`` field should be used to check the error type as this will not change in
+subsequent versions. There could be more specific fields depending on the error providing additional details, e.g.
+delay before retrying next time. Such response can be easily parsed and used for programmatic error handling.
+
+If it is not possible to return a JSON description of the error, then no content type header will be set for the
+response and the response body will be empty.
 
 Query-level
 -----------
