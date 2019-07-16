@@ -121,7 +121,7 @@ A query response for a single article extraction looks like this
 Output fields
 =============
 
-All API responses will include some basic information about the content
+All API responses include basic information about the content
 in the query:
 
 .. code-block:: python
@@ -157,7 +157,7 @@ Name                     Type                                     Description
 ``name``                 String                                   The name of the product.
 ``offers``               List of dictionaries with ``price``,     Offers of the product.
                          ``currency`` and ``availability``        All fields are optional but one of ``price`` or ``availability`` is present.
-                         string fields                            ``price`` field is a valid number with a dot as a decimal separator.
+                         string fields                            ``price`` field is a string with a valid number (dot is a decimal separator).
                                                                   ``currency`` is currency as given on the web site, without extra normalization
                                                                   (for example both "$" and "USD" are possible currencies).
                                                                   It is present only if price is also present.
@@ -191,7 +191,7 @@ Name                     Type                                     Description
                                                                   All fields are optional but one of ``reviewCount`` or ``ratingValue`` is present.
 ``additionalProperty``   List of dictionaries with ``name``       A list of product properties or characteristics, ``name`` field contains the property name,
                          and ``value`` fields                     and ``value`` field contains the property value.
-``probability``          Float                                    Probability that this is a single product page.
+``probability``          Float                                    Probability that the requested page is a single product page.
 ``url``                  String                                   URL of page where this product was extracted.
 ======================   =======================================  ===========
 
@@ -492,6 +492,10 @@ Batching Queries
 Multiple queries can be submitted in a single API request,
 resulting in an equivalent number of query results.
 
+.. note::
+    When using batch requests, each query is accounted towards usage limits
+    separately. For example, sending a batch request with 10 queries incur
+    the same cost as sending 10 requests with 1 query each.
 
 .. code-block:: python
 
