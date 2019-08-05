@@ -8,19 +8,17 @@ The AutoExtract API is a service for automatically extracting information
 from web content.
 You provide the URLs that you are interested in, and what type of content
 you expect to find there (product or article).
-The API will then fetch the content, and apply a number of techniques
+The service will then fetch the content, and apply a number of techniques
 behind the scenes to extract as much information as possible.
-Finally, the downloaded content is returned to you,
-along with the extracted information in structured form.
+Finally, the extracted information is returned to you in structured form.
 
 Before you Begin
 ================
 
 You will need to obtain an API key before you can start using the AutoExtract
-API. One should be emailed to you by our support team soon after you join
-the AutoExtract API beta program.
-If you haven't received one, you can contact the beta support team directly
-at betatest@scrapinghub.com.
+API. You should receive one when you complete the signup process.
+If you haven't received one, you can contact the AutoExtract support team directly
+at autoextract-support@scrapinghub.com.
 
 .. note:: In all of the examples below, you will need to replace the string
           '[api key]' with your unique key.
@@ -60,16 +58,17 @@ Or, in Python
 Requests
 --------
 
-Requests are composed of a JSON array of queries.
+Requests are comprised of a JSON array of queries.
 Each query is a map containing the following fields:
 
-============  ========  =======  ===========
-Name          Required  Type     Description
-============  ========  =======  ===========
-``url``       Yes       String   URL of web page to extract from. Must be a valid ``http://`` or ``https://`` URL.
-``pageType``  Yes       String   Type of extraction to perform. Must be ``article`` or ``product``.
-``meta``      No        String   User UTF-8 string, which will be passed throughout the extraction pipeline and returned in the query result. Max size 4 Kb.
-============  ========  =======  ===========
+==================  ========  =======  ===========
+Name                Required  Type     Description
+==================  ========  =======  ===========
+``url``             Yes       String   URL of web page to extract from. Must be a valid ``http://`` or ``https://`` URL.
+``pageType``        Yes       String   Type of extraction to perform. Must be ``article`` or ``product``.
+``meta``            No        String   User UTF-8 string, which will be passed through the extraction pipeline and returned in the query result. Max size 4 Kb.
+``articleBodyRaw``  No        boolean  Whether or not to include article HTML in article extractions. True by default. Setting this to false can reduce response significantly if HTML is not required.
+==================  ========  =======  ===========
 
 Responses
 ---------
@@ -77,66 +76,62 @@ Responses
 API responses are wrapped in a JSON array
 (this is to facilitate query batching; see below).
 A query response for a single article extraction looks like this
-(some internal fields omitted):
+(some large fields are truncated):
 
 .. code-block:: json
 
-    [
-        {
-            "article": {
-                "articleBody": "Unbeknownst to many, there is a data revolution happening in finance.\n\nIn their never ending search for alpha hedge funds and investment banks are increasingly turning to new alternative sources of data to give them an informational edge over the market.\n\nOn the 31st May, Scrapinghub got ...",
-                "articleBodyRaw": "<span id=\"hs_cos_wrapper_post_body\" class=\"hs_cos_wrapper hs_cos_wrapper_meta_field hs_cos_wrapper_type_rich_text\" data-hs-cos-general-type=\"meta_field\" data-hs-cos-type=\"rich_text\"><p><span>Unbeknownst to many, there is a data revolution ... ",
-                "audioUrls": null,
-                "author": "Ian Kerins",
-                "authorsList": [
-                    "Ian Kerins"
-                ],
-                "breadcrumbs": null,
-                "datePublished": "2018-06-19T00:00:00",
-                "datePublishedRaw": "June 19, 2018",
-                "description": "A Sneak Peek Inside What Hedge Funds Think of Alternative Financial Data",
-                "headline": "A Sneak Peek Inside What Hedge Funds Think of Alternative Financial Data",
-                "images": [
-                    "https://blog.scrapinghub.com/hubfs/conference-1038x576.jpg"
-                ],
-                "inLanguage": "en",
-                "mainImage": "https://blog.scrapinghub.com/hubfs/conference-1038x576.jpg#keepProtocol",
-                "probability": 0.8376080989837646,
-                "url": "https://blog.scrapinghub.com/2018/06/19/a-sneak-peek-inside-what-hedge-funds-think-of-alternative-financial-data",
-                "videoUrls": null
-            },
-            "error": null,
-            "html": "<!DOCTYPE html><!-- start coded_template: id:5871566911 path:generated_layouts/5871566907.html --><!-...",
-            "product": null,
-            "query": {
-                "userMeta": "Ku chatlanin!",
-                "userQuery": {
-                    "pageTypeHint": "article",
-                    "url": "https://blog.scrapinghub.com/2018/06/19/a-sneak-peek-inside-what-hedge-funds-think-of-alternative-financial-data"
-                }
-            }
-        }
-    ]
+	[
+	  {
+	    "query": {
+	      "id": "1564747029122-9e02a1868d70b7a1",
+	      "domain": "scrapinghub.com",
+	      "userQuery": {
+		"url": "https://blog.scrapinghub.com/2018/06/19/a-sneak-peek-inside-what-hedge-funds-think-of-alternative-financial-data",
+		"pageType": "article"
+	      }
+	    },
+	    "article": {
+	      "articleBody": "Unbeknownst to many..",
+	      "articleBodyRaw": "<span id=...",
+	      "headline": "A Sneak Peek Inside What Hedge Funds Think of Alternative Financial Data",
+	      "inLanguage": "en",
+	      "datePublished": "2018-06-19T00:00:00",
+	      "datePublishedRaw": "June 19, 2018",
+	      "author": "Ian Kerins",
+	      "authorsList": [
+		"Ian Kerins"
+	      ],
+	      "mainImage": "https://blog.scrapinghub.com/hubfs/conference-1038x576.jpg#keepProtocol",
+	      "images": [
+		"https://blog.scrapinghub.com/hubfs/conference-1038x576.jpg"
+	      ],
+	      "description": "A Sneak Peek Inside What Hedge Funds Think of Alternative Financial Data",
+	      "url": "https://blog.scrapinghub.com/2018/06/19/a-sneak-peek-inside-what-hedge-funds-think-of-alternative-financial-data",
+	      "probability": 0.7369686365127563
+	    }
+	  }
+	]
+
 
 Output fields
 =============
 
-All API responses include basic information about the content
-in the query:
+Query
+-----
+All API responses include the original query along with some additional information such as the query ID:
 
 .. code-block:: python
 
     # Enriched query
     print(response.json()[0]['query'])
 
-    # HTML of content
-    print(response.json()[0]['html'])
+ 
 
 Product Extraction
 ------------------
 
 If you requested a product extraction, and the extraction succeeds,
-then the product field will be available in the query result:
+then the ``product`` field will be available in the query result:
 
 .. code-block:: python
 
@@ -148,7 +143,7 @@ then the product field will be available in the query result:
         json=[{'url': 'http://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html', 'pageType': 'product'}])
     print(response.json()[0]['product'])
 
-The following fields will be available for the product:
+The following fields are available for products:
 
 
 ======================   =======================================  ===========
@@ -195,7 +190,7 @@ Name                     Type                                     Description
 ``url``                  String                                   URL of page where this product was extracted.
 ======================   =======================================  ===========
 
-All fields are optional, except for ``url`` and ``probability``.
+All fields are optional, except for ``url`` and ``probability``. Fields without a valid value (null or empty array) are excluded from extraction results.
 
 Below is an example response with all product fields present:
 
@@ -224,12 +219,12 @@ Below is an example response with all product fields present:
           "breadcrumbs": [
             {
               "name": "Level 1",
-              "link": "http://example"
+              "link": "http://example.com"
             }
           ],
-          "mainImage": "http://example/image.png",
+          "mainImage": "http://example.com/image.png",
           "images": [
-            "http://example/image.png"
+            "http://example.com/image.png"
           ],
           "description": "product description",
           "aggregateRating": {
@@ -244,15 +239,14 @@ Below is an example response with all product fields present:
             }
           ],
           "probability": 0.95,
-          "url": "https://example/product"
+          "url": "https://example.com/product"
         },
-        "error": null,
-        "html": "<!DOCTYPE html><html ...",
-        "article": null,
         "query": {
+          "id": "1564747029122-9e02a1868d70b7a2",
+          "domain": "example.com",
           "userQuery": {
             "pageTypeHint": "product",
-            "url": "https://example/product"
+            "url": "https://example.com/product"
           }
         }
       }
@@ -262,7 +256,7 @@ Article Extraction
 ------------------
 
 If you requested an article extraction, and the extraction succeeds,
-then the article field will be available in the query result:
+then the ``article`` field will be available in the query result:
 
 .. code-block:: python
 
@@ -276,7 +270,7 @@ then the article field will be available in the query result:
     print(response.json()[0]['article'])
 
 
-The following fields will be available for the article:
+The following fields are avaialable for articles:
 
 ======================   =======================================  ===========
 Name                     Type                                     Description
@@ -305,7 +299,8 @@ Name                     Type                                     Description
 ``url``                  String                                   URL of page where this article was extracted.
 ======================   =======================================  ===========
 
-All fields are optional, except for ``url`` and ``probability``.
+All fields are optional, except for ``url`` and ``probability``. The ``articleBodyRaw`` field will only be returned if you pass ``"articleBodyRaw": true`` as
+as query parameter. Fields without a valid value (null or empty array) are excluded from extraction results.
 
 Below is an example response with all article fields present:
 
@@ -326,29 +321,28 @@ Below is an example response with all article fields present:
           "breadcrumbs": [
             {
               "name": "Level 1",
-              "link": "http://example"
+              "link": "http://example.com"
             }
           ],
-          "mainImage": "http://example/image.png",
+          "mainImage": "http://example.com/image.png",
           "images": [
-            "http://example/image.png"
+            "http://example.com/image.png"
           ],
           "description": "Article summary",
           "articleBody": "Article body ...",
           "articleBodyRaw": "<div>html of article body ...",
           "videoUrls": [
-            "https://example/video"
+            "https://example.com/video"
           ],
           "audioUrls": [
-            "https://example/audio"
+            "https://example.com/audio"
           ],
           "probability": 0.95,
-          "url": "https://example/article"
+          "url": "https://example.com/article"
         },
-        "error": null,
-        "html": "<!DOCTYPE html><html ...",
-        "product": null,
         "query": {
+          "id": "1564747029122-9e02a1868d70b7a3",
+          "domain": "example.com",
           "userQuery": {
             "pageTypeHint": "article",
             "url": "https://example/article"
@@ -400,10 +394,10 @@ in accordance with
     print(response.json()['type'])                    # http://errors.xod.scrapinghub.com/queries-limit-reached
 
 
-In the above example of queries-limit problem (identified by the URI type) the reason for 413 is indicated
+In the above example of the queries-limit problem (identified by the URI type) the reason for 413 is indicated
 in the ``title``. The ``type`` field should be used to check the error type as this will not change in
 subsequent versions. There could be more specific fields depending on the error providing additional details, e.g.
-delay before retrying next time. Such response can be easily parsed and used for programmatic error handling.
+delay before retrying next time. Such responses can be easily parsed and used for programmatic error handling.
 
 If it is not possible to return a JSON description of the error, then no content type header will be set for the
 response and the response body will be empty.
@@ -411,7 +405,7 @@ response and the response body will be empty.
 Query-level
 -----------
 
-If the ``error`` field is not null, then an error has occurred and the extraction result will not be available.
+If the ``error`` field is present in an extraction result, then an error has occurred and the extraction result will not be available.
 
 .. code-block:: python
 
@@ -422,7 +416,7 @@ If the ``error`` field is not null, then an error has occurred and the extractio
         auth=('[api key]', ''),
         json=[{'url': 'http://www.example.com/this-page-does-not-exist', 'pageType': 'article'}])
 
-    print(response.json()[0]['error'] is None)  # False
+    print('error' in response.json()[0])        # True
     print(response.json()[0]['error'])          # Downloader error: http404
 
 
@@ -431,45 +425,45 @@ Reference
 
 Request-level
 ^^^^^^^^^^^^^
-=======================================================================  =========================================
+=======================================================================  ============================================================
 Type                                                                     Short description
-=======================================================================  =========================================
+=======================================================================  ============================================================
 http://errors.xod.scrapinghub.com/queries-limit-reached.html             Limit of 100 queries per request exceeded
-http://errors.xod.scrapinghub.com/malformed-json.html
+http://errors.xod.scrapinghub.com/malformed-json.html                    Could not parse request JSON
 http://errors.xod.scrapinghub.com/rate-limit-exceeded.html               System-wide rate limit exceeded
 http://errors.xod.scrapinghub.com/user-rate-limit-exceeded.html          User rate limit exceeded
-http://errors.xod.scrapinghub.com/account-disabled.html
-http://errors.xod.scrapinghub.com/unrecognized-content-type.html
-http://errors.xod.scrapinghub.com/empty-request.html
-http://errors.xod.scrapinghub.com/malformed-request.html
-http://errors.xod.scrapinghub.com/http-pipelining-not-supported.html
-http://errors.xod.scrapinghub.com/unknown-uri.html
-http://errors.xod.scrapinghub.com/method-not-allowed.html
-=======================================================================  =========================================
+http://errors.xod.scrapinghub.com/account-disabled.html                  Account has been disabled - contact support
+http://errors.xod.scrapinghub.com/unrecognized-content-type.html         Unsupported request content type: should be application/json
+http://errors.xod.scrapinghub.com/empty-request.html                     Empty request body - should be JSON document
+http://errors.xod.scrapinghub.com/malformed-request.html                 Unparseable request
+http://errors.xod.scrapinghub.com/http-pipelining-not-supported.html     Attempt to second HTTP request over TCP connection
+http://errors.xod.scrapinghub.com/unknown-uri.html                       Invalid API endpoint
+http://errors.xod.scrapinghub.com/method-not-allowed.html                Invalid HTTP method (only POST is supported)
+=======================================================================  ============================================================
 
 Query-level
 ^^^^^^^^^^^
 ===============================================================  =======================================================
 error contains                                                   Description
 ===============================================================  =======================================================
-query timed out                                                  10 minutes time out for query reached
-malformed url                                                    URL cannot be parsed
+query timed out                                                  10 minute time out for query reached
+malformed url                                                    Requested URL cannot be parsed
 non-HTTP schemas are not allowed                                 Only http and https schemas are allowed
 Domain ... is occupied, please retry in ... seconds              Per-domain rate limiting was applied. It is recommended to retry after the specified interval.
 Downloader error: No response (network301)                       Redirects are not supported
 Downloader error: No visible elements                            There are no visible elements in downloaded content
-Downloader error: http304
-Downloader error: http404
-Downloader error: http500
+Downloader error: http304                                        Remote server returned HTTP status code 304 (not modified)
+Downloader error: http404                                        Remote server returned HTTP status code 404 (not found)
+Downloader error: http500                                        Remote server returned HTTP status code 404 (internal server error)
 Downloader error: No response (network5)                         Remote server closed connection before transfer was finished
-Proxy error: ssl_tunnel_error
+Proxy error: ssl_tunnel_error                                    SSL proxy tunneling error
 Proxy error: banned                                              Crawlera made several retries, but was unable to avoid banning. This flags antiban measures in actions, but doesn't mean the proxy pool is exhausted. Retry is recommended.
 Proxy error: domain_forbidden                                    Domain is forbidden on Crawlera side
-Proxy error: internal_error
+Proxy error: internal_error                                      Internal proxy error
 Proxy error: nxdomain                                            Crawlera wasn't able to resolve domain through DNS
 ===============================================================  =======================================================
 
-there could be also other, more rare errors.
+There could be also other, more rare errors.
 
 
 Restrictions and Failure Modes
@@ -517,7 +511,7 @@ Note that query results are not necessarily returned
 in the same order as the original queries.
 If you need an easy way to associate the results with the queries
 that generated them, you can pass an additional ``meta`` field in the query.
-The value that you pass will appear as a ``userMeta`` field
+The value that you pass will appear as the ``query/userQuery/meta`` field
 in the corresponding query result.
 For example, you can create a dictionary keyed on the ``meta`` field
 to match queries with their corresponding results:
@@ -536,7 +530,7 @@ to match queries with their corresponding results:
         auth=('[api key]', ''),
         json=queries)
 
-    query_results = {result['query']['userMeta']: result for result in response.json()}
+    query_results = {result['query']['userQuery']['meta']: result for result in response.json()}
 
     for query in queries:
         query_result = query_results[query['meta']]
