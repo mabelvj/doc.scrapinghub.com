@@ -67,7 +67,7 @@ Name                Required  Type     Description
 ``url``             Yes       String   URL of web page to extract from. Must be a valid ``http://`` or ``https://`` URL.
 ``pageType``        Yes       String   Type of extraction to perform. Must be ``article`` or ``product``.
 ``meta``            No        String   User UTF-8 string, which will be passed through the extraction pipeline and returned in the query result. Max size 4 Kb.
-``articleBodyRaw``  No        boolean  Whether or not to include article HTML in article extractions.
+``articleBodyRaw``  No        boolean  Whether or not to include article HTML in article extractions. True by default. Setting this to false can reduce response significantly if HTML is not required.
 ==================  ========  =======  ===========
 
 Responses
@@ -425,41 +425,41 @@ Reference
 
 Request-level
 ^^^^^^^^^^^^^
-=======================================================================  =========================================
+=======================================================================  ============================================================
 Type                                                                     Short description
-=======================================================================  =========================================
+=======================================================================  ============================================================
 http://errors.xod.scrapinghub.com/queries-limit-reached.html             Limit of 100 queries per request exceeded
-http://errors.xod.scrapinghub.com/malformed-json.html
+http://errors.xod.scrapinghub.com/malformed-json.html                    Could not parse request JSON
 http://errors.xod.scrapinghub.com/rate-limit-exceeded.html               System-wide rate limit exceeded
 http://errors.xod.scrapinghub.com/user-rate-limit-exceeded.html          User rate limit exceeded
-http://errors.xod.scrapinghub.com/account-disabled.html
-http://errors.xod.scrapinghub.com/unrecognized-content-type.html
-http://errors.xod.scrapinghub.com/empty-request.html
-http://errors.xod.scrapinghub.com/malformed-request.html
-http://errors.xod.scrapinghub.com/http-pipelining-not-supported.html
-http://errors.xod.scrapinghub.com/unknown-uri.html
-http://errors.xod.scrapinghub.com/method-not-allowed.html
-=======================================================================  =========================================
+http://errors.xod.scrapinghub.com/account-disabled.html                  Account has been disabled - contact support
+http://errors.xod.scrapinghub.com/unrecognized-content-type.html         Unsupported request content type: should be application/json
+http://errors.xod.scrapinghub.com/empty-request.html                     Empty request body - should be JSON document
+http://errors.xod.scrapinghub.com/malformed-request.html                 Unparseable request
+http://errors.xod.scrapinghub.com/http-pipelining-not-supported.html     Attempt to second HTTP request over TCP connection
+http://errors.xod.scrapinghub.com/unknown-uri.html                       Invalid API endpoint
+http://errors.xod.scrapinghub.com/method-not-allowed.html                Invalid HTTP method (only POST is supported)
+=======================================================================  ============================================================
 
 Query-level
 ^^^^^^^^^^^
 ===============================================================  =======================================================
 error contains                                                   Description
 ===============================================================  =======================================================
-query timed out                                                  10 minutes time out for query reached
-malformed url                                                    URL cannot be parsed
+query timed out                                                  10 minute time out for query reached
+malformed url                                                    Requested URL cannot be parsed
 non-HTTP schemas are not allowed                                 Only http and https schemas are allowed
 Domain ... is occupied, please retry in ... seconds              Per-domain rate limiting was applied. It is recommended to retry after the specified interval.
 Downloader error: No response (network301)                       Redirects are not supported
 Downloader error: No visible elements                            There are no visible elements in downloaded content
-Downloader error: http304
-Downloader error: http404
-Downloader error: http500
+Downloader error: http304                                        Remote server returned HTTP status code 304 (not modified)
+Downloader error: http404                                        Remote server returned HTTP status code 404 (not found)
+Downloader error: http500                                        Remote server returned HTTP status code 404 (internal server error)
 Downloader error: No response (network5)                         Remote server closed connection before transfer was finished
-Proxy error: ssl_tunnel_error
+Proxy error: ssl_tunnel_error                                    SSL proxy tunneling error
 Proxy error: banned                                              Crawlera made several retries, but was unable to avoid banning. This flags antiban measures in actions, but doesn't mean the proxy pool is exhausted. Retry is recommended.
 Proxy error: domain_forbidden                                    Domain is forbidden on Crawlera side
-Proxy error: internal_error
+Proxy error: internal_error                                      Internal proxy error
 Proxy error: nxdomain                                            Crawlera wasn't able to resolve domain through DNS
 ===============================================================  =======================================================
 
