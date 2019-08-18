@@ -55,3 +55,15 @@ See :ref:`autoextract`.
    autoextract
 
 .. _Help center: https://support.scrapinghub.com/support/home
+
+
+Unified Schema
+===============
+
+See :ref:`unified_schema`.
+
+.. toctree::
+   :hidden:
+
+   unified_schema
+
