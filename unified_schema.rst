@@ -67,7 +67,7 @@ The following fields are available for products:
                            1. name ``String``            .. code-block:: javascript
                            2. link ``String``
                                                           [{"name": ""Cell Phones & Accessories"",
-                                                            "link": "https://amz.com/cell-phones-accessories"}...]
+                                                            "link": "https://mjz.com/cell-phones-accessories"}...]
 
   description           - Type: ``String``               A description of the product
 
@@ -110,8 +110,8 @@ The following fields are available for products:
                                                              "description":"Used - Very Good"
                                                              },
                                                              "seller":{
-                                                             "name":"Java Junkie",
-                                                             "url":"https://amz.com/gp/aag/main/seller=A8K32FFKI51FKN",
+                                                             "name":"Merch Store",
+                                                             "url":"https://mzi.com/dr/amg/seller=A8K32FFKI51FKN",
                                                              "identifier":"A8K32FFKI51FKN",
                                                              "aggregateRating":{
                                                              "reviewCount":479,
@@ -169,7 +169,7 @@ The following fields are available for products:
 
                                                          .. code-block:: javascript
 
-                                                           {"sku": "B07QHQ2JJC"}
+                                                           {"sku": "A123DK9823"}
 
   width                 - Type: ``String``               The width of the product
 
