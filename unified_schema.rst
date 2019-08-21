@@ -14,7 +14,6 @@ articles, reviews, jobs etc. extracted across websites.
     backward compatibility while adding new fields. We also try our best to adhere to schema.org, only diverging when
     there is a reasonable benefit in doing so.
 
-New schema definitions can be proposed in our github_ repository.
 
 
 Product Schema
