@@ -57,7 +57,7 @@ Examples
 
 Last 7 days traffic::
 
-    $ curl -u APIKEY: 'https://crawlera-stats.scrapinghub.com/stats'
+    $ curl -u APIKEY: 'https://crawlera-stats.scrapinghub.com/stats/'
     {
         "limit":500,
         "after":””,
@@ -74,7 +74,7 @@ Last 7 days traffic::
 
 Last 7 days traffic max resolution::
 
-    $ curl -u APIKEY: 'https://crawlera-stats.scrapinghub.com/stats?groupby=max'
+    $ curl -u APIKEY: 'https://crawlera-stats.scrapinghub.com/stats/?groupby=max'
     {
         "limit":500,
         "after":"MHgxLjcwNWYzMmMwMDAwMDBwKzMw",
@@ -100,7 +100,7 @@ Last 7 days traffic max resolution::
 
 Consume next page::
 
-    $ curl -u APIKEY: 'https://crawlera-stats.scrapinghub.com/stats?groupby=max&after=MHgxLjcwNWYzMmMwMDAwMDBwKzMw'
+    $ curl -u APIKEY: 'https://crawlera-stats.scrapinghub.com/stats/?groupby=max&after=MHgxLjcwNWYzMmMwMDAwMDBwKzMw'
     {
         "limit":500,
         "after":"MHgxLjcwNWYzNzcwMDAwMDBwKzMw",
@@ -109,7 +109,7 @@ Consume next page::
 
 One day traffic per hour::
 
-    $ curl -u APIKEY: 'https://crawlera-stats.scrapinghub.com/stats?start_date=2019-01-01T00%3A00&end_date=2019-01-01T23%3A59&groupby=hour'
+    $ curl -u APIKEY: 'https://crawlera-stats.scrapinghub.com/stats/?start_date=2019-01-01T00%3A00&end_date=2019-01-01T23%3A59&groupby=hour'
     {
         “limit":500,
         “after”: “”,
