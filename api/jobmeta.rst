@@ -73,11 +73,12 @@ HTTP::
     }
 
 
-.. note:: Please consider the example response with caution. Some of the fields
-appear only on specific conditions: for example, after finishing/deleting or
-restoring a job. Some other highly depend on specific spider and the job outcome.
-There also might be some additional fields for internal use only which can be
-changed at any given moment without prior notice. 
+.. note:: Please consider the example response with caution.
+Some of the fields appear only on specific conditions: for example, after
+finishing/deleting or restoring a job. Some other fields highly depend on
+the given spider/job configuration. There also might be some additional
+fields for internal use only which can be changed at any given moment
+without prior notice.
 
 **Get specific metadata field for the job**
 
