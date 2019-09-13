@@ -41,6 +41,9 @@ Method Description                           Supported parameters
 GET    Count jobs for the specified project. spider, state, startts, endts, has_tag, lacks_tag
 ====== ===================================== =================================================
 
+Examples
+^^^^^^^^
+
 **Count jobs for a given project**
 
 HTTP::
