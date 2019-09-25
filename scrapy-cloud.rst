@@ -66,6 +66,7 @@ storage.scrapinghub.com
    :maxdepth: 2
 
    api/jobq
+   api/jobmeta
    api/items
    api/logs
    api/requests
