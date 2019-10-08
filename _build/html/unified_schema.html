@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Unified Schema &#8212; Scrapinghub  documentation</title>
+    <link rel="stylesheet" href="_static/common.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script><link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link rel="search" title="Search" href="search.html"/>
+<meta name="google-site-verification" content="xUdfIoEg5HBpRsehFaJdalZLMvKv9_uYVNwpYnZXxxQ" />
+
+<script type="text/javascript">
+!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+analytics.load("8UDQfnf3cyFSTsM4YANnW5sXmgZVILbA");
+analytics.page()
+}}();
+
+analytics.ready(function () {
+    ga('require', 'linker');
+    ga('linker:autoLink', ['crawlera.com', 'scrapy.org']);
+});
+</script>
+
+<!-- Hotjar Tracking Code for https://doc.scrapinghub.com -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:329369,hjsv:5};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+  </head><body>
+
+	<div class="header-bg">
+
+		<div id="brand" class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-2">
+				<img src="/_static/logo.png" />
+				</div>
+				<div class="col-xs-8">
+				<p>Scrapinghub API Reference</p>
+				</div>
+				<div class="col-xs-2">
+				<a class="login-button" href="https://app.scrapinghub.com/">Sign In</a>
+				</div>
+			</div>
+		</div>
+		</div>
+
+	<div id="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+		<ul>
+				<li><a href="index.html">Home</a>&nbsp;&nbsp; &#187;</li>
+
+			<li><strong>Unified Schema</strong></li>
+		</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<div class="section" id="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 sidebar-docs">
+				<h2>Quick Links</h2>
+				<ul>
+<li class="toctree-l1"><a class="reference internal" href="scrapy-cloud.html">Scrapy Cloud API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scrapy-cloud-write-entrypoint.html">Scrapy Cloud Write Entrypoint</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="crawlera.html">Crawlera API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="crawlera-stats.html">Crawlera Stats API</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="autoextract.html">AutoExtract API</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Unified Schema</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#product"><strong>Product</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#review"><strong>Review</strong></a></li>
+</ul>
+</li>
+</ul>
+
+				</div>
+
+				<div class="col-lg-9 col-md-12 col-sm-12 main-content">
+				<div role="main" class="document">
+            	
+  <div class="section" id="unified-schema">
+<span id="id1"></span><h1>Unified Schema<a class="headerlink" href="#unified-schema" title="Permalink to this headline">¶</a></h1>
+<p>The Unified Schema project aims to provide a standard definition for the different types of data such as products,
+articles, reviews, jobs etc. extracted across websites.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All fields in the AutoExtract have the exact same definition in the Unified Schema. We also aim to maintain
+backward compatibility while adding new fields. We also try our best to adhere to schema.org, only diverging when
+there is a reasonable benefit in doing so.</p>
+</div>
+<div class="section" id="product">
+<span id="id2"></span><h2><strong>Product</strong><a class="headerlink" href="#product" title="Permalink to this headline">¶</a></h2>
+<p>The following fields are available for products:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 24%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#aggregaterating">aggregateRating</a></p></td>
+<td><p>anyOf required: ratingValue, bestRating, reviewCount</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">object</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>ratingValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>bestRating: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>reviewCount: <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td><p>The overall rating, based on a collection of reviews or ratings.</p>
+<p><img alt="rating" src="https://dl.dropboxusercontent.com/s/jgxjtnss6y68j78/rating.png" /></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s1">&#39;ratingValue&#39;</span><span class="o">:</span> <span class="mf">4.0</span><span class="p">,</span>
+<span class="s1">&#39;bestRating&#39;</span><span class="o">:</span> <span class="mf">5.0</span><span class="p">,</span>
+<span class="s1">&#39;reviewCount&#39;</span><span class="o">:</span> <span class="mi">23</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ratinghistogram">ratingHistogram</a></p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">array</span></code></p></li>
+<li><p>Items: <code class="docutils literal notranslate"><span class="pre">ratingHistogram</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>ratingOption: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>ratingCount: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>ratingPercentage: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td><p>This fields provides the detailed distribution of ratings across the entire rating scale</p>
+<p><img alt="histogram" src="https://dl.dropboxusercontent.com/s/tqgvuujk362ztse/histogram.png" /></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span><span class="s1">&#39;ratingValue&#39;</span><span class="o">:</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;ratingPercentage&#39;</span><span class="o">:</span> <span class="mi">61</span><span class="p">},</span>
+ <span class="p">{</span><span class="s1">&#39;ratingValue&#39;</span><span class="o">:</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;ratingPercentage&#39;</span><span class="o">:</span> <span class="mi">12</span><span class="p">},</span>
+ <span class="p">{</span><span class="s1">&#39;ratingValue&#39;</span><span class="o">:</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;ratingPercentage&#39;</span><span class="o">:</span> <span class="mi">6</span><span class="p">},</span>
+ <span class="p">{</span><span class="s1">&#39;ratingValue&#39;</span><span class="o">:</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;ratingPercentage&#39;</span><span class="o">:</span> <span class="mi">5</span><span class="p">},</span>
+ <span class="p">{</span><span class="s1">&#39;ratingValue&#39;</span><span class="o">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;ratingPercentage&#39;</span><span class="o">:</span> <span class="mi">16</span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>brand</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The brand associated with the product.</p>
+<p><img alt="brand" src="https://dl.dropboxusercontent.com/s/esun7ckldock2b2/brand.png" /></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;brand&#39;</span><span class="o">:</span> <span class="s1">&#39;Samsung&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><img alt="brand_not" src="https://dl.dropboxusercontent.com/s/q4l3qesmsqzvd8s/brand_not.png" /></p>
+<p><strong>No brand is returned</strong></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#breadcrumbs">breadcrumbs</a></p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">array</span></code></p></li>
+<li><p>Items: <code class="docutils literal notranslate"><span class="pre">breadcrumb</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>name: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>link: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td><p>A list of breadcrumbs with optional name and URL.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="s1">&#39;Cell Phones &amp; Accessories&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;link&#39;</span><span class="o">:</span> <span class="s1">&#39;https://amz.com/cell-phones-accessories&#39;</span><span class="p">}...]</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>description</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>A description of the product</p></td>
+</tr>
+<tr class="row-odd"><td><p>images</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">array</span></code></p></li>
+<li><p>Items: <code class="docutils literal notranslate"><span class="pre">url</span></code></p></li>
+</ul>
+</td>
+<td><p>list of URL or data URL values of all images of the product (may include the main image).</p></td>
+</tr>
+<tr class="row-even"><td><p>mainImage</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">url</span></code></p></li>
+<li><p>Format: <code class="docutils literal notranslate"><span class="pre">uri</span></code></p></li>
+</ul>
+</td>
+<td><p>A URL or data URL value of the main image of the product.</p></td>
+</tr>
+<tr class="row-odd"><td><p>name</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The name of the product</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#offers">offers</a></p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">array</span></code></p></li>
+<li><p>Items: <code class="docutils literal notranslate"><span class="pre">offer</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>availability: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>currency: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>regularPrice: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>price: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><a class="reference internal" href="#eligiblequantity">eligibleQuantity</a>: <code class="docutils literal notranslate"><span class="pre">object</span></code></p></li>
+<li><p><a class="reference internal" href="#seller">seller</a>: <code class="docutils literal notranslate"><span class="pre">object</span></code></p></li>
+<li><p><a class="reference internal" href="#shippinginfo">shippingInfo</a>: <code class="docutils literal notranslate"><span class="pre">object</span></code></p></li>
+<li><p><a class="reference internal" href="#itemcondition">itemCondition</a>: <code class="docutils literal notranslate"><span class="pre">object</span></code></p></li>
+<li><p><a class="reference internal" href="#priceperunit">pricePerUnit</a>: <code class="docutils literal notranslate"><span class="pre">object</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td><p>This field contains rich information pertaining to all the buying options offered on a product.
+Detailed information regarding all the properties returned in this field is available in the <a class="reference internal" href="#offers">offers</a> section.</p>
+<p><img alt="offers2" src="https://dl.dropboxusercontent.com/s/s165a738ez4vsdq/offers2.png" /></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span><span class="s1">&#39;availability&#39;</span><span class="o">:</span> <span class="s1">&#39;InStock&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;price&#39;</span><span class="o">:</span><span class="s1">&#39;129.99&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;currency&#39;</span><span class="o">:</span> <span class="s1">&#39;$&#39;</span>
+  <span class="s1">&#39;itemCondition&#39;</span><span class="o">:</span>
+    <span class="p">{</span>
+    <span class="s1">&#39;type&#39;</span><span class="o">:</span> <span class="s1">&#39;used&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;description&#39;</span><span class="o">:</span> <span class="s1">&#39;Used - Very Good&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;seller&#39;</span><span class="o">:</span><span class="p">{</span>
+               <span class="s1">&#39;name&#39;</span><span class="o">:</span><span class="s1">&#39;Java Junkie&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;url&#39;</span><span class="o">:</span> <span class="s1">&#39;https://amz.com/gp/aag/main/seller=A8K32FFKI51FKN&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;identifier&#39;</span><span class="o">:</span> <span class="s1">&#39;A8K32FFKI51FKN&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;aggregateRating&#39;</span><span class="o">:</span><span class="p">{</span>
+               <span class="s1">&#39;reviewCount&#39;</span><span class="o">:</span><span class="mi">479</span><span class="p">,</span>
+               <span class="s1">&#39;bestRating&#39;</span><span class="o">:</span><span class="mi">5</span>
+               <span class="p">},</span>
+               <span class="s1">&#39;shippingInfo&#39;</span><span class="o">:</span><span class="p">{</span>
+               <span class="s1">&#39;minDays&#39;</span><span class="o">:</span><span class="s1">&#39;15&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;maxDays&#39;</span><span class="o">:</span><span class="s1">&#39;30&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;description&#39;</span><span class="o">:</span><span class="s1">&#39;Arrives between September 3-18.&#39;</span>
+               <span class="p">}</span>
+              <span class="p">}</span>
+<span class="p">}]</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#additionalproperty">additionalProperty</a></p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">array</span></code></p></li>
+<li><p>Items: <code class="docutils literal notranslate"><span class="pre">name_value</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>name: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>value: <code class="docutils literal notranslate"><span class="pre">number</span></code>, <code class="docutils literal notranslate"><span class="pre">string</span></code>, <code class="docutils literal notranslate"><span class="pre">boolean</span></code>, <code class="docutils literal notranslate"><span class="pre">object</span></code>, <code class="docutils literal notranslate"><span class="pre">array</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>sku</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mpn</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The Manufacturer Part Number (MPN) of the product. The product would have the same MPN across different e-commerce websites.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#gtin">gtin</a></p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">array</span></code></p></li>
+<li><p>Items: <code class="docutils literal notranslate"><span class="pre">dictionary</span></code></p></li>
+<li><p><strong>Fields:</strong></p></li>
+<li><p><strong>Fields:</strong>
+1. type: <code class="docutils literal notranslate"><span class="pre">string</span></code>
+2. value: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+<p>Required: <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">value</span></code></p>
+</td>
+<td><p>Standardized GTIN product identifier which is unique for a product across different sellers.
+It includes the following ype: isbn10, isbn13, issn, ean13, upc, ismn, gtin8, gtin14.
+gtin14 corresponds to former names EAN/UCC-14, SCC-14, DUN-14,UPC Case Code, UPC Shipping Container Code.
+ean13 also includes the jan (japanese article number)</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span><span class="s1">&#39;type&#39;</span><span class="o">:</span> <span class="s1">&#39;isbn13&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="o">:</span> <span class="s1">&#39;9781933624341&#39;</span><span class="p">}]</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>manufacturer</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The manufacturer of the product.</p></td>
+</tr>
+<tr class="row-even"><td><p>size</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Denotes the size of the product. Pertinent to products such as garments, shoes, accessories etc</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#height">height</a></p></td>
+<td><p>anyOf required: maxValue, minValue, value</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">quantitativeValue</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>maxValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>minValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>value: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>unitText: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>description: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td><p>A value or interval for product characteristics and other purposes</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#width">width</a></p></td>
+<td><p>anyOf required: maxValue, minValue, value</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">quantitativeValue</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>maxValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>minValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>value: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>unitText: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>description: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td><p>A value or interval for product characteristics and other purposes</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#depth">depth</a></p></td>
+<td><p>anyOf required: maxValue, minValue, value</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">quantitativeValue</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>maxValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>minValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>value: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>unitText: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>description: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td><p>A value or interval for product characteristics and other purposes</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#weight">weight</a></p></td>
+<td><p>anyOf required: maxValue, minValue, value</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">quantitativeValue</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>maxValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>minValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>value: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>unitText: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>description: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td><p>A value or interval for product characteristics and other purposes</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#volume">volume</a></p></td>
+<td><p>anyOf required: maxValue, minValue, value</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">quantitativeValue</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>maxValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>minValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>value: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>unitText: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>description: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td><p>A value or interval for product characteristics and other purposes</p></td>
+</tr>
+<tr class="row-even"><td><p>url</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">url</span></code></p></li>
+<li><p>Format: <code class="docutils literal notranslate"><span class="pre">uri</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>releaseDate</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>Format: <code class="docutils literal notranslate"><span class="pre">date</span></code></p></li>
+</ul>
+</td>
+<td><p>Date on which the product was released or listed on the website in ISO 8601 date format</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;releaseDate&#39;</span><span class="o">:</span> <span class="s1">&#39;2016-12-18&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The color of the product</p></td>
+</tr>
+<tr class="row-odd"><td><p>relatedProducts</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">array</span></code></p></li>
+<li><p>Items: <code class="docutils literal notranslate"><span class="pre">relatedProduct</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>relationshipName: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>products: <code class="docutils literal notranslate"><span class="pre">array</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td><p>This field captures all products that are recommended by the website while browsing the product of interest. Related products can thus be used to gauge customer buying description:
+The <code class="docutils literal notranslate"><span class="pre">relationshipName</span></code> field describes the relationship while the <code class="docutils literal notranslate"><span class="pre">products</span></code> field contains a list of items have the same <code class="docutils literal notranslate"><span class="pre">product</span></code> schema, thus extracting all available fields as defined in this table.</p>
+<p><img alt="related_products" src="https://dl.dropboxusercontent.com/s/phzqh33r6pyjel0/related_products.png" /></p>
+</td>
+</tr>
+<tr class="row-even"><td><p>variants</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">array</span></code></p></li>
+<li><p>Items: <code class="docutils literal notranslate"><span class="pre">variant</span></code></p></li>
+</ul>
+</td>
+<td><p>This field returns a list of variants of the product. Each variant has the same schema as the <a class="reference internal" href="#product">Product</a> schema defined in this table.</p></td>
+</tr>
+<tr class="row-odd"><td><p>reviews</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">array</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>allOf:</p>
+<ul class="simple">
+<li><p>baseProduct</p></li>
+<li><p>relatedProducts</p></li>
+<li><p>variants</p></li>
+<li><p>reviews</p></li>
+</ul>
+<p id="additionalproperty"><strong>additionalProperty</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 74%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>name</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>value</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">['number',</span> <span class="pre">'string',</span> <span class="pre">'boolean',</span> <span class="pre">'object',</span> <span class="pre">'array']</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p id="aggregaterating"><strong>aggregateRating</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 45%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ratingValue</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>bestRating</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>reviewCount</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p id="breadcrumbs"><strong>breadcrumbs</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 51%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>name</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>link</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">url</span></code></p></li>
+<li><p>Format: <code class="docutils literal notranslate"><span class="pre">uri</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p id="depth"><strong>depth</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 26%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>maxValue</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Maximun value allowed</p></td>
+</tr>
+<tr class="row-odd"><td><p>minValue</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Minimun value required</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Exact value required</p></td>
+</tr>
+<tr class="row-odd"><td><p>unitText</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Unit of measurement</p></td>
+</tr>
+<tr class="row-even"><td><p>description</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Free text from where this range was extracted</p></td>
+</tr>
+</tbody>
+</table>
+<p id="gtin"><strong>gtin</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 50%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>type</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>value</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p id="height"><strong>height</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 26%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>maxValue</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Maximun value allowed</p></td>
+</tr>
+<tr class="row-odd"><td><p>minValue</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Minimun value required</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Exact value required</p></td>
+</tr>
+<tr class="row-odd"><td><p>unitText</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Unit of measurement</p></td>
+</tr>
+<tr class="row-even"><td><p>description</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Free text from where this range was extracted</p></td>
+</tr>
+</tbody>
+</table>
+<p id="offers"><strong>offers</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 24%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>availability</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>currency</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>regularPrice</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The price at which the product was being offered and which is presented as a reference to the current price.
+It may be represented by original price, list price or maximum retail price for which the product is sold.
+This field is only returned if it is explicitly mentioned in the offer or the product page.</p></td>
+</tr>
+<tr class="row-odd"><td><p>price</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The price at which the product is being offered. If there is only one price associated with the offer, it
+is this field in which it is returned.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#eligiblequantity">eligibleQuantity</a></p></td>
+<td><p>anyOf required: maxValue, minValue, value</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">quantitativeValue</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>maxValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>minValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>value: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>unitText: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>description: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td><p>A value or interval for product characteristics and other purposes</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#seller">seller</a></p></td>
+<td><p>anyOf required: name, url, identifier</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">seller</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>name: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>url: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>identifier: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>aggregateRating: <code class="docutils literal notranslate"><span class="pre">object</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#shippinginfo">shippingInfo</a></p></td>
+<td><p>anyOf required: price, description</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">shippingInfo</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>currency: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>price: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>minDays: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>maxDays: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>averageDays: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>description: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#availableatorfrom">availableAtOrFrom</a></p></td>
+<td><p>anyOf:</p>
+<ul>
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">postalAddress</span></code></p>
+<p>Fields:</p>
+<ol class="arabic simple">
+<li><p>postalCode: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>streetAddress: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>addressCountry: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>addressLocality: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>addressRegion: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#areaserved">areaServed</a></p></td>
+<td><p>anyOf:</p>
+<ul>
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">postalAddress</span></code></p>
+<p>Fields:</p>
+<ol class="arabic simple">
+<li><p>postalCode: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>streetAddress: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>addressCountry: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>addressLocality: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>addressRegion: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#itemcondition">itemCondition</a></p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">object</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>description: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+</ul>
+<p>Required: <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">description</span></code></p>
+</td>
+<td><p>A predefined value and a textual description of the condition of the product included in the offer</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#priceperunit">pricePerUnit</a></p></td>
+<td><ul class="simple">
+<li><p>Type: <a class="reference internal" href="#priceperunit">pricePerUnit</a></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>price: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>currency: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>unit: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+</ul>
+<p>Required: <code class="docutils literal notranslate"><span class="pre">unit</span></code></p>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p id="ratinghistogram"><strong>ratingHistogram</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 21%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ratingOption</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>A quantitative or qualitative value depicting the rating</p></td>
+</tr>
+<tr class="row-odd"><td><p>ratingCount</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>The number of reviews/ratings for a certain rating value</p></td>
+</tr>
+<tr class="row-even"><td><p>ratingPercentage</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>The percentage of reviews/ratings for a certain rating value</p></td>
+</tr>
+</tbody>
+</table>
+<p id="volume"><strong>volume</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 26%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>maxValue</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Maximun value allowed</p></td>
+</tr>
+<tr class="row-odd"><td><p>minValue</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Minimun value required</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Exact value required</p></td>
+</tr>
+<tr class="row-odd"><td><p>unitText</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Unit of measurement</p></td>
+</tr>
+<tr class="row-even"><td><p>description</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Free text from where this range was extracted</p></td>
+</tr>
+</tbody>
+</table>
+<p id="weight"><strong>weight</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 26%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>maxValue</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Maximun value allowed</p></td>
+</tr>
+<tr class="row-odd"><td><p>minValue</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Minimun value required</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Exact value required</p></td>
+</tr>
+<tr class="row-odd"><td><p>unitText</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Unit of measurement</p></td>
+</tr>
+<tr class="row-even"><td><p>description</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Free text from where this range was extracted</p></td>
+</tr>
+</tbody>
+</table>
+<p id="width"><strong>width</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 26%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>maxValue</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Maximun value allowed</p></td>
+</tr>
+<tr class="row-odd"><td><p>minValue</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Minimun value required</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Exact value required</p></td>
+</tr>
+<tr class="row-odd"><td><p>unitText</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Unit of measurement</p></td>
+</tr>
+<tr class="row-even"><td><p>description</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Free text from where this range was extracted</p></td>
+</tr>
+</tbody>
+</table>
+<p id="areaserved"><strong>areaServed</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 12%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>postalCode</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Postal code of the address</p></td>
+</tr>
+<tr class="row-odd"><td><p>streetAddress</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The street address. For example, 1600 Amphitheatre Pkwy.</p></td>
+</tr>
+<tr class="row-even"><td><p>addressCountry</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code. <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1">https://en.wikipedia.org/wiki/ISO_3166-1</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>addressLocality</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The locality in which the street address is, and which is in the region. For example, Mountain View.</p></td>
+</tr>
+<tr class="row-even"><td><p>addressRegion</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The region in which the locality is, and which is in the country. For example, California.</p></td>
+</tr>
+</tbody>
+</table>
+<p>anyOf:</p>
+<ul class="simple">
+<li><p>postalAddress</p></li>
+<li><p>postalCode</p></li>
+<li><p>string</p></li>
+</ul>
+<p id="availableatorfrom"><strong>availableAtOrFrom</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 12%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>postalCode</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Postal code of the address</p></td>
+</tr>
+<tr class="row-odd"><td><p>streetAddress</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The street address. For example, 1600 Amphitheatre Pkwy.</p></td>
+</tr>
+<tr class="row-even"><td><p>addressCountry</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code. <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1">https://en.wikipedia.org/wiki/ISO_3166-1</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>addressLocality</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The locality in which the street address is, and which is in the region. For example, Mountain View.</p></td>
+</tr>
+<tr class="row-even"><td><p>addressRegion</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The region in which the locality is, and which is in the country. For example, California.</p></td>
+</tr>
+</tbody>
+</table>
+<p>anyOf:</p>
+<ul class="simple">
+<li><p>postalAddress</p></li>
+<li><p>postalCode</p></li>
+<li><p>string</p></li>
+</ul>
+<p id="eligiblequantity"><strong>eligibleQuantity</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 26%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>maxValue</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Maximun value allowed</p></td>
+</tr>
+<tr class="row-odd"><td><p>minValue</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Minimun value required</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td><p>Exact value required</p></td>
+</tr>
+<tr class="row-odd"><td><p>unitText</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Unit of measurement</p></td>
+</tr>
+<tr class="row-even"><td><p>description</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Free text from where this range was extracted</p></td>
+</tr>
+</tbody>
+</table>
+<p>Let’s take the following example to examine the aforementioned fields</p>
+<p><a class="reference internal" href="https://dl.dropboxusercontent.com/s/p1n2chkai13b9ww/bulk_offer.png"><img alt="bulk_offer" src="https://dl.dropboxusercontent.com/s/p1n2chkai13b9ww/bulk_offer.png" style="height: 300px;" /></a></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;offers&#39;</span><span class="o">:</span> <span class="p">[</span>
+  <span class="p">{</span><span class="s1">&#39;price&#39;</span><span class="o">:</span> <span class="s1">&#39;11,98&#39;</span><span class="p">,</span> <span class="s1">&#39;currency&#39;</span><span class="o">:</span> <span class="s1">&#39;$&#39;</span><span class="p">},</span>
+  <span class="p">{</span><span class="s1">&#39;price&#39;</span><span class="o">:</span> <span class="s1">&#39;10,78&#39;</span><span class="p">,</span> <span class="s1">&#39;currency&#39;</span><span class="o">:</span> <span class="s1">&#39;$&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;eligibleQuantity&#39;</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;min_value&#39;</span><span class="o">:</span> <span class="s1">&#39;48&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;description&#39;</span><span class="o">:</span> <span class="s1">&#39;Buy 44 or more $9.33&#39;</span><span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p id="itemcondition"><strong>itemCondition</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 19%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>type</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>A predefined value of the condition of the product included in the offer</p></td>
+</tr>
+<tr class="row-odd"><td><p>description</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>A textual description of the condition of the product included in the offer</p></td>
+</tr>
+</tbody>
+</table>
+<p id="priceperunit"><strong>pricePerUnit</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 47%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>price</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>currency</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>unit</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p id="seller"><strong>seller</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 38%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>name</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Name of the <a class="reference internal" href="#seller">seller</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>url</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">url</span></code></p></li>
+<li><p>Format: <code class="docutils literal notranslate"><span class="pre">uri</span></code></p></li>
+</ul>
+</td>
+<td><p>URL for the <a class="reference internal" href="#seller">seller</a>’s page</p></td>
+</tr>
+<tr class="row-even"><td><p>identifier</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Unique identifier assigned to the <a class="reference internal" href="#seller">seller</a> on the website</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#aggregaterating">aggregateRating</a></p></td>
+<td><p>anyOf required: ratingValue, bestRating, reviewCount</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">aggregateRating</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>ratingValue: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>bestRating: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+<li><p>reviewCount: <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td><p>The overall rating, based on a collection of reviews or ratings.</p>
+<p><img alt="rating" src="https://dl.dropboxusercontent.com/s/jgxjtnss6y68j78/rating.png" /></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="s1">&#39;ratingValue&#39;</span><span class="o">:</span> <span class="mf">4.0</span><span class="p">,</span>
+<span class="s1">&#39;bestRating&#39;</span><span class="o">:</span> <span class="mf">5.0</span><span class="p">,</span>
+<span class="s1">&#39;reviewCount&#39;</span><span class="o">:</span> <span class="mi">23</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p id="shippinginfo"><strong>shippingInfo</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 52%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>currency</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>price</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>minDays</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>maxDays</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>averageDays</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">number</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>description</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#originaddress">originAddress</a></p></td>
+<td><p>anyOf:</p>
+<ul>
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">postalAddress</span></code></p>
+<p>Fields:</p>
+<ol class="arabic simple">
+<li><p>postalCode: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>streetAddress: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>addressCountry: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>addressLocality: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p>addressRegion: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p id="originaddress"><strong>originAddress</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 12%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>postalCode</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>Postal code of the address</p></td>
+</tr>
+<tr class="row-odd"><td><p>streetAddress</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The street address. For example, 1600 Amphitheatre Pkwy.</p></td>
+</tr>
+<tr class="row-even"><td><p>addressCountry</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code. <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1">https://en.wikipedia.org/wiki/ISO_3166-1</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>addressLocality</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The locality in which the street address is, and which is in the region. For example, Mountain View.</p></td>
+</tr>
+<tr class="row-even"><td><p>addressRegion</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td><p>The region in which the locality is, and which is in the country. For example, California.</p></td>
+</tr>
+</tbody>
+</table>
+<p>anyOf:</p>
+<ul class="simple">
+<li><p>postalAddress</p></li>
+<li><p>postalCode</p></li>
+<li><p>string</p></li>
+</ul>
+</div>
+<div class="section" id="review">
+<span id="id3"></span><h2><strong>Review</strong><a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 52%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>itemReviewed</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>name</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>reviewBody</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#reviewrating">reviewRating</a></p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">object</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>ratingValue: <code class="docutils literal notranslate"><span class="pre">textOrNumber</span></code></p></li>
+<li><p>bestRating: <code class="docutils literal notranslate"><span class="pre">textOrNumber</span></code></p></li>
+<li><p>worstRating: <code class="docutils literal notranslate"><span class="pre">textOrNumber</span></code></p></li>
+</ol>
+</li>
+</ul>
+<p>Required: <code class="docutils literal notranslate"><span class="pre">ratingValue</span></code></p>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#author">author</a></p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">object</span></code></p></li>
+<li><p><strong>Fields:</strong></p>
+<ol class="arabic simple">
+<li><p>name: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ol>
+</li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dateCreated</p></td>
+<td><p>anyOf format: date-time, date</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">dateOrDatetime</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>datePublished</p></td>
+<td><p>anyOf format: date-time, date</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">dateOrDatetime</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dateModified</p></td>
+<td><p>anyOf format: date-time, date</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">dateOrDatetime</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>url</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">url</span></code></p></li>
+<li><p>Format: <code class="docutils literal notranslate"><span class="pre">uri</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>votedHelpful</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>votedUnhelpful</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">integer</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>isIncentivised</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>isVerified</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p id="author"><strong>author</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 51%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>name</p></td>
+<td><ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p id="reviewrating"><strong>reviewRating</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 50%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fields</p></th>
+<th class="head"><p>Format</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ratingValue</p></td>
+<td><p>oneOf type: string, number</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">textOrNumber</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>bestRating</p></td>
+<td><p>oneOf type: string, number</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">textOrNumber</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>worstRating</p></td>
+<td><p>oneOf type: string, number</p>
+<ul class="simple">
+<li><p>Type: <code class="docutils literal notranslate"><span class="pre">textOrNumber</span></code></p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          		</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="container">
+		<div class="row">
+		<div class="col-xs-12">
+
+		<p class="top">
+			<a href="#header" title="Return to top">Return to top</a>
+		</p>
+		<p>
+			Copyright &copy; 2010-2019, Scrapinghub
+		</p>
+
+		</div>
+		</div>
+		</div>
+		
+	</div><!-- /#footer -->
+  </body>
+</html>
